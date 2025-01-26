@@ -1,0 +1,33 @@
+<IfModule mod_headers.c>
+    Header always set Access-Control-Allow-Origin "*"
+</IfModule>
+
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^(route)($|/) - [L]
+RewriteRule ^(assets)($|/) - [L]
+
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} !-d [NC]
+RewriteCond %{REQUEST_FILENAME} !-f [NC]
+
+RewriteCond %{REQUEST_URI} /+[^\.]+$
+RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [R=301,L]
+
+RewriteRule ^503/$ index.php?route=503 [L]
+RewriteRule ^404/$ index.php?route=404 [L]
+
+RewriteRule ^about|about-us/$ index.php?route=about [L]
+RewriteRule ^contacts|contact-us/$ index.php?route=contact-us [L]
+
+RewriteRule ^([a-zA-Z0-9-z\-\_]+)/([a-zA-Z0-9-z\-\_]+)/([a-zA-Z0-9-z\-\_]+)/([a-zA-Z0-9-z\-\_]+)/$ index.php?route=page&greatgrandparent=$1&grandparent=$2&parent=$3&id=$4 [L]
+RewriteRule ^([a-zA-Z0-9-z\-\_]+)/([a-zA-Z0-9-z\-\_]+)/([a-zA-Z0-9-z\-\_]+)/$ index.php?route=page&grandparent=$1&parent=$2&id=$3 [L]
+RewriteRule ^([a-zA-Z0-9-z\-\_]+)/([a-zA-Z0-9-z\-\_]+)/$ index.php?route=page&parent=$1&id=$2 [L]
+RewriteRule ^([a-zA-Z0-9-z\-\_]+)/$ index.php?route=page&id=$1 [QSA,L]
+

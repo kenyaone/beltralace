@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "bootstrap-select": "^1.13.18",
+    "chart.js": "^4.4.0",
+    "choices.js": "^10.2.0",
+    "datatables.net-bs5": "^1.13.7",
+    "datatables.net-datetime": "^1.5.0",
+    "datatables.net-dt": "^1.13.7",
+    "datatables.net-fixedcolumns-dt": "^4.3.0",
+    "datatables.net-fixedheader-dt": "^3.4.0",
+    "datatables.net-responsive-dt": "^2.5.0",
+    "datatables.net-select-dt": "^1.7.0",
+    "notyf": "^3.10.0",
+    "toastr": "^2.1.4"
+  }
+}

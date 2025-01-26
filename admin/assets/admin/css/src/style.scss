@@ -1,0 +1,424 @@
+:root {
+    --primary-color: #eb8112;
+    --primary-color-rgb: rgb(235, 129, 18);
+    --primary-color-variant: #FEC02F;
+    --secondary-color: #6cb414;
+    --secondary-color-rgb: rgb(108, 180, 20);
+    --secondary-color-variant: #69B214;
+  }
+  
+  body {
+    // font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #777777;
+    line-height: 26px;
+    background: #ffffff;
+    position: relative;
+    letter-spacing: 0.5px;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+  }
+  
+  p {
+    margin-bottom: 10px;
+  }
+  
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  input,
+  button,
+  select,
+  textarea {
+    line-height: inherit;
+  }
+
+  .form-control{
+    color: #000 !important;
+  }
+  
+.nav-link{
+  text-decoration: none;
+  color: inherit !important;
+}
+
+.nav-item .active{
+  text-decoration: none;
+  color: inherit !important;
+  border-bottom: 1px solid #0d6efd !important;
+}
+
+.error {
+    color: red;
+    font-size: 0.9em;
+    padding-top: 5px;
+}
+
+#overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    width: 100px;
+    height: auto;
+}
+
+.dash-icon{
+    width: 25px;
+    margin-right:0rem !important;
+    display: flex;
+    color: grey !important;
+}
+
+.sidebar-link{
+  padding-bottom: 5px !important;
+  padding-top: 5px !important;
+}
+
+.sidebar-link, a.sidebar-link{
+    display: flex !important;
+    align-items: center;
+}
+
+.sidebar-dropdown .sidebar-link::before{
+    content: "" !important;
+}
+
+.ck-editor__editable_inline {
+    min-height: 250px;
+}
+
+// Dropzone
+.dz-image img {
+    width: 100%;
+    height: 100%;
+}
+.dropzone.dz-started .dz-message {
+	display: block !important;
+}
+.dropzone {
+	border: 1px dashed #898989  !important;
+	background: #f4f4f4 !important;
+}
+.dropzone .dz-preview.dz-complete .dz-success-mark {
+    opacity: 1;
+}
+.dropzone .dz-preview.dz-error .dz-success-mark {
+    opacity: 0;
+}
+.dropzone .dz-preview .dz-error-message{
+	top: 144px;
+}
+
+.table-sm > .btn{
+    padding: 3px
+}
+
+.dataTables_wrapper td {
+  padding: 4px;
+}
+
+.btn-xs {
+  padding: 0.20rem 0.4rem; /* Smaller padding */
+  font-size: 0.75rem; /* Smaller font size */
+  line-height: 1.25; /* Adjust line height */
+  border-radius: 0.2rem; /* Smaller border radius */
+}
+
+.badge-custom{
+  padding: 0px 4px;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 10px;
+}
+
+
+.list-group-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.list-group-item .form-check-input {
+  margin-top: 0;
+}
+
+.list-group-item .progress {
+  height: 20px; /* Set the progress bar height */
+}
+
+.list-group-item .progress-bar {
+  line-height: 20px; /* Align the text vertically in the progress bar */
+  text-align: center; /* Center the text in the progress bar */
+}
+
+/* Popover CSS - Requires customization if you want to insert HTML content */
+
+.bottom-form-container{
+  // bottom: 15px !important;
+  padding: 15px 0px;
+  background-color: #fff;
+
+}
+
+.widget-box{
+  border: solid;
+  border-color: var(--bs-border-color);
+  border-radius: 0.2rem;
+  border-width: 1px;
+}
+
+.widget-box-body{
+  padding: 0.7rem;
+}
+
+
+.project-card{
+  max-height: 500px;
+  overflow-y: auto;
+  border-radius: 15px !important;
+}
+
+.project-card .project-description{
+  text-align: justify !important;
+}
+
+.project-card .card-footer {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem; /* Adjust the space between widgets */
+}
+
+.footer-widget {
+  display: flex;
+  align-items: center;
+}
+
+.footer-widget .widget-icon {
+  width: 24px; /* Adjust the image size as needed */
+  height: auto;
+}
+
+.footer-widget .text {
+  line-height: 1.2rem;
+}
+
+.footer-widget .widget-label {
+  font-size: 0.8em;
+  color: #6c757d; /* Bootstrap's text-muted color */
+  display: block;
+}
+
+.footer-widget .widget-name {
+  font-weight: bold;
+}
+
+.footer-widget.confirmation {
+  margin-left: auto; /* Pushes the confirmation button to the right */
+}
+
+.footer-widget.confirmation .btn {
+  /* Additional styles if needed */
+}
+
+
+
+.task-card-container {
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+.card-link {
+  text-decoration: none; /* Remove link underlining */
+  color: inherit; /* Use the inherited text color */
+  transform: scale(1); 
+  transition: transform 0.5s ease-in-out;
+}
+
+.card-link:hover {
+  text-decoration: none; /* Remove link underlining on hover */
+}
+
+.card-link:hover .task-card {
+  transform: scale(1.01); /* Scales up the card to 105% of its original size */
+}
+
+
+.task-card {
+  position: relative;
+  border-radius: 15px !important;
+  overflow: hidden;
+}
+
+.task-card .card-title {
+  font-size: 1rem;
+  margin-bottom: 16px;
+  font-weight: bold;
+  color: #000;
+}
+
+.task-card .task-description{
+  line-height: 1.4em;
+}
+
+.task-card .btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+  background-color: #6c757d; /* Match this with your theme color */
+}
+
+.task-card .uploaded-files i,
+.task-card .comments i {
+  margin-right: 0px;
+}
+
+/* If using Bootstrap Icons, the `i` tags are replaced with `svg` */
+.task-card .uploaded-files svg,
+.task-card .comments svg {
+  margin-right: 5px;
+}
+
+.task-card .progress {
+  background-color: #e9ecef;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 16px;
+}
+
+.task-card .progress-bar {
+  background-color: #0d6efd; /* Match this with your theme color */
+  font-size: 0.75rem;
+  line-height: 10px; /* Adjust the line-height to match the progress bar height */
+}
+
+.task-card .bottom-strip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 8px; /* Makes the strip stretch across the whole width */
+  height: 100%; /* Adjust the height of the strip as you like */
+  background-color: #007bff; /* Replace with the color you want */
+}
+
+
+
+.task-card-min-link {
+  text-decoration: none; /* Remove link underlining */
+  color: inherit; /* Use the inherited text color */
+  transform: scale(1); 
+  transition: transform 0.5s ease-in-out;
+}
+
+.task-card-min-link:hover {
+  text-decoration: none; /* Remove link underlining on hover */
+}
+
+.task-card-min-link:hover .task-card {
+  transform: scale(1.05); /* Scales up the card to 105% of its original size */
+}
+
+.task-card-min {
+  margin-bottom: 1rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.task-card-min .card-title {
+  margin-bottom: .8rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.task-card-min .badge {
+  padding: 0.375rem 0.75rem; /* Padding to make badges more pill-like */
+}
+
+.task-card-min .bi-exclamation-circle {
+  color: #fff; /* For white icon color */
+}
+
+.task-card-min .bi-check-lg {
+  color: #fff; /* For white icon color */
+}
+
+.task-card-min img {
+  object-fit: cover;
+  width: 35px !important; 
+  height: 35px !important;
+}
+
+
+.btn-xs {
+  padding: 0.2rem 0.4rem; /* Smaller padding */
+  font-size: 0.75rem; /* Smaller font size */
+  line-height: 1.25; /* Adjust line height */
+  border-radius: 0.2rem; /* Smaller border radius */
+}
+
+.badge-custom {
+  padding: 0px 4px;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 10px;
+}
+
+.table-min>thead>tr>th {
+  padding: 0.25rem;
+  background-color: var(--bs-light);
+}
+
+.table-min>tbody>tr>th {
+  padding: 0.25rem;
+  background-color: var(--bs-light);
+}
+
+.table-min>tbody>tr>td {
+  padding: 0.25rem;
+}
+
+.table-min>thead>tr>td {
+  padding: 0.25rem;
+}
+
+.table-min-xs>tbody>tr>th {
+  padding: 0.15rem;
+  background-color: var(--bs-light);
+}
+
+.table-min-xs>tbody>tr>td {
+  padding: 0.15rem;
+} 
+
+.note-editor.note-airframe.fullscreen, .note-editor.note-frame.fullscreen{
+  background-color: white;
+}

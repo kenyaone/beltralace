@@ -1,0 +1,8 @@
+{
+  "host": "http://domain.com",
+  "webAddress": "http://domain.com",
+  "path": "",
+  "emailHost": "mail.domain.com",
+  "email": "username@domail.com",
+  "emailPassword": "password123"
+}

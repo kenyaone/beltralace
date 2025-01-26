@@ -1,0 +1,5 @@
+{
+    "api": "http://api.hpew.local/index.php",
+    "cms": "http://cms.hpew.local",
+    "assets": "http://hpew.local/frontend/views/assets"
+}

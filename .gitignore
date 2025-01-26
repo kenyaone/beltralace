@@ -1,0 +1,26 @@
+.htaccess
+admin/.htaccess
+config/.credentials.txt
+
+admin/config/env/.config.json
+admin/config/env/.database.json
+admin/config/env/client_secret.json
+frontend/config/env/.config.json
+api/config/env/.config.json
+api/config/env/.database.json
+
+
+# Ignore composer packages
+vendor
+
+# Ignore error log
+error.log
+api/error.log
+admin/error.log
+
+.vscode
+.DS_Store
+assets/node_modules
+uploads
+debug
+debug.log
