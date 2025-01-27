@@ -1,15 +1,7 @@
 {
-    "siteTitle": "Website CMS",
-    "tagline": "By Mutevu",
-    "defaultDesc": null,
-    "webAddress": "https://sub.mutevu.com/",
-    "adminUrl": "https://sub.mutevu.com/admin/",
-    "api": "https://sub.mutevu.com/route/api.php",
-    "smsUsername": "sandbox",
-    "smsApiKey": "cc7bfca20406bf7a43cacce17281ff32d26bc3a6c5829913a76983c00238733d", 
-    "smsShortCode": "19738", 
-    "smsKeyWord": "bibilia",
-    "emailHost": "mail.mutevu.com",
-    "email": "dev@mutevu.com",
-    "emailPassword": "j{C]6%oYAPQU"
+    "site_title": "HPEW",
+    "api": "http://api.hpew.local/index.php",
+    "login_page": "http://cms.hpew.local/login",
+    "cms": "http://cms.hpew.local",
+    "secret_key": "j{Ciknwjd9YAPQU"
 }

@@ -6,6 +6,12 @@ ini_set('error_log', '/../error.log');
 
 $root = dirname(dirname(__FILE__));
 
+$htaccessFile = $root . '/.htaccess';
+
+if (!file_exists($htaccessFile)) {
+    echo "The .htaccess file is missing. Please ensure it is present in the directory.";
+    exit;
+}
 
 if (file_exists($root.'/config/env/.config.json')) {
     $data = json_decode(file_get_contents($root.'/config/env/.config.json'));

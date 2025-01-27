@@ -22,7 +22,12 @@ if (!empty($_POST)) {
     $action = isset($params['action']) ? $params['action'] : null;
 }
 
-$dir = dirname(__DIR__)."/";
+$htaccessFile = __DIR__ . '/.htaccess';
+
+if (!file_exists($htaccessFile)) {
+    http_response_code(500);
+    throw new Exception("Error: The .htaccess file is missing. Please ensure it is present in the directory.");
+}
 
 include_once 'vendor/autoload.php';
 require_once 'config/config.php';

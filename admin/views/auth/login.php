@@ -53,7 +53,7 @@ include_once $dir . '/includes/auth-header.php';
 </main>
 <div class="modal fade" id="reset-password-modal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form action="<?php echo DIR; ?>route/api.php" id="reset-password-form">
+        <form action="<?php echo API; ?>" id="reset-password-form">
             <input type="hidden" name="object" value="User">
             <input type="hidden" name="action" value="request_pass_reset">
             <div class="modal-content">
