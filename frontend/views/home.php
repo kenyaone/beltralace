@@ -1,19 +1,19 @@
 <?php
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, API);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+// $ch = curl_init();
+// curl_setopt($ch, CURLOPT_URL, API);
+// curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
 
-$post_data = array(
-    'object' => 'Widget',
-    'action' => 'get_by_section',
-    'section' => 'banner'
-);
+// $post_data = array(
+//     'object' => 'Widget',
+//     'action' => 'get_by_section',
+//     'section' => 'banner'
+// );
 
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post_data));
-$response = curl_exec($ch);
-$banner_widgets = json_decode($response);
+// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+// curl_setopt($ch, CURLOPT_POST, true);
+// curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post_data));
+// $response = curl_exec($ch);
+// $banner_widgets = json_decode($response);
 
 // if(count($banner_widgets)){
 ?>
@@ -205,6 +205,97 @@ $banner_widgets = json_decode($response);
 
                 <a href="#" class="btn btn-main"><i class="fa fa-check mr-2"></i>Learn More</a>
 
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="testimonial section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="section-heading center-heading text-center">
+                    <span class="subheading">Testimonials</span>
+                    <h3>What our clients say about us</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="testimonials-slides owl-carousel owl-theme">
+                    <div class="review-item">
+                        <div class="client-info">
+                            <i class="fa fa-quote-left"></i>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni eius autem aliquid pariatur rerum. Deserunt, praesentium.
+                                Adipisci, voluptates nihil debitis</p>
+                            <div class="rating">
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                            </div>
+                        </div>
+                        <div class="client-desc">
+                            <div class="client-img">
+                                <img src="assets/images/clients/test-1.jpg" alt="" class="img-fluid">
+                            </div>
+                            <div class="client-text">
+                                <h4>John Doe</h4>
+                                <span class="designation">Developer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-item">
+                        <div class="client-info">
+                            <i class="fa fa-quote-left"></i>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni eius autem aliquid pariatur rerum. Deserunt, praesentium.
+                                Adipisci, voluptates nihil debitis</p>
+                            <div class="rating">
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                            </div>
+                        </div>
+                        <div class="client-desc">
+                            <div class="client-img">
+                                <img src="assets/images/clients/test-2.jpg" alt="" class="img-fluid">
+                            </div>
+                            <div class="client-text">
+                                <h4>John Doe</h4>
+                                <span class="designation">Developer</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="review-item">
+                        <div class="client-info">
+                            <i class="fa fa-quote-left"></i>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni eius autem aliquid pariatur rerum. Deserunt, praesentium.
+                                Adipisci, voluptates nihil debitis</p>
+                            <div class="rating">
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                            </div>
+                        </div>
+                        <div class="client-desc">
+                            <div class="client-img">
+                                <img src="assets/images/clients/test-3.jpg" alt="" class="img-fluid">
+                            </div>
+                            <div class="client-text">
+                                <h4>John Doe</h4>
+                                <span class="designation">Developer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

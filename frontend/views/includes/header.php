@@ -87,7 +87,12 @@
                             </li>
                             <li class="nav-item ">
                                 <a href="/" class="nav-link js-scroll-trigger">
-                                    About
+                                    Teaching jobs
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a href="/" class="nav-link js-scroll-trigger">
+                                    Pricing
                                 </a>
                             </li>
                             <li class="nav-item ">
