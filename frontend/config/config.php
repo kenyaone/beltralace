@@ -4,7 +4,7 @@ ob_start();
 date_default_timezone_set('Africa/Nairobi');
 ini_set('error_log', '/../error.log');
 
-$root = dirname(dirname(__FILE__));
+$root = dirname(__DIR__, 2);
 
 $htaccessFile = $root . '/.htaccess';
 
@@ -13,8 +13,8 @@ if (!file_exists($htaccessFile)) {
     exit;
 }
 
-if (file_exists($root.'/config/env/.config.json')) {
-    $data = json_decode(file_get_contents($root.'/config/env/.config.json'));
+if (file_exists($root.'/frontend/config/env/.config.json')) {
+    $data = json_decode(file_get_contents($root.'/frontend/config/env/.config.json'));
 
     define('SITE_TITLE', $data->siteTitle);
     define('SITE_DESCRIPTION', $data->siteDescription);
