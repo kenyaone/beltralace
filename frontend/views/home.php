@@ -18,6 +18,27 @@ $banner_widgets = json_decode($response);
 // if(count($banner_widgets)){
 ?>
 
+<style>
+    .language-container {
+        text-align: center;
+        margin: 10px;
+    }
+
+    .language-container img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #ddd;
+    }
+
+    .language-container p {
+        margin-top: 5px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+</style>
+
 <!--search overlay start-->
 <div class="search-wrap">
     <div class="overlay">
@@ -108,8 +129,55 @@ $banner_widgets = json_decode($response);
     </div>
 </section>
 <?php
-*/
+ */
 ?>
+
+<section class="section-padding course-grid">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-7">
+                <div class="section-heading center-heading">
+                    <!-- <span class="subheading">Pick your language of choice</span> -->
+                    <h3>I want to learn:</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-auto language-container">
+                <img src="https://flagcdn.com/w160/ke.png" alt="English">
+                <p>Swahili</p>
+            </div>
+            <div class="col-auto language-container">
+                <img src="https://flagcdn.com/w160/gb.png" alt="English">
+                <p>English</p>
+            </div>
+            <div class="col-auto language-container">
+                <img src="https://flagcdn.com/w160/es.png" alt="Spanish">
+                <p>Spanish</p>
+            </div>
+            <div class="col-auto language-container">
+                <img src="https://flagcdn.com/w160/fr.png" alt="French">
+                <p>French</p>
+            </div>
+            <div class="col-auto language-container">
+                <img src="https://flagcdn.com/w160/de.png" alt="German">
+                <p>German</p>
+            </div>
+            <div class="col-auto language-container">
+                <img src="https://flagcdn.com/w160/br.png" alt="Portuguese">
+                <p>Portuguese</p>
+            </div>
+            <div class="col-auto language-container">
+                <img src="https://flagcdn.com/w160/it.png" alt="Italian">
+                <p>Italian</p>
+            </div>
+            <div class="col-auto language-container">
+                <img src="https://flagcdn.com/w160/cn.png" alt="Mandarin Chinese">
+                <p>Mandarin Chinese</p>
+            </div>
+        </div>
+    </div>
+</section>
 <section class="about-section section-padding about-2">
     <div class="container">
         <div class="row align-items-center">
