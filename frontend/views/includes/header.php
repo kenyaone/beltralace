@@ -21,7 +21,7 @@
 	<meta name="twitter:description" content="<?php echo $page->meta_description ? $page->meta_description : SITE_DESCRIPTION; ?>">
 	<meta name="twitter:image" content="<?php echo UPLOAD_SERVER . "/" . $page->cover_image; ?>">
 	<meta name="twitter:image:alt" content="<?php echo  $page->title ? $page->title . " | " . SITE_TITLE : SITE_TITLE; ?>">
-	<link rel="shortcut icon" href="<?php echo ASSETS; ?>/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="<?php echo ASSETS; ?>/images/favicon/favicon.ico" type="image/x-icon">
 	<link rel="canonical" href="<?php echo SITE_URL .  "/" . $page->slug; ?>">
 	<!-- Title -->
 
