@@ -226,8 +226,9 @@
                     <div class="review-item">
                         <div class="client-info">
                             <i class="fa fa-quote-left"></i>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni eius autem aliquid pariatur rerum. Deserunt, praesentium.
-                                Adipisci, voluptates nihil debitis</p>
+                            <p>
+                                Learning swahili was life-changing for me. It helped me enjoy my trip to East Africa
+                            </p>
                             <div class="rating">
                                 <a href="#"><i class="fa fa-star"></i></a>
                                 <a href="#"><i class="fa fa-star"></i></a>
@@ -241,8 +242,8 @@
                                 <img src="assets/images/clients/test-1.jpg" alt="" class="img-fluid">
                             </div>
                             <div class="client-text">
-                                <h4>John Doe</h4>
-                                <span class="designation">Developer</span>
+                                <h4>Jean Annika</h4>
+                                <span class="designation">Student</span>
                             </div>
                         </div>
                     </div>
@@ -250,8 +251,10 @@
                     <div class="review-item">
                         <div class="client-info">
                             <i class="fa fa-quote-left"></i>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni eius autem aliquid pariatur rerum. Deserunt, praesentium.
-                                Adipisci, voluptates nihil debitis</p>
+                            <p>
+                                Having our materials translated by Betralace has been awesome. Their service is top-notch. 
+                                Highly recommend.
+                            </p>
                             <div class="rating">
                                 <a href="#"><i class="fa fa-star"></i></a>
                                 <a href="#"><i class="fa fa-star"></i></a>
@@ -265,8 +268,8 @@
                                 <img src="assets/images/clients/test-2.jpg" alt="" class="img-fluid">
                             </div>
                             <div class="client-text">
-                                <h4>John Doe</h4>
-                                <span class="designation">Developer</span>
+                                <h4>Howard Mason</h4>
+                                <span class="designation">Finance Manager</span>
                             </div>
                         </div>
                     </div>
@@ -275,8 +278,10 @@
                     <div class="review-item">
                         <div class="client-info">
                             <i class="fa fa-quote-left"></i>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni eius autem aliquid pariatur rerum. Deserunt, praesentium.
-                                Adipisci, voluptates nihil debitis</p>
+                            <p>
+                                I am happy I learnt spanish. Super grateful to Betralace because they made the experience 
+                                easy and enjoyable.
+                            </p>
                             <div class="rating">
                                 <a href="#"><i class="fa fa-star"></i></a>
                                 <a href="#"><i class="fa fa-star"></i></a>
@@ -290,8 +295,8 @@
                                 <img src="assets/images/clients/test-3.jpg" alt="" class="img-fluid">
                             </div>
                             <div class="client-text">
-                                <h4>John Doe</h4>
-                                <span class="designation">Developer</span>
+                                <h4>Sasha Mwanzo</h4>
+                                <span class="designation">Project Manager</span>
                             </div>
                         </div>
                     </div>
