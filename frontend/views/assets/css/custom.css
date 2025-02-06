@@ -1,0 +1,120 @@
+
+/* FAQ Section Styles - Scoped to .faq-accordion */
+.faq-accordion {
+    /* max-width: 800px; */
+    margin: auto;
+}
+
+.faq-card {
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.faq-card-header {
+    background: #303590;
+    padding: 12px;
+    border-bottom: none;
+    border-radius: 8px;
+}
+
+.faq-card-header h5 {
+    margin: 0;
+}
+.faq-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+    width: 100%;
+    text-align: left;
+    padding: 12px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+    display: block;
+}
+
+/* Fix hover effect */
+.faq-btn:hover {
+    background: none;
+    color: #fff;
+    border-radius: 5px;
+}
+
+/* When button is active (clicked) */
+.faq-btn[aria-expanded="true"] {
+    background: none;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.faq-card-body {
+    background: #f8f9fa;
+    padding: 15px;
+    font-size: 16px;
+    color: #535967;
+    border-radius: 0 0 8px 8px;
+}
+
+.faq-btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+@import url(//fonts.googleapis.com/css?family=Montserrat:300,400,500);
+
+.c2a1 {
+    font-family: "Montserrat", sans-serif;
+    color: #8d97ad;
+    font-weight: 300;
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
+}
+
+.c2a1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Adjust opacity here */
+    z-index: 1;
+}
+
+.c2a1 .container {
+    position: relative;
+    z-index: 2;
+}
+
+.c2a1 h1, .c2a1 h2, .c2a1 h3, .c2a1 h4, .c2a1 h5, .c2a1 h6 {
+    color: #fff; /* Ensure text remains visible */
+}
+
+.c2a1 .op-8 {
+    opacity: 0.8;
+}
+
+.c2a1 .font-weight-medium {
+    font-weight: 500;
+}
+
+.c2a1 .btn-danger-gradiant {
+    background: #ff4d7e;
+    background: linear-gradient(to right, #ff4d7e 0%, #ff6a5b 100%);
+}
+
+.c2a1 .btn-danger-gradiant:hover {
+    background: linear-gradient(to right, #ff6a5b 0%, #ff4d7e 100%);
+}
+
+.c2a1 .btn-md {
+    padding: 15px 45px;
+    font-size: 16px;
+}

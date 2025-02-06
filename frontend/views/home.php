@@ -210,6 +210,26 @@
     </div>
 </section>
 
+<section class="section-padding about-section">
+    <div class="py-5 bg-light c2a1"
+        style="background-image:url(../frontend/views/assets/images/cta.jpg)">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-7 text-center">
+                    <h2 class="mb-3 text-white font-weight-medium">Take free test</h2>
+                    <p class="font-weight-light text-white op-8">
+                        Challenge yourself with our online courses in more than 100 languages! Reach out to us and we will prepare a fun and interactive programme just for you.
+                    </p>
+                    <a class="btn btn-main btn-md border-0 text-white mt-3" href="#">
+                        <span>Take test today</span>
+                    </a>
+                </div>
+            </div>
+            <!-- Row -->
+        </div>
+    </div>
+</section>
+
 <section class="testimonial section-padding">
     <div class="container">
         <div class="row justify-content-center">
@@ -252,7 +272,7 @@
                         <div class="client-info">
                             <i class="fa fa-quote-left"></i>
                             <p>
-                                Having our materials translated by Betralace has been awesome. Their service is top-notch. 
+                                Having our materials translated by Betralace has been awesome. Their service is top-notch.
                                 Highly recommend.
                             </p>
                             <div class="rating">
@@ -279,7 +299,7 @@
                         <div class="client-info">
                             <i class="fa fa-quote-left"></i>
                             <p>
-                                I am happy I learnt spanish. Super grateful to Betralace because they made the experience 
+                                I am happy I learnt spanish. Super grateful to Betralace because they made the experience
                                 easy and enjoyable.
                             </p>
                             <div class="rating">
@@ -305,3 +325,7 @@
         </div>
     </div>
 </section>
+
+<style>
+
+</style>

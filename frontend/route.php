@@ -30,8 +30,8 @@ switch ($parent) {
         include_once 'views/contact-us.php';
         break;
 
-    case 'privacy-policy':
-        include_once 'views/privacy-policy.php';
+    case 'faqs':
+        include_once 'views/faqs.php';
         break;
 
     case 'terms-of-service':
