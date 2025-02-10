@@ -233,7 +233,7 @@
                         <img src="<?php echo ASSETS; ?>/images/bilha.jpeg" alt="" class="img-fluid" style="object-fit: cover;">
                     </div>
                     <div class="team-info">
-                        <h4>Bilha</h4>
+                        <h4>Belha</h4>
                         <p>Swahili trainer/expert</p>
 
                         <!-- <ul class="team-socials list-inline">
