@@ -210,7 +210,66 @@
     </div>
 </section>
 
-<section class="section-padding about-section">
+<section class="team section-padding bg-grey">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="section-heading">
+                    <span class="subheading">Best Expert Trainers</span>
+                    <h3>Our Team</h3>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <!-- <div class="course-btn text-lg-right"><a href="#" class="btn btn-main"><i class="fa fa-user mr-2"></i>Join With us</a></div> -->
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="team-item">
+                    <div style="height: 200px; overflow: hidden;">
+                        <img src="<?php echo ASSETS; ?>/images/bilha.jpeg" alt="" class="img-fluid" style="object-fit: cover;">
+                    </div>
+                    <div class="team-info">
+                        <h4>Bilha</h4>
+                        <p>Swahili trainer/expert</p>
+
+                        <!-- <ul class="team-socials list-inline">
+                            <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                        </ul> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-6">
+                <div class="team-item">
+                    <p class="text-left">
+                        A university of Nairobi graduate in Bachelor of Education Specializing in Swahili and
+                        Geography, Belha is not only a qualified and professional Swahili teacher but also an
+                        experienced Swahili native speaker. She speaks fluent English and intermediate Chinese
+                        Mandarin too.
+                    </p>
+                    <p class="text-left">
+                        Belha has over 10 years of teaching experience in schools across Africa and has previous
+                        extensive experience as a Swahili trainer and translator for large organizations and NGO’s in
+                        Nairobi such as Nairobi Institute of Swahili and Helen Keller international, (Nairobi branch).
+                    </p>
+                    <p class="text-left">
+                        She has also enjoyed the experience of working with International Language companies such
+                        as Language trainers, London Swahili and Listen and Learn, giving her a broad experience in
+                        teaching people across borders and from difference cultures.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="pb-5">
     <div class="py-5 bg-light c2a1"
         style="background-image:url(../frontend/views/assets/images/cta.jpg)">
         <div class="container">
