@@ -87,7 +87,7 @@
                                 </a>
                             </li>
                             <li class="nav-item ">
-                                <a href="/" class="nav-link js-scroll-trigger">
+                                <a href="/teaching-jobs" class="nav-link js-scroll-trigger">
                                     Teaching jobs
                                 </a>
                             </li>
