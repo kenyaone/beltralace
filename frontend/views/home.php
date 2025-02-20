@@ -68,7 +68,7 @@
                     <span class="subheading">Expert instruction</span>
                     <h1>For all your professional language solutions!</h1>
                     <a href="#" class="btn btn-main"><i class="fa fa-list-ul mr-2"></i>our Courses </a>
-                    <a href="#" class="btn btn-tp ">get Started <i class="fa fa-angle-right ml-2"></i></a>
+                    <a href="#" class="btn btn-tp" data-toggle="modal" data-target="#modal-form">Get Started <i class="fa fa-angle-right ml-2"></i></a>
                 </div>
             </div>
         </div> <!-- / .row -->
@@ -279,7 +279,7 @@
                     <p class="font-weight-light text-white op-8">
                         Challenge yourself with our online courses in more than 100 languages! Reach out to us and we will prepare a fun and interactive programme just for you.
                     </p>
-                    <a class="btn btn-main btn-md border-0 text-white mt-3" href="#">
+                    <a class="btn btn-main btn-md border-0 text-white mt-3" href="#" data-toggle="modal" data-target="#modal-form">
                         <span>Take test today</span>
                     </a>
                 </div>

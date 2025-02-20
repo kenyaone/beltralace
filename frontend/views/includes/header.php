@@ -92,15 +92,15 @@
                                 </a>
                             </li>
                             <li class="nav-item ">
-                                <a href="/" class="nav-link js-scroll-trigger">
+                                <a href="/pricing" class="nav-link js-scroll-trigger">
                                     Pricing
                                 </a>
                             </li>
-                            <li class="nav-item ">
+                            <!-- <li class="nav-item ">
                                 <a href="/" class="nav-link js-scroll-trigger">
                                     Blog
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="nav-item ">
                                 <a href="/faqs" class="nav-link js-scroll-trigger">
                                     FAQs
@@ -113,7 +113,7 @@
                             </li>
                         </ul>
 
-                        <a href="#" class="btn btn-main btn-small"><i class="fa fa-sign-in-alt mr-2"></i>Get started</a>
+                        <a href="#" class="btn btn-main btn-small" data-toggle="modal" data-target="#modal-form"><i class="fa fa-sign-in-alt mr-2"></i>Get started</a>
 
                     </div> <!-- / .navbar-collapse -->
                 </div> <!-- / .container -->

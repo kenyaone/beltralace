@@ -9,10 +9,6 @@ switch ($parent) {
         include_once 'views/teaching-jobs.php';
         break;
 
-    case 'services':
-        include_once 'views/services.php';
-        break;
-
     case 'blogs':
         if(isset($child)){
             include_once 'views/blog-details.php';
@@ -22,8 +18,8 @@ switch ($parent) {
         }
         break;
 
-    case 'events':
-        include_once 'views/events.php';
+    case 'pricing':
+        include_once 'views/pricing.php';
         break;
 
     case 'contact-us':

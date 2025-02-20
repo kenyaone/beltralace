@@ -293,7 +293,7 @@
       $(window).scroll(function () {
         var window_top = $(window).scrollTop() + 1;
         if (window_top > 50) {
-          $('.site-navigation').addClass('menu_fixed animated fadeInDown');
+          $('.site-navigation').addClass('menu_fixed animated fadeInDown').removeClass('container');
         } else {
           $('.site-navigation').removeClass('menu_fixed animated fadeInDown');
         }
