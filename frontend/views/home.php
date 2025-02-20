@@ -235,12 +235,6 @@
                     <div class="team-info">
                         <h4>Belha</h4>
                         <p>Swahili trainer/expert</p>
-
-                        <!-- <ul class="team-socials list-inline">
-                            <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                        </ul> -->
                     </div>
                 </div>
             </div>
@@ -265,6 +259,38 @@
                 </div>
             </div>
 
+        </div>
+
+        <div class="row">
+            <div class="col-lg-9 col-md-6">
+                <div class="team-item">
+                    <p class="text-left">
+                        How about learning Swahili in a fun, interactive and practical way? I am kavulani, a language 
+                        specialist who has a vast experience in teaching swahili as a first language and also as a 
+                        foreign language. 
+                    </p>
+                    <p class="text-left">
+                        Having worked for cactus language center and Nairobi institute of Swahili and east African culture 
+                        among other language schools, all I can assure my clients is that it can only get better.
+                    </p>
+                    <p class="text-left">   
+                        Having graduated from the University of Nairobi with a major in Swahili language, I enjoy imparting 
+                        my language skills knowledge and culture to diverse individuals, in the process, learning theirs too. 
+                        The beauty of a language is sharing it for others to learn.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="team-item">
+                    <div style="height: 200px; overflow: hidden;">
+                        <img src="<?php echo ASSETS; ?>/images/pascalliah.png" alt="" class="img-fluid" style="object-fit: cover;">
+                    </div>
+                    <div class="team-info">
+                        <h4>Pascalliah</h4>
+                        <p>Swahili trainer/expert</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -384,7 +410,3 @@
         </div>
     </div>
 </section>
-
-<style>
-
-</style>

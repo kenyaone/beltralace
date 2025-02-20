@@ -25,7 +25,7 @@
             <div class="col-lg-6 ">
                 <div class="section-heading center-heading">
                     <span class="subheading">Detailed pricing</span>
-                    <h3>Select you package</h3>
+                    <h3>Select a package that best suits you</h3>
                 </div>
             </div>
         </div>
