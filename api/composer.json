@@ -10,6 +10,7 @@
         "phpunit/phpunit": "^9.6"
     },
     "require": {
-        "firebase/php-jwt": "^6.10"
+        "firebase/php-jwt": "^6.10",
+        "robmorgan/phinx": "^0.16.6"
     }
 }
