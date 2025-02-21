@@ -66,7 +66,7 @@
 			<div class="row justify-content-center align-items-center">
 				<div class="col-lg-6">
 					<div class="copyright text-lg-center">
-						<p>@ <?php echo SITE_TITLE; ?></p>
+						<p><?php echo SITE_TITLE; ?></p>
 					</div>
 				</div>
 			</div>
@@ -84,7 +84,9 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form action="/" id="contactForm" class="m-3">
+				<form action="/" id="cta-form" class="m-3">
+					<input type="hidden" name="object" value="Enquiry">
+					<input type="hidden" name="action" value="create">
 					<div class="text-center">
 						<div class="mb-5">
 							<h3>Get In Touch With Us Now.</h3>
@@ -95,27 +97,27 @@
 					<div class="row">
 						<div class="col-lg-4">
 							<div class="form-group">
-								<input type="text" id="name" name="name" class="form-control" placeholder="First Name">
+								<input type="text" name="first_name" class="form-control" placeholder="First Name" required>
 							</div>
 						</div>
 						<div class="col-lg-4">
 							<div class="form-group">
-								<input type="text" id="name" name="name" class="form-control" placeholder="Middle Name">
+								<input type="text" name="middle_name" class="form-control" placeholder="Middle Name" required>
 							</div>
 						</div>
 						<div class="col-lg-4">
 							<div class="form-group">
-								<input type="text" id="name" name="name" class="form-control" placeholder="Last Name">
+								<input type="text" name="last_name" class="form-control" placeholder="Last Name" required>
 							</div>
 						</div>
 						<div class="col-lg-6">
 							<div class="form-group">
-								<input type="text" name="email" id="email" class="form-control" placeholder="Email Address">
+								<input type="text" name="email" id="email" class="form-control" placeholder="Email Address" required>
 							</div>
 						</div>
 						<div class="col-lg-6">
 							<div class="form-group">
-								<select class="form-control" tabindex="4" name="language_id">
+								<select class="form-control" tabindex="4" name="language">
 									<option value="" selected="selected">Select a language to learn</option>
 									<option value="Afrikaans">Afrikaans</option>
 									<option value="Albanian">Albanian</option>
@@ -223,7 +225,7 @@
 						</div>
 						<div class="col-lg-12">
 							<div class="form-group">
-								<textarea class="form-control" rows="6" placeholder="Please enter details of your enquiry including: your current level, why you want to study the language, if you would like online or face-to-face classes, and whether you prefer a one-to-one or a group course (for groups, let us know the number of students)."></textarea>
+								<textarea name="message" class="form-control" rows="6" placeholder="Enter your message here..."></textarea>
 							</div>
 						</div>
 					</div>
@@ -231,16 +233,33 @@
 						<div class="col-lg-12">
 							<div class="form-check form-check-inline">
 								<input type="checkbox" name="Agree" class="form-check-input" id="accept-policy">
-								<label class="form-check-label">I agree with the Listen & Learn Privacy and Cookies Policy (GDPR Compliant)</label>
+								<label class="form-check-label">I agree with the <?php echo SITE_TITLE; ?> Privacy and Cookies Policy (GDPR Compliant)</label>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-12">
 						<div class="mt-4 text-right">
-							<button class="btn btn-main" type="button">Send Application <i class="fa fa-angle-right ml-2"></i></button>
+							<button class="btn btn-main" type="submit">Submit <i class="fa fa-angle-right ml-2"></i></button>
 						</div>
 					</div>
 				</form>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modal-confirm" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body text-center align-items-center mb-3">
+				<h3 class="my-3 py-2">Your enquiry has been received</h3>
+				<span><strong>Thank you for contacting us. A member of our team will contact you as soon as possible with more details on your enquiry </strong></span>
 			</div>
 
 		</div>
@@ -251,6 +270,38 @@
 	<a href="#top-header" class="js-scroll-trigger scroll-to-top"><i class="fa fa-angle-up"></i></a>
 </div>
 
+<script>
+	$(document).ready(function(){
+        $("#cta-form").validate({
+            submitHandler: function(form) {
+                var formData = new FormData(form);
+                $.ajax({
+                    beforeSend: function() {
+                        // $('#overlay').removeClass('d-none');
+                    },
+                    complete: function() {
+                        // $('#overlay').addClass('d-none');
+                    },
+                    url: '<?php echo API; ?>',
+                    method: 'POST',
+                    data: formData,
+                    processData: false,
+                    dataType: 'json',
+                    contentType: false,
+                    success: function(response, textStatus, jqXHR) {
+                        form.reset();
+						$('#modal-form').modal('hide');
+						$('#modal-confirm').modal('show');
+                    },
+                    error: function(data) {
+
+                        toastr.error(data.responseJSON.message);
+                    }
+                });
+            }
+        });
+	})
+</script>
 
 
 <!-- 
@@ -270,6 +321,8 @@
 <script src="<?php echo ASSETS; ?>/js/owl.carousel.min.js"></script>
 <script src="<?php echo ASSETS; ?>/js/script.js"></script>
 
+
+<script src="<?php echo ASSETS; ?>/js/jquery.validate.js"></script>
 
 </body>
 

@@ -40,6 +40,7 @@ use App\Controllers\UserController;
 use App\Controllers\BlogArticleController;
 use App\Controllers\PageController;
 use App\Controllers\WidgetController;
+use App\Controllers\EnquiryController;
 
 use App\Helpers\Dropzone;
 use App\Helpers\HelperFunctions;
@@ -361,6 +362,28 @@ if (isset($object)) {
                 echo $class_object->dataTable();
                 break;
 
+            default:
+                echo json_encode(array(
+                    'status' => 1,
+                    'message' => "Endpoint not found"
+                ));
+                break;
+        }
+
+        exit;
+    }
+
+    if ($object == 'Enquiry') {
+        $controller = new EnquiryController($params);
+        switch ($action) {
+            case 'create':
+                echo json_encode($controller->create(), JSON_PRETTY_PRINT);
+                break;
+
+            case 'data_table':
+                $class_object = new UserController($params);
+                echo $class_object->dataTable();
+                break;
             default:
                 echo json_encode(array(
                     'status' => 1,
