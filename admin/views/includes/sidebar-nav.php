@@ -67,22 +67,6 @@
                                         <span class="align-middle">Blog</span>
                                     </a>
                                 </li>
-                                <!-- <li class="sidebar-item">
-                                    <a data-bs-target="#blogs" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">
-                                        <i class="fas fa-fw fa-bullhorn dash-icon"></i>
-                                        <span class="align-middle">Blog</span>
-                                    </a>
-                                    <ul id="blogs" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                                        <li class="sidebar-item"><a class="sidebar-link" href="<?php echo DIRADMIN; ?>blog-articles"><i class="fas fa-fw fa-list dash-icon"></i> Articles</a></li>
-                                        <li class="sidebar-item"><a class="sidebar-link" href="<?php echo DIRADMIN; ?>blog-videos"><i class="fab fa-fw fa-youtube-square dash-icon"></i>YouTube Videos</a></li>
-                                    </ul>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a class="sidebar-link" href="<?php echo DIRADMIN; ?>events">
-                                        <i class="far fa-fw fa-calendar dash-icon"></i>
-                                        <span class="align-middle">Events</span>
-                                    </a>
-                                </li> -->
                                 <li class="sidebar-item">
                                     <a class="sidebar-link" href="<?php echo DIRADMIN; ?>faqs">
                                         <i class="far fa-fw fa-question-circle dash-icon"></i>
@@ -159,12 +143,12 @@
                                         <span class="align-middle">Users</span>
                                     </a>
                                 </li>
-                                <li class="sidebar-item">
+                                <!-- <li class="sidebar-item">
                                     <a class="sidebar-link" href="<?php echo DIRADMIN; ?>settings">
                                         <i class="fas fa-fw fa-cog dash-icon"></i>
                                         <span class="align-middle">Settings</span>
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
 
                         </div>

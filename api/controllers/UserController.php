@@ -7,6 +7,8 @@ use \PDOException;
 use App\Models\User;
 use App\Models\Datatable;
 
+use App\Helpers\HelperFunctions;
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use Firebase\JWT\JWT;
@@ -25,17 +27,17 @@ class UserController
         $this->data = $data;
     }
 
-    public function create(User $user)
+    public function create()
     {
         $connection =  DatabaseController::connect();
         try {
             $query = $connection->prepare("INSERT INTO users(first_name, last_name, phone, email, username, password, avatar) VALUES(?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE first_name = ?, last_name = ?, email = ?, phone = ?, password = ?, avatar = ?");
-            $query->execute(array($user->first_name, $user->last_name, $user->phone, $user->email, $user->username, password_hash($user->password, PASSWORD_DEFAULT), $user->avatar, $user->first_name, $user->last_name, $user->email, $user->phone, password_hash($user->password, PASSWORD_DEFAULT), $user->avatar));
-            $user->id = $connection->lastInsertId();
+            $query->execute(array($this->user->first_name, $this->user->last_name, $this->user->phone, $this->user->email, $this->user->username, password_hash($this->user->password, PASSWORD_DEFAULT), $this->user->avatar, $this->user->first_name, $this->user->last_name, $this->user->email, $this->user->phone, password_hash($this->user->password, PASSWORD_DEFAULT), $this->user->avatar));
+            $this->user->id = $connection->lastInsertId();
 
             return (object) array(
                 'status' => 1,
-                'message' => 'User created successfully',
+                'message' => 'User created',
             );
         } catch (PDOException $e) {
             error_log($e->getMessage() .": ".$e->getTraceAsString());
@@ -54,7 +56,7 @@ class UserController
             $query->execute(array($user->first_name, $user->last_name, $user->email, $user->username, $user->biography, $user->phone, $user->avatar, $user->id));
             return array(
                 'status' => 1,
-                'message' => 'User details updated successfully'
+                'message' => 'User updated'
             );
         } catch (PDOException $e) {
             return array(
@@ -359,9 +361,9 @@ class UserController
                                 ' . $activation_button . '
                             </div>';
             }
-            $avatar = $row->avatar ? UPLOADS_PATH . '/avatars/' . $row->avatar . '?' . time() : ASSETS_PATH . '/admin/img/user-avatar.png';
+            // $avatar = $row->avatar ? UPLOADS_PATH . '/avatars/' . $row->avatar . '?' . time() : ASSETS . '/admin/img/user-avatar.png';
             $table_row = array();
-            $table_row[] = '<img src="' . $avatar . '" class="img-fluid img-thumbnail rounded-circle" style="height: 40px"/>';
+            $table_row[] = '<img src="" class="img-fluid img-thumbnail rounded-circle" style="height: 40px"/>';
             $table_row[] = $row->first_name . ' ' . $row->last_name . " (" . $row->username . ")";
             $table_row[] = $row->phone;
             $table_row[] = $row->email;
@@ -374,9 +376,9 @@ class UserController
             // }
         }
         echo json_encode(array(
-            'draw' => intval($user->draw),
+            'draw' => intval($this->datatable->draw),
             'recordsTotal' => count($results),
-            'recordsFiltered' => $user->totalUsers(),
+            'recordsFiltered' => $this->totalUsers(),
             "data" => $data
         ), JSON_PRETTY_PRINT + JSON_UNESCAPED_SLASHES);
     }
@@ -414,82 +416,6 @@ class UserController
          DatabaseController::disconnect();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
-    public function delete_file($url)
-    {
-        $connection =  DatabaseController::connect();
-        try {
-            $query = $connection->prepare("DELETE FROM file_manager WHERE path = ?");
-            $query->execute(array($url));
-             DatabaseController::disconnect();
-            if (!is_null($url) && !empty($url)) {
-                if (file_exists('../' . $url)) {
-                    unlink('../' . $url);
-                }
-            }
-        } catch (PDOException $e) {
-        }
-    }
-    public function userEmail($subject, $message)
-    {
-        $email_params = array(
-            'email' => $user->email,
-            'first_name' => $user->first_name,
-            'last_name' => $user->last_name,
-            'subject' => $subject,
-            'message' => $message,
-        );
-        ob_start();
-        $email = new Email();
-        $email->initializeParams($email_params);
-        if ($email_params['email'] && !empty($email_params['email'])) {
-            $email->send();
-        }
-        $email_response = json_decode(ob_get_clean());
-    }
-    public function sendSMS()
-    {
-        if ($user->action == 'create') {
-            $message = 'Hi ' . $user->first_name . ', we\'ve created your system admin account. Username: ' . $user->email . '; Password: ' . $user->password . '; URL: ' . DIRADMIN . '';
-        } elseif ($user->action == 'reset-password' || $user->action == 'self-password-reset') {
-            $message = 'Hi ' . $user->first_name . ', your admin password has been reset. Username: ' . $user->email . '; Password: ' . $user->password . '; URL: ' . DIRADMIN . '';
-        }
-        $fields = array(
-            'object' => 'SMS',
-            'action' => 'send',
-            'mobile' => $user->phone,
-            'message' => $message
-        );
-        $url = DIR . 'app/forms.php';
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_exec($ch);
-        curl_close($ch);
-    }
-    public static function objectsTable($params)
-    {
-        $connection =  DatabaseController::connect();
-        $query = '';
-        $query = "SELECT * FROM objects ";
-        if (isset($params['search']['value'])) {
-            $query .= "WHERE object_name LIKE '%" . $params['search']['value'] . "%' ";
-        }
-        if (isset($params['order'])) {
-            $query .= "ORDER BY " . $params['order']['0']['column'] . " " . $params['order']['0']['dir'] . " ";
-        } else {
-            $query .= "ORDER BY object_id ASC ";
-        }
-        if ($params['length'] != '-1') {
-            $query .= 'LIMIT ' . $params['start'] . ', ' . $params['length'];
-        }
-        $statement = $connection->prepare($query);
-        $statement->execute();
-         DatabaseController::disconnect();
-        return $statement->fetchAll(PDO::FETCH_OBJ);
-    }
     public static function totalObjects()
     {
         $connection =  DatabaseController::connect();
@@ -497,76 +423,6 @@ class UserController
         $query->execute();
          DatabaseController::disconnect();
         return $query->fetchColumn();
-    }
-    public static function checkViewPermission()
-    {
-        if (!isset($_SESSION)) {
-            session_start();
-        }
-        $view = isset($_GET['view']) ? $_GET['view'] : 'admin';
-        $user_details = isset($_SESSION['user_details']) ? $_SESSION['user_details'] : null;
-        $user_permissions = isset($_SESSION['user_permissions']) ? $_SESSION['user_permissions'] : null;
-        $view_permission = false;
-        if (!is_null($user_details) && !is_null($user_permissions)) {
-            foreach ($user_permissions as $permission) {
-                if ($permission->path == $view && $permission->perm_name == 'read') {
-                    $view_permission = true;
-                }
-            }
-        }
-        return $view_permission;
-    }
-    public function authorizeOperation()
-    {
-        if (!isset($_SESSION)) {
-            session_start();
-        }
-        $user_details = isset($_SESSION['user_details']) ? $_SESSION['user_details'] : null;
-        $user_permissions = isset($_SESSION['user_permissions']) ? $_SESSION['user_permissions'] : null;
-        $status = false;
-        if (!is_null($user_details) && !is_null($user_permissions)) {
-            foreach ($user_permissions as $permission) {
-                if ($permission->object_name == $user->object && $permission->perm_name == $user->action) {
-                    $status = true;
-                }
-            }
-        }
-        echo json_encode(array(
-            'status' => $status
-        ), JSON_PRETTY_PRINT + JSON_NUMERIC_CHECK);
-    }
-    public function authorize()
-    {
-        if (!isset($_SESSION)) {
-            session_start();
-        }
-        $user_details = isset($_SESSION['user_details']) ? $_SESSION['user_details'] : null;
-        $user_permissions = isset($_SESSION['user_permissions']) ? $_SESSION['user_permissions'] : null;
-        $status = false;
-        if (!is_null($user_details) && !is_null($user_permissions)) {
-            foreach ($user_permissions as $permission) {
-                if ($permission->object_name == $user->object && $permission->perm_name == $user->action) {
-                    $status = true;
-                }
-            }
-        }
-        return $status;
-    }
-
-    public function authorizeAppUser()
-    {
-        $user_details = self::getById($user->id);
-        $user->role_id = $user_details->user_roles;
-        $user_permissions = $user->getRolePermissions();
-        $status = false;
-        if (!is_null($user_details) && !is_null($user_permissions)) {
-            foreach ($user_permissions as $permission) {
-                if ($permission->object_name == $user->object && $permission->perm_name == $user->action) {
-                    $status = true;
-                }
-            }
-        }
-        return $status;
     }
     public function login()
     {
@@ -664,75 +520,28 @@ class UserController
         } catch (PDOException $e) {
         }
     }
-    public function getRolePermissions()
+    public static function isValidEmail($email)
     {
-        $connection =  DatabaseController::connect();
-        $results = array();
-        $query = $connection->prepare("SELECT role_perm.*, objects.object_name, objects.path, permissions.perm_name FROM role_perm LEFT JOIN objects ON role_perm.object_id = objects.object_id LEFT JOIN permissions ON role_perm.perm_id = permissions.perm_id WHERE role_perm.role_id = ?");
-        if (is_array($user->role_id)) {
-            for ($i = 0; $i < count($user->role_id); $i++) {
-                $query->execute(array($user->role_id[$i]->role_id));
-                 DatabaseController::disconnect();
-                $row = $query->fetchAll(PDO::FETCH_OBJ);
-                foreach ($row as $key => $item) {
-                    if (!in_array($item, $results)) {
-                        $results[] = $item;
-                    }
-                }
-            }
+        global $connection;
+        $query = $connection->prepare("SELECT * FROM users WHERE `email` = ?");
+        $query->execute(array($email));
+        $result = $query->fetch(PDO::FETCH_OBJ);
+        $is_valid = true;
+        if ($result) {
+            $is_valid = false;
         }
-        return $results;
+        return $is_valid;
     }
-    public function logout()
-    {
-        $user->authenticate();
-        session_destroy();
-        setcookie('email', '', time() - 1 * 24 * 60 * 60);
-        setcookie('password', '', time() - 1 * 24 * 60 * 60);
-        echo json_encode(array(
-            'status' => 1,
-            'title' => '<span class="text-success"><span class="fa fa-check"></span> Success</span>',
-            'message' => '<p>You\'ve been logged out. System will refresh shortly.</p>'
-        ));
-    }
-    public function typeahead()
-    {
-        $keyword = '%' . $user->keyword . '%';
-        $connection =  DatabaseController::connect();
-        $statement = "SELECT users.*, CONCAT(COALESCE(first_name, ''), ' ', COALESCE(last_name, '')) AS display FROM users ";
-        $query_params = array();
-        if ($user->keyword) {
-            if (strpos($statement, "WHERE") !== false) {
-                $statement .= "AND ";
-            } else {
-                $statement .= "WHERE ";
-            }
-            $statement .= "(users.first_name LIKE ? ";
-            $statement .= "OR users.last_name LIKE ? ";
-            $statement .= "OR users.email LIKE ?) ";
-            for ($i = 0; $i < 3; $i++) {
-                $query_params[] = $keyword;
-            }
-        }
-        $query = $connection->prepare($statement);
-        $query->execute($query_params);
-         DatabaseController::disconnect();
-        $results = $query->fetchAll(PDO::FETCH_OBJ);
-        foreach ($results as $key => $row) {
-            $row->photo = DIR . $row->avatar;
-        }
-        echo json_encode($results, JSON_PRETTY_PRINT + JSON_UNESCAPED_SLASHES + JSON_NUMERIC_CHECK);
-    }
-    private function prepareUserCreateEmailMessage()
+    public function getUserCreateEmailMessage()
     {
         $message =
             '
-                <p>Dear ' . $user->first_name . ',<p>
-                <p>Welcome to ' . SITETITLE . '. An account has been created for you. Your account credentials are provided below</p>';
+                <p>Dear ' . $this->user->first_name . ',<p>
+                <p>An account has been created for you. Your account credentials are provided below</p>';
         $credentials =
             '
-                <p>Email: <strong>' . $user->email . '</strong></p>
-                <p>Password: <strong>' . $user->password . '</strong></p>';
+                <p>Email: <strong>' . $this->user->email . '</strong></p>
+                <p>Password: <strong>' . $this->user->password . '</strong></p>';
 
 
         $email_body = array();

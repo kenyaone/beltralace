@@ -133,7 +133,6 @@ class AuthController{
 
         return $jwt;
     }
-
     private static function storeAccessCode($access_code, $user_id)
     {
         global $connection;
