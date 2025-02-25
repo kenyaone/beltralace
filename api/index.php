@@ -383,7 +383,7 @@ if (isset($object)) {
                 echo json_encode($result, JSON_PRETTY_PRINT);
 
                 if($result->status){
-                    $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => 'ianmutevu96@gmail.com', 'subject' => 'Website Inquiry From '.$params['first_name'], 'content_sections' => $controller->getEnquiryEmailContent()]);
+                    $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => 'betralace@gmail.com', 'subject' => 'Website Inquiry From '.$params['first_name'], 'content_sections' => $controller->getEnquiryEmailContent()]);
                     $enqury_email_obj->enqueue();
                     
                     $ack_email_obj = new EmailQueueController(['recipient_name' => $params['first_name'], 'recipient_email' => $params['email'], 'subject' => 'Inquiry Received', 'content_sections' => $controller->getAcknowledgmentEmailContent()]);
