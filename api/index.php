@@ -29,7 +29,6 @@ if (!file_exists($htaccessFile)) {
     throw new Exception("Error: The .htaccess file is missing. Please ensure it is present in the directory.");
 }
 
-include_once 'vendor/autoload.php';
 require_once 'config/config.php';
 
 
@@ -38,12 +37,15 @@ use App\Models\User;
 use App\Controllers\AuthController;
 use App\Controllers\UserController;
 use App\Controllers\BlogArticleController;
+use App\Controllers\EmailQueueController;
 use App\Controllers\PageController;
 use App\Controllers\WidgetController;
 use App\Controllers\EnquiryController;
 
 use App\Helpers\Dropzone;
 use App\Helpers\HelperFunctions;
+
+use App\Middleware\EmailMiddleware;
 
 if(isset($params['user_token'])){
     $author = Functions::decryptData($params['user_token']);
@@ -377,7 +379,16 @@ if (isset($object)) {
         $controller = new EnquiryController($params);
         switch ($action) {
             case 'create':
-                echo json_encode($controller->create(), JSON_PRETTY_PRINT);
+                $result = $controller->create();
+                echo json_encode($result, JSON_PRETTY_PRINT);
+
+                if($result->status){
+                    $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => 'ianmutevu96@gmail.com', 'subject' => 'Website Inquiry From '.$params['first_name'], 'content_sections' => $controller->getEnquiryEmailContent()]);
+                    $enqury_email_obj->enqueue();
+                    
+                    $ack_email_obj = new EmailQueueController(['recipient_name' => $params['first_name'], 'recipient_email' => $params['email'], 'subject' => 'Inquiry Received', 'content_sections' => $controller->getAcknowledgmentEmailContent()]);
+                    $ack_email_obj->enqueue();
+                }
                 break;
 
             case 'data_table':

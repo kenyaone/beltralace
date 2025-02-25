@@ -109,61 +109,6 @@ class EnquiryController
             );
         }
     }
-
-    // public function publish()
-    // {
-    //     $connection =  DatabaseController::connect();
-    //     try {
-    //         $inventory_category = Enquiry::getById($this->id);
-    //         $query = $connection->prepare("UPDATE enquiries SET message = ? WHERE id = ?");
-    //         $query->execute(array(1, $this->id));
-    //          DatabaseController::disconnect();
-    //         echo json_encode(array(
-    //             'status' => 1,
-    //             'message' => 'Enquiry message successfully',
-    //             'id' => $this->id
-    //         ));
-
-    //         if ($this->id) {
-    //             $data = array(
-    //                 "user_id" => $this->author,
-    //                 "first_name" => "Enquiry message",
-    //                 "description" => "Published enquiry: '" . $inventory_category->first_name . "' - '" . $inventory_category->language . "'",
-    //                 "object" => $this->object,
-    //                 "item_id" => $this->id,
-    //             );
-    //             $transaction_log = new UserTransactionLog();
-    //             $transaction_log->initializeParams($data);
-    //             $transaction_log->create();
-    //         }
-    //     } catch (PDOException $e) {
-    //         echo json_encode(array(
-    //             'status' => 0,
-    //             'message' => $e->getMessage()
-    //         ));
-    //     }
-    // }
-    // public function unpublish()
-    // {
-    //     $connection =  DatabaseController::connect();
-    //     try {
-    //         $inventory_category = self::getById($this->id);
-    //         $query = $connection->prepare("UPDATE enquiries SET message = ? WHERE id = ?");
-    //         $query->execute(array(0, $this->id));
-    //          DatabaseController::disconnect();
-    //         echo json_encode(array(
-    //             'status' => 1,
-    //             'message' => 'Enquiry unpublished successfully',
-    //             'id' => $this->id
-    //         ));
-
-    //     } catch (PDOException $e) {
-    //         echo json_encode(array(
-    //             'status' => 0,
-    //             'message' => $e->getMessage()
-    //         ));
-    //     }
-    // }
     public static function getById($id)
     {
         $connection =  DatabaseController::connect();
@@ -180,7 +125,6 @@ class EnquiryController
         DatabaseController::disconnect();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
-
     public static function getList()
     {
         $connection =  DatabaseController::connect();
@@ -189,7 +133,6 @@ class EnquiryController
          DatabaseController::disconnect();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
-
     public function dataTable()
     {
         $connection =  DatabaseController::connect();
@@ -261,7 +204,6 @@ class EnquiryController
             "data" => $data
         ), JSON_PRETTY_PRINT + JSON_UNESCAPED_SLASHES);
     }
-
     public function totalRecords()
     {
         $connection =  DatabaseController::connect();
@@ -284,41 +226,6 @@ class EnquiryController
          DatabaseController::disconnect();
         return $query->fetchColumn();
     }
-
-    // public function uploadEnquiryImage()
-    // {
-    //     if (!file_exists('../uploads/img')) {
-    //         mkdir('../uploads/img', 0777, true);
-    //     }
-    //     if (!file_exists('../uploads/img/enquiries')) {
-    //         mkdir('../uploads/img/enquiries', 0777, true);
-    //     }
-
-    //     $dir = 'uploads/img/enquiries/';
-
-    //     if ($this->tempFile) {
-    //         if (file_exists('../' . $this->tempFile)) {
-    //             list($img_width, $img_height) = getimagesize('../' . $this->tempFile);
-    //             $width = $img_width;
-    //             $height = $img_height;
-    //             $thumb_width = round($img_width/2);
-    //             $thumb_height = round($img_height/2);
-
-    //             $path_parts = pathinfo('../' . $this->tempFile);
-    //             $extension = $path_parts['extension'];
-    //             $newfilename = strtolower($this->last_name . '-' . time() . '.' . $extension);
-    //             $final_file = strtolower($this->last_name . '-' . time() . '.' . 'webp');
-    //             rename('../' . $this->tempFile, '../' . $dir . $newfilename);
-    //             HelperFunctions::resize_image('../' . $dir . $newfilename, '../'.$dir.$newfilename, $width);
-    //             HelperFunctions::webp_image('../' . $dir . $newfilename, '../' . $dir . $final_file, $width, $height, 85);
-    //             if (file_exists('../' . $dir . $newfilename)) {
-    //                 unlink('../' . $dir . $newfilename);
-    //             }
-    //             $this->subject = $dir . $final_file;
-    //         }
-    //     }
-    // }
-
     public function uploadImage()
     {
         if (!file_exists('uploads/img/enquiries')) {
@@ -351,5 +258,53 @@ class EnquiryController
                 return $data;
             }
         }
+    }
+    public function getEnquiryEmailContent()
+    {
+        $email_body = array();
+        $email_body[] = array(
+            "type" => "body",
+            "content" => 
+                "
+                <span>First name: ".$this->enquiry->first_name."<span><br>
+                <span>Middle name: ".$this->enquiry->middle_name."<span><br>
+                <span>Last name: ".$this->enquiry->last_name."<span><br>
+                <span>Email: ".$this->enquiry->email."<span><br>
+                <span>Language: ".$this->enquiry->language."<span><br>
+                <span>Message: ".$this->enquiry->message."<span><br>
+                "
+        );
+        return $email_body;
+    }
+    public function getAcknowledgmentEmailContent()
+    {
+        $email_body = array();
+        $email_body[] = array(
+            "type" => "body",
+            "content" => 
+                "
+                <p>Hi ".$this->enquiry->first_name.",<p>
+                <p>
+                    Thank you for expressing interest in learning ".$this->enquiry->language.". One of our team members will get back to you shortly with more details.
+                </p>
+                "
+        );
+
+        $email_body[] = array(
+            "type" => "more_details",
+            "content" => 
+                "
+                <p>
+                    <i>'Language is the bridge that links people of different nations. A friend afar brings a distant land near!'</i>
+                </p>
+                "
+        );
+
+        $email_body[] = array(
+            "type" => "button",
+            "link" => WEBSITE,
+            "action" => "Click here to learn more"
+        );
+        return $email_body;
     }
 }

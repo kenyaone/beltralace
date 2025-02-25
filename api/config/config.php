@@ -4,6 +4,8 @@ ob_start();
 date_default_timezone_set('Africa/Nairobi');
 ini_set('error_log', dirname(__DIR__) . '/error.log');
 
+include_once dirname(__DIR__) . '/vendor/autoload.php';
+
 use App\Controllers\DatabaseController;
 use App\Controllers\SettingsController;
 
@@ -19,9 +21,23 @@ else {
     $config = SettingsController::get_configs();
 
     if (is_object($config)) {
+        define('SITETITLE', $config->siteTitle);
         define('SECRET_KEY', $config->secretKey);
+        define('DIR', $config->webAddress);
         define('DIRADMIN', $config->admin);
         define('WEBSITE', $config->website);
+        define('BRANDCOLOR_PRIMARY', $config->brandColorPrimary);
+        define('BRANDCOLOR_SECONDARY', $config->brandColorSecondary);
+
+        define('DEBUG_MODE', TRUE);
+        define('SERVER_ERROR_MESSAGE', 'Server Error Occurred');
+
+        // Email configurations
+        define('MAIL_TEMPLATES', 'views/mail_templates/');
+        define('EMAIL_DEBUG_MODE', FALSE);
+		define('EMAIL_HOST', $config->emailHost);
+        define('EMAIL', $config->email);
+        define('EMAIL_PASSWORD', $config->emailPassword);
 
     } else {
         echo "Configuration file is missing";
