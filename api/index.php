@@ -110,6 +110,9 @@ try {
                     if (!UserController::isValidEmail($params['email'])) {
                         throw new ValidationException('User with this email already exists');
                     }
+                    $params['password'] = HelperFunctions::generatePassword();
+                    
+                    $controller = new UserController($params);
                     $result = $controller->create();
                     echo json_encode($result, JSON_PRETTY_PRINT);
 
