@@ -5,6 +5,10 @@ switch ($parent) {
         include_once 'views/home.php';
         break;
 
+    case 'about-us':
+        include_once 'views/about-us.php';
+        break;
+    
     case 'teaching-jobs':
         include_once 'views/teaching-jobs.php';
         break;

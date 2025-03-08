@@ -75,63 +75,6 @@
     </div> <!-- / .container -->
 </section>
 
-<?php
-/**
-?>
-<section class="feature">
-    <div class="container">
-        <div class="row no-gutters">
-            <div class="col-lg-3 col-md-6">
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fa fa-check"></i>
-                    </div>
-                    <div class="feature-text">
-                        <h4>Professionalism</h4>
-                        <!-- <p>Behind the word mountains, far from the countries Vokalia </p> -->
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fa fa-check-circle"></i>
-                    </div>
-                    <div class="feature-text">
-                        <h4>Quality</h4>
-                        <!-- <p>Behind the word mountains, far from the countries Vokalia </p> -->
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fa fa-check-circle"></i>
-                    </div>
-                    <div class="feature-text">
-                        <h4>Integrity</h4>
-                        <!-- <p>Behind the word mountains, far from the countries Vokalia </p> -->
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fa fa-check-circle"></i>
-                    </div>
-                    <div class="feature-text">
-                        <h4>Consistency</h4>
-                        <!-- <p>Behind the word mountains, far from the countries Vokalia </p> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<?php
- */
-?>
-
 <section class="section-padding course-grid">
     <div class="container">
         <div class="row align-items-center justify-content-center">
@@ -203,7 +146,7 @@
                     their reach. This ensures that learning is an enjoyable expedition worth remembering.
                 </p>
 
-                <a href="#" class="btn btn-main"><i class="fa fa-check mr-2"></i>Learn More</a>
+                <a href="/about-us" class="btn btn-main"><i class="fa fa-check mr-2"></i>Learn More</a>
 
             </div>
         </div>

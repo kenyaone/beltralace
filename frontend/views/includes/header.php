@@ -67,7 +67,7 @@
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="/">
-                        <img src="<?php echo ASSETS; ?>/images/logo.gif" alt="Logo" class="img-fluid" style="height: 80px;">
+                        <img src="<?php echo ASSETS; ?>/images/logo.png" alt="Logo" class="img-fluid" style="height: 80px;">
                         <!-- <span><?php echo SITE_TITLE ; ?></span> -->
                     </a>
 

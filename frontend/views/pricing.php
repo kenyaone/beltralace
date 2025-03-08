@@ -38,7 +38,7 @@
                         <div class="course-price ">$10 per hour <span class="del">$15</span></div>
                         <small>per student</small>
 
-                        <h4><a href="#">Semi private lessons of 2-5 learners</a></h4>
+                        <h4><a href="#">Semi private lessons of 2-4 learners</a></h4>
                         <div class="rating">
                             <a href="#"><i class="fa fa-star"></i></a>
                             <a href="#"><i class="fa fa-star"></i></a>
@@ -61,7 +61,7 @@
                         <div class="course-price ">$8 per hour <span class="del">$10</span></div>
                         <small>per student</small>
 
-                        <h4><a href="#">Group lessons of 6 learners and above</a></h4>
+                        <h4><a href="#">Group lessons of 5 learners and above</a></h4>
                         <div class="rating">
                             <a href="#"><i class="fa fa-star"></i></a>
                             <a href="#"><i class="fa fa-star"></i></a>

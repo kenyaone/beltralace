@@ -1,321 +1,145 @@
-<?php
-if($page->header_image){
-?>
-<div class="breadcrumbs overlay" style="background-image: url(<?php echo UPLOAD_SERVER . '/' . $page->header_image;?>)">
-<?php
-}
-else{
-?>
-<div class="breadcrumbs overlay">
-<?php
-}
-?>
+<section class="page-header">
     <div class="container">
-        <div class="bread-inner">
-            <div class="row">
-                <div class="col-12">
-                    <h2>About Us</h2>
-                    <ul class="bread-list">
-                        <li><a href="/">Home</a></li>
-                        <li><i class="icofont-simple-right"></i></li>
-                        <li class="active">About Us</li>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="page-header-content">
+                    <h1>Pricing</h1>
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item">
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="list-inline-item">/</li>
+                        <li class="list-inline-item">
+                            Pricing
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<section class="why-choose section">
+</section>
+
+<section class="about-section section-padding about-2">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-12" data-aos="fade-left">
-                <!-- Start Choose Left -->
-                <div class="choose-left">
-                    <h3 class="page-subtitle"></h3>
-                    <div class="page-content text-reset"></div>
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-12">
+                <div class="about-img2">
+                    <img src="https://pxelcode.com/tf-db/edutim/edutim/assets/images/bg/choose.png" alt="" class="img-fluid">
                 </div>
-                <!-- End Choose Left -->
             </div>
-            <div class="col-lg-6 col-12" data-aos="fade-right">
-                <!-- Start Choose Rights -->
-                <div class="choose-right">
-                    <div class="video-image">
-                        <!-- <img src="<?php echo ASSETS; ?>/img/about-us.jpg"> -->
-                        <img src="<?php echo $page->cover_image ? (UPLOAD_SERVER . '/' . $page->cover_image) : ASSETS . '/img/about-us.jpg' ; ?>">
-                    </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="section-heading">
+                    <span class="subheading">Who we are</span>
+                    <h3>All about languages</h3>
                 </div>
-                <!-- End Choose Rights -->
+
+                <p>
+                    Belxin Translators and Language Centre (BETRALACE) is a language company based in Nairobi Kenya. Betralace was founded 
+                    in 2012 with the aim of providing language services globally and eliminating the language barrier. Our tailor-made, 
+                    one-to-one and small group language courses for individuals and corporate clients alike are specially designed to 
+                    fulfill the unique needs of our clients. 
+                </p>
+                <p>  
+                    We also special course on East African Culture for clients who are interested 
+                    in the history and culture of the people. Our other language services include; Translation, Interpretation, Sub-titling, 
+                    Transcription, Male and Female voice over among others
+                </p>
+
             </div>
         </div>
     </div>
 </section>
 
-<!-- <style>
-    .team .member {
-        margin-bottom: 20px;
-        overflow: hidden;
-        text-align: center;
-        border-radius: 5px;
-        background: #fff;
-        box-shadow: 0px 2px 15px rgba(65, 76, 100, 0.06);
-    }
-
-    .team .member .member-img {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .team .member .social {
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        height: 40px;
-        opacity: 0;
-        transition: ease-in-out 0.3s;
-        text-align: center;
-        background: rgba(255, 255, 255, 0.85);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .team .member .social a {
-        transition: color 0.3s;
-        color: #414c64;
-        margin: 0 10px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .team .member .social a i {
-        line-height: 0;
-    }
-
-    .team .member .social a:hover {
-        color: #ffc107;
-    }
-
-    .team .member .social i {
-        font-size: 18px;
-        margin: 0 2px;
-    }
-
-    .team .member .member-info {
-        padding: 25px 15px;
-    }
-
-    .team .member .member-info h4 {
-        font-weight: 700;
-        margin-bottom: 5px;
-        font-size: 18px;
-        color: #414c64;
-    }
-
-    .team .member .member-info span {
-        display: block;
-        font-size: 13px;
-        font-weight: 400;
-        color: #aaaaaa;
-    }
-
-    .team .member .member-info p {
-        font-style: italic;
-        font-size: 14px;
-        line-height: 26px;
-        color: #777777;
-    }
-
-    .team .member:hover .social {
-        opacity: 1;
-    }
-</style>
-<section id="team" class="section team section-bg">
+<section class="feature-2">
     <div class="container">
-        <div class="section-title">
-            <h3>Team</h3>
+        <div class="section-heading">
+            <h3 class="text-center">Why choose us?</h3>
         </div>
-
-        <div class="row justify-content-center">
-            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                <div class="member">
-                    <div class="member-img">
-                        <img src="<?php echo ASSETS . '/img/wairimu.jpg'; ?>" class="img-fluid" alt="">
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h4>Wairimu Kariuki</h4>
-                        <span>Chairperson</span>
+        <div class="row no-gutters d-flex justify-content-center">
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-item feature-style-2">
+                    <!-- <div class="feature-icon">
+                        <i class="bi bi-badge2"></i>
+                    </div> -->
+                    <div class="feature-text">
+                        <h4>Professionalism</h4>
                     </div>
                 </div>
             </div>
-
-            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                <div class="member">
-                    <div class="member-img">
-                        <img src="<?php echo ASSETS . '/img/ian.jpg'; ?>" class="img-fluid" alt="">
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h4>Ian Mutevu</h4>
-                        <span>Secretary</span>
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-item feature-style-2">
+                    <!-- <div class="feature-icon">
+                        <i class="bi bi-article"></i>
+                    </div> -->
+                    <div class="feature-text">
+                        <h4>Friendly atmosphere</h4>
                     </div>
                 </div>
             </div>
-
-            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                <div class="member">
-                    <div class="member-img">
-                        <img src="<?php echo ASSETS . '/img/joan.jpg'; ?>" class="img-fluid" alt="">
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h4>Joan Ndindi Eunice</h4>
-                        <span>Treasurer</span>
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-item feature-style-2">
+                    <!-- <div class="feature-icon">
+                        <i class="bi bi-headset"></i>
+                    </div> -->
+                    <div class="feature-text">
+                        <h4>Learn with fun</h4>
                     </div>
                 </div>
             </div>
-
-            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                <div class="member">
-                    <div class="member-img">
-                        <img src="<?php echo ASSETS . '/img/joyce.jpg'; ?>" class="img-fluid" alt="">
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h4>Joyce Macharia</h4>
-                        <span>Board Member</span>
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-item feature-style-2">
+                    <!-- <div class="feature-icon">
+                        <i class="bi bi-rocket2"></i>
+                    </div> -->
+                    <div class="feature-text">
+                        <h4>Quality</h4>
                     </div>
                 </div>
             </div>
-
-            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                <div class="member">
-                    <div class="member-img">
-                        <img src="<?php echo ASSETS . '/img/joseph.jpg'; ?>" class="img-fluid" alt="">
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h4>Joseph Mwaura</h4>
-                        <span>Board Member</span>
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-item feature-style-2">
+                    <!-- <div class="feature-icon">
+                        <i class="bi bi-rocket2"></i>
+                    </div> -->
+                    <div class="feature-text">
+                        <h4>Intgrity</h4>
                     </div>
                 </div>
             </div>
-
-        </div>
-
-    </div>
-</section> -->
-
-<?php
-include 'includes/section-cta.php';
-?>
-
-<section class="Feautes section mt-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-title">
-                    <h2>Our Core Values</h2>
-                    <p>These values are at the center of everything we do as an organization</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3 col-12">
-                <!-- Start Single features -->
-                <div class="single-features">
-                    <div class="signle-icon">
-                        <i class="icofont icofont-ambulance-cross"></i>
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-item feature-style-2">
+                    <!-- <div class="feature-icon">
+                        <i class="bi bi-rocket2"></i>
+                    </div> -->
+                    <div class="feature-text">
+                        <h4>Consistency</h4>
                     </div>
-                    <h3>Compassion</h3>
-                    <!-- <p>Lorem ipsum sit, consectetur adipiscing elit. Maecenas mi quam vulputate.</p> -->
                 </div>
-                <!-- End Single features -->
-            </div>
-            <div class="col-lg-3 col-12">
-                <!-- Start Single features -->
-                <div class="single-features">
-                    <div class="signle-icon">
-                        <i class="icofont icofont-medical-sign-alt"></i>
-                    </div>
-                    <h3>Resilience</h3>
-                    <!-- <p>Lorem ipsum sit, consectetur adipiscing elit. Maecenas mi quam vulputate.</p> -->
-                </div>
-                <!-- End Single features -->
-            </div>
-            <div class="col-lg-3 col-12">
-                <!-- Start Single features -->
-                <div class="single-features">
-                    <div class="signle-icon">
-                        <i class="icofont icofont-stethoscope"></i>
-                    </div>
-                    <h3>Support</h3>
-                    <!-- <p>Lorem ipsum sit, consectetur adipiscing elit. Maecenas mi quam vulputate.</p> -->
-                </div>
-                <!-- End Single features -->
-            </div>
-            <div class="col-lg-3 col-12">
-                <!-- Start Single features -->
-                <div class="single-features last">
-                    <div class="signle-icon">
-                        <i class="icofont icofont-stethoscope"></i>
-                    </div>
-                    <h3>Collaboration</h3>
-                    <!-- <p>Lorem ipsum sit, consectetur adipiscing elit. Maecenas mi quam vulputate.</p> -->
-                </div>
-                <!-- End Single features -->
             </div>
         </div>
     </div>
 </section>
+<section class="pb-5">
+    <div class="py-5 bg-light c2a1"
+        style="background-image:url(../frontend/views/assets/images/cta.jpg)">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-5 text-center">
+                    <h2 class="mb-3 text-white font-weight-medium">Mission</h2>
+                    <p class="font-weight-light text-white op-8">
+                        To providing quality language services globally while focusing on dissolving language barriers and enhancing knowledge accessibility for a better world.
+                    </p>
 
-<script>
-    $(document).ready(function() {
-        loadPageContent();
-    });
+                </div>
+                <div class="col-md-5 text-center">
+                    <h2 class="mb-3 text-white font-weight-medium">Vision</h2>
+                    <p class="font-weight-light text-white op-8">
+                        To empower people through languages
+                    </p>
 
-    function loadPageContent() {
-        $.ajax({
-            type: 'GET',
-            url: '<?php echo API; ?>',
-            data: {
-                object: 'Page',
-                action: 'get_by_slug',
-                slug: 'about-us'
-            },
-            cache: false,
-            dataType: 'JSON',
-            success: function(response) {
-                $('.page-subtitle').html(response.sub_title);
-                $('.page-content').html(response.body);
-            }
-        });
-    }
-</script>
+                </div>
+            </div>
+            <!-- Row -->
+        </div>
+    </div>
+</section>

@@ -226,39 +226,6 @@ class EnquiryController
          DatabaseController::disconnect();
         return $query->fetchColumn();
     }
-    public function uploadImage()
-    {
-        if (!file_exists('uploads/img/enquiries')) {
-            mkdir('uploads/img/enquiries', 0777, true);
-        }
-        $dir = 'uploads/img/enquiries/';
-
-        if ($this->data['tempFile']) {
-            if (file_exists($this->data['tempFile'])) {
-                list($img_width, $img_height) = getimagesize($this->data['tempFile']);
-                $width = $img_width;
-                $height = $img_height;
-
-                $path_parts = pathinfo($this->data['tempFile']);
-                $extension = $path_parts['extension'];
-                $name_to_use = str_replace([" ", ","], "-", $this->enquiry->first_name);
-                $name_to_use = str_replace("--", "-", $name_to_use);
-                $newfilename = strtolower( $name_to_use . '-' . time() . '.' . $extension);
-                $final_file = strtolower($name_to_use . '-' . time() . '.' . 'webp');
-                rename($this->data['tempFile'], $dir . $newfilename);
-                HelperFunctions::resize_image($dir . $newfilename, $dir.$newfilename, $width);
-                HelperFunctions::webp_image($dir . $newfilename, $dir . $final_file, $width, $height, 85);
-                if (file_exists($dir . $newfilename)) {
-                    unlink($dir . $newfilename);
-                }
-                $data = array(
-                    'subject' => $dir . $final_file
-                );
-
-                return $data;
-            }
-        }
-    }
     public function getEnquiryEmailContent()
     {
         $email_body = array();
