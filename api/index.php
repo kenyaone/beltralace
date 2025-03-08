@@ -374,6 +374,10 @@ try {
                 case 'get_by_section':
                     echo json_encode(WidgetController::getBySection($params['section']), JSON_PRETTY_PRINT);
                     break;
+                
+                case 'get_by_title':
+                    echo json_encode(WidgetController::getByTitle($params['title']), JSON_PRETTY_PRINT);
+                    break;
 
                 case 'data_table':
                     $class_object = new WidgetController($params);

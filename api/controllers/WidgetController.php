@@ -180,7 +180,14 @@ class WidgetController
         DatabaseController::disconnect();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
-
+    public static function getByTitle($title)
+    {
+        $connection =  DatabaseController::connect();
+        $query = $connection->prepare("SELECT * FROM widgets WHERE title = ? LIMIT 1");
+        $query->execute(array($title));
+        DatabaseController::disconnect();
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
     public static function getList()
     {
         $connection =  DatabaseController::connect();
@@ -284,40 +291,6 @@ class WidgetController
          DatabaseController::disconnect();
         return $query->fetchColumn();
     }
-
-    // public function uploadWidgetImage()
-    // {
-    //     if (!file_exists('../uploads/img')) {
-    //         mkdir('../uploads/img', 0777, true);
-    //     }
-    //     if (!file_exists('../uploads/img/widgets')) {
-    //         mkdir('../uploads/img/widgets', 0777, true);
-    //     }
-
-    //     $dir = 'uploads/img/widgets/';
-
-    //     if ($this->tempFile) {
-    //         if (file_exists('../' . $this->tempFile)) {
-    //             list($img_width, $img_height) = getimagesize('../' . $this->tempFile);
-    //             $width = $img_width;
-    //             $height = $img_height;
-    //             $thumb_width = round($img_width/2);
-    //             $thumb_height = round($img_height/2);
-
-    //             $path_parts = pathinfo('../' . $this->tempFile);
-    //             $extension = $path_parts['extension'];
-    //             $newfilename = strtolower($this->section . '-' . time() . '.' . $extension);
-    //             $final_file = strtolower($this->section . '-' . time() . '.' . 'webp');
-    //             rename('../' . $this->tempFile, '../' . $dir . $newfilename);
-    //             HelperFunctions::resize_image('../' . $dir . $newfilename, '../'.$dir.$newfilename, $width);
-    //             HelperFunctions::webp_image('../' . $dir . $newfilename, '../' . $dir . $final_file, $width, $height, 85);
-    //             if (file_exists('../' . $dir . $newfilename)) {
-    //                 unlink('../' . $dir . $newfilename);
-    //             }
-    //             $this->image = $dir . $final_file;
-    //         }
-    //     }
-    // }
 
     public function uploadImage()
     {
