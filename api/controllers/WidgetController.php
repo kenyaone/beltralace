@@ -26,8 +26,8 @@ class WidgetController
     {
         $connection =  DatabaseController::connect();
         try {
-            $query = $connection->prepare("INSERT INTO widgets(title, sub_title, section, body, image, published, author) VALUES(?, ?, ?, ?, ?, ?, ?)");
-            $query->execute(array($this->widget->title, $this->widget->sub_title, $this->widget->section, $this->widget->body, $this->widget->image, $this->widget->published, $this->widget->author));
+            $query = $connection->prepare("INSERT INTO widgets(title, sub_title, section, body, published, author) VALUES(?, ?, ?, ?, ?, ?)");
+            $query->execute(array($this->widget->title, $this->widget->sub_title, $this->widget->section, $this->widget->body, $this->widget->published, $this->widget->author));
             $this->widget->id = $connection->lastInsertId();
             DatabaseController::disconnect();
             return (object) array(
@@ -49,8 +49,8 @@ class WidgetController
     {
         $connection =  DatabaseController::connect();
         try {
-            $query = $connection->prepare("UPDATE widgets SET title = ?, sub_title = ?, body = ?, image = ?, published = ?, author = ? WHERE id = ?");
-            $query->execute(array($this->widget->title, $this->widget->sub_title, $this->widget->body, $this->widget->image, $this->widget->published, $this->widget->author, $this->widget->id));
+            $query = $connection->prepare("UPDATE widgets SET title = ?, sub_title = ?, body = ?, published = ?, author = ? WHERE id = ?");
+            $query->execute(array($this->widget->title, $this->widget->sub_title, $this->widget->body, $this->widget->published, $this->widget->author, $this->widget->id));
             DatabaseController::disconnect();
             return (object) array(
                 'status' => 1,

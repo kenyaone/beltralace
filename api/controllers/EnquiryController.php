@@ -26,8 +26,8 @@ class EnquiryController
     {
         $connection =  DatabaseController::connect();
         try {
-            $query = $connection->prepare("INSERT INTO enquiries(first_name, middle_name, last_name, language, subject, message) VALUES(?, ?, ?, ?, ?, ?)");
-            $query->execute(array($this->enquiry->first_name, $this->enquiry->middle_name, $this->enquiry->last_name, $this->enquiry->language, $this->enquiry->subject, $this->enquiry->message));
+            $query = $connection->prepare("INSERT INTO enquiries(first_name, middle_name, last_name, name, language, subject, message) VALUES(?, ?, ?, ?, ?, ?, ?)");
+            $query->execute(array($this->enquiry->first_name, $this->enquiry->middle_name, $this->enquiry->last_name, $this->enquiry->name, $this->enquiry->language, $this->enquiry->subject, $this->enquiry->message));
             $this->enquiry->id = $connection->lastInsertId();
             DatabaseController::disconnect();
             return (object) array(
@@ -226,7 +226,7 @@ class EnquiryController
          DatabaseController::disconnect();
         return $query->fetchColumn();
     }
-    public function getEnquiryEmailContent()
+    public function getCtaEmailContent()
     {
         $email_body = array();
         $email_body[] = array(
@@ -238,6 +238,21 @@ class EnquiryController
                 <span>Last name: ".$this->enquiry->last_name."<span><br>
                 <span>Email: ".$this->enquiry->email."<span><br>
                 <span>Language: ".$this->enquiry->language."<span><br>
+                <span>Message: ".$this->enquiry->message."<span><br>
+                "
+        );
+        return $email_body;
+    }
+    public function getContactFormEmailContent()
+    {
+        $email_body = array();
+        $email_body[] = array(
+            "type" => "body",
+            "content" => 
+                "
+                <span>Name: ".$this->enquiry->last_name."<span><br>
+                <span>Email: ".$this->enquiry->email."<span><br>
+                <span>Subject: ".$this->enquiry->subject."<span><br>
                 <span>Message: ".$this->enquiry->message."<span><br>
                 "
         );

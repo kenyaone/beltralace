@@ -358,6 +358,9 @@ try {
                             $uploaded_image_data['id'] = $params['widget_id'];
                             WidgetController::updateImage($uploaded_image_data);
                         }
+                        else{
+                            
+                        }
                     }
                     echo json_encode($result, JSON_PRETTY_PRINT);
                     break;
@@ -398,15 +401,28 @@ try {
         if ($object == 'Enquiry') {
             $controller = new EnquiryController($params);
             switch ($action) {
-                case 'create':
+                case 'language_enquiry':
                     $result = $controller->create();
                     echo json_encode($result, JSON_PRETTY_PRINT);
 
                     if ($result->status) {
-                        $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => 'betralace@gmail.com', 'subject' => 'Website Inquiry From ' . $params['first_name'], 'content_sections' => $controller->getEnquiryEmailContent()]);
+                        $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => 'ianmutevu96@gmail.com', 'subject' => 'Language Learning Inquiry From ' . $params['first_name'], 'content_sections' => $controller->getCtaEmailContent()]);
                         $enqury_email_obj->enqueue();
 
                         $ack_email_obj = new EmailQueueController(['recipient_name' => $params['first_name'], 'recipient_email' => $params['email'], 'subject' => 'Inquiry Received', 'content_sections' => $controller->getAcknowledgmentEmailContent()]);
+                        $ack_email_obj->enqueue();
+                    }
+                    break;
+
+                case 'contact_form_enquiry':
+                    $result = $controller->create();
+                    echo json_encode($result, JSON_PRETTY_PRINT);
+
+                    if ($result->status) {
+                        $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => 'ianmutevu96@gmail.com', 'subject' => 'Website Contact Form Inquiry', 'content_sections' => $controller->getContactFormEmailContent()]);
+                        $enqury_email_obj->enqueue();
+
+                        $ack_email_obj = new EmailQueueController(['recipient_name' => $params['name'], 'recipient_email' => $params['email'], 'subject' => 'Inquiry Received', 'content_sections' => $controller->getAcknowledgmentEmailContent()]);
                         $ack_email_obj->enqueue();
                     }
                     break;

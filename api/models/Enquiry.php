@@ -9,6 +9,7 @@ class Enquiry
     public $first_name = null;
     public $middle_name = null;
     public $last_name = null;
+    public $name = null;
     public $email = null;
     public $language = null;
     public $subject = null;
@@ -21,6 +22,7 @@ class Enquiry
         $this->first_name = $data['first_name'] ?? null;
         $this->middle_name = $data['middle_name'] ?? null;
         $this->last_name = $data['last_name'] ?? null;
+        $this->name = $data['name'] ?? null;
         $this->email = $data['email'] ?? null;
         $this->language = $data['language'] ?? null;
         $this->message = $data['message'] ?? 0;
