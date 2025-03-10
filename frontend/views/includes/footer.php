@@ -29,10 +29,9 @@
 						and translation services to individuals, groups and companies across the world.
 					</p>
 					<ul class="list-inline footer-socials">
-						<li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-						<li class="list-inline-item"> <a href="#"><i class="fab fa-twitter"></i></a></li>
-						<li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
-						<li class="list-inline-item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-facebook-f"></i></a></li>
+						<li class="list-inline-item"> <a href="#"><i class="fa fa-twitter"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li>
 					</ul>
 				</div>
 			</div>
@@ -42,14 +41,14 @@
 					<h5 class="widget-title">Contact </h5>
 
 					<ul class="list-unstyled">
-						<li><i class="bi bi-headphone"></i>
+						<li><i class="fa fa-phone"></i>
 							<div>
 								<strong>Phone number</strong>
 								+254 724 736 255
 							</div>
 
 						</li>
-						<li> <i class="bi bi-envelop"></i>
+						<li> <i class="fa fa-envelope"></i>
 							<div>
 								<strong>Email Address</strong>
 								info@beltralace.com
