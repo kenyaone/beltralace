@@ -88,8 +88,8 @@
 					<input type="hidden" name="action" value="language_enquiry">
 					<div class="text-center">
 						<div class="mb-5">
-							<h3>Get In Touch With Us Now.</h3>
-							<span><strong>Would you like to learn more about the courses we offer?</strong></span>
+							<h3 class="cta-title">Get In Touch With Us Now.</h3>
+							<span><strong class="cta-subtitle">Would you like to learn more about the courses we offer?</strong></span>
 							<h6><small>Fill out the form below to get started.</small></h6>
 						</div>
 					</div>
@@ -299,6 +299,13 @@
                 });
             }
         });
+
+		$(document).on('click', '.take-test-btn', function(e){
+			e.preventDefault();
+			$('.cta-title').text('Take a free 30-min taster');
+			$('.cta-subtitle').addClass('d-none');
+			$('#modal-form').modal('show');
+		});
 	})
 </script>
 

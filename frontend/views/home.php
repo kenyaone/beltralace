@@ -312,7 +312,7 @@
                     <p class="font-weight-light text-white op-8">
                         Challenge yourself with our online courses in more than 100 languages! Reach out to us and we will prepare a fun and interactive programme just for you.
                     </p>
-                    <a class="btn btn-main btn-md border-0 text-white mt-3" href="#" data-toggle="modal" data-target="#modal-form">
+                    <a class="btn btn-main btn-md border-0 text-white mt-3 take-test-btn" href="#">
                         <span>Take test today</span>
                     </a>
                 </div>
