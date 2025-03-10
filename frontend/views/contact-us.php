@@ -60,7 +60,9 @@
             </div>
 
             <div class="col-lg-8">
-                <form class="contact__form form-row " action="/" id="contactForm">
+                <form class="contact__form form-row " action="/" id="contact-us-form">
+                    <input type="hidden" name="object" value="Enquiry">
+                    <input type="hidden" name="action" value="contact_form_enquiry">
                     <div class="row">
                        <div class="col-12">
                            <div class="alert alert-success contact__msg" style="display: none" role="alert">
@@ -72,31 +74,31 @@
                    <div class="row">
                        <div class="col-lg-6">
                            <div class="form-group">
-                               <input type="text" id="name" name="name" class="form-control" placeholder="Your Name">
+                               <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
                            </div>
                        </div>
                        
                        <div class="col-lg-6">
                            <div class="form-group">
-                               <input type="text" name="email" id="email" class="form-control" placeholder="Email Address">
+                               <input type="text" name="email" id="email" class="form-control" placeholder="Email Address" required>
                            </div>
                        </div>
                        <div class="col-lg-12">
                            <div class="form-group">
-                               <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject">
+                               <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject" required>
                            </div>
                        </div>
                        
                        <div class="col-lg-12">
                            <div class="form-group">
-                               <textarea id="message" name="message" cols="30" rows="6" class="form-control" placeholder="Your Message"></textarea>    
+                               <textarea id="message" name="message" cols="30" rows="6" class="form-control" placeholder="Your Message" required></textarea>    
                            </div>
                        </div>
                    </div>
 
                    <div class="col-lg-12">
                        <div class="mt-4 text-right">
-                           <button class="btn btn-main" type="button">Send Message <i class="fa fa-angle-right ml-2"></i></button>
+                           <button class="btn btn-main" type="submit">Send Message <i class="fa fa-angle-right ml-2"></i></button>
                        </div>
                    </div>
                </form> 
@@ -104,4 +106,36 @@
         </div>
     </div>
 </section>
+<script>
+	$(document).ready(function(){
+        $("#contact-us-form").validate({
+            submitHandler: function(form) {
+                var formData = new FormData(form);
+                $.ajax({
+                    beforeSend: function() {
+                        // $('#overlay').removeClass('d-none');
+                    },
+                    complete: function() {
+                        // $('#overlay').addClass('d-none');
+                    },
+                    url: '<?php echo API; ?>',
+                    method: 'POST',
+                    data: formData,
+                    processData: false,
+                    dataType: 'json',
+                    contentType: false,
+                    success: function(response, textStatus, jqXHR) {
+                        form.reset();
+						$('#modal-form').modal('hide');
+						$('#modal-confirm').modal('show');
+                    },
+                    error: function(data) {
+
+                        toastr.error(data.responseJSON.message);
+                    }
+                });
+            }
+        });
+	})
+</script>
 

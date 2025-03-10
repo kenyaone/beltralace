@@ -22,6 +22,15 @@ switch ($parent) {
         }
         break;
 
+    case 'languages':
+        if(isset($child)){
+            include_once 'views/language.php';
+        }
+        else{
+            include_once 'views/home.php';
+        }
+        break;
+
     case 'pricing':
         include_once 'views/pricing.php';
         break;

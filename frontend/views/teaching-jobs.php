@@ -31,6 +31,11 @@
 
         <div class="row justify-content-center">
             <div class="col-lg-10">
+                <p class="mb-5">
+                    Language teachers are the backbone of our organization and we value your work tremendously which is why we do everything we can to ensure we find 
+                    you excellent and interesting students with the highest levels of communication, academic support and administrative efficiency when it comes to 
+                    scheduling, payments etc
+                </p>
                 <form action="/" id="contactForm">
                     <div class="row">
                         <div class="col-12">

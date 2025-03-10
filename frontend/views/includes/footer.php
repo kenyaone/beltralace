@@ -86,7 +86,7 @@
 			<div class="modal-body">
 				<form action="/" id="cta-form" class="m-3">
 					<input type="hidden" name="object" value="Enquiry">
-					<input type="hidden" name="action" value="create">
+					<input type="hidden" name="action" value="language_enquiry">
 					<div class="text-center">
 						<div class="mb-5">
 							<h3>Get In Touch With Us Now.</h3>

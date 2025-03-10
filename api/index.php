@@ -419,7 +419,7 @@ try {
                     echo json_encode($result, JSON_PRETTY_PRINT);
 
                     if ($result->status) {
-                        $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => 'ianmutevu96@gmail.com', 'subject' => 'Website Contact Form Inquiry', 'content_sections' => $controller->getContactFormEmailContent()]);
+                        $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => 'ianmutevu96@gmail.com', 'subject' => 'Website Contact Form Inquiry: '.$params['subject'], 'content_sections' => $controller->getContactFormEmailContent()]);
                         $enqury_email_obj->enqueue();
 
                         $ack_email_obj = new EmailQueueController(['recipient_name' => $params['name'], 'recipient_email' => $params['email'], 'subject' => 'Inquiry Received', 'content_sections' => $controller->getAcknowledgmentEmailContent()]);

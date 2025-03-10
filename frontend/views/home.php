@@ -60,20 +60,68 @@
     </div>
 </div>
 
-<section class="banner">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12 col-lg-8">
-                <div class="banner-content center-heading">
-                    <span class="subheading">Expert instruction</span>
-                    <h1>For all your professional language solutions!</h1>
-                    <a href="#" class="btn btn-main"><i class="fa fa-list-ul mr-2"></i>our Courses </a>
-                    <a href="#" class="btn btn-tp" data-toggle="modal" data-target="#modal-form">Get Started <i class="fa fa-angle-right ml-2"></i></a>
+<section id="bannerCarousel" class="carousel slide banner" data-ride="carousel">
+    <div class="carousel-inner">
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-12 col-lg-8">
+                        <div class="banner-content center-heading">
+                            <span class="subheading">Expert instruction</span>
+                            <h1>For all your professional language solutions!</h1>
+                            <a href="/pricing#our-courses" class="btn btn-main"><i class="fa fa-list-ul mr-2"></i>Our Courses</a>
+                            <a href="#" class="btn btn-tp" data-toggle="modal" data-target="#modal-form">Get Started <i class="fa fa-angle-right ml-2"></i></a>
+                        </div>
+                    </div>
+                </div> <!-- / .row -->
+            </div> <!-- / .container -->
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-12 col-lg-8">
+                        <div class="banner-content center-heading">
+                            <span class="subheading">Tailored Language Courses</span>
+                            <h1>Learn at your own pace with expert trainers</h1>
+                            <a href="/pricing#our-courses" class="btn btn-main"><i class="fa fa-list-ul mr-2"></i>Our Courses</a>
+                            <a href="#" class="btn btn-tp" data-toggle="modal" data-target="#modal-form">Get Started <i class="fa fa-angle-right ml-2"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div> <!-- / .row -->
-    </div> <!-- / .container -->
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-12 col-lg-8">
+                        <div class="banner-content center-heading">
+                            <span class="subheading">Certified Translation Services</span>
+                            <h1>Accurate & Reliable Translation for Your Business</h1>
+                            <a href="/pricing#our-courses" class="btn btn-main"><i class="fa fa-list-ul mr-2"></i>Our Services</a>
+                            <a href="#" class="btn btn-tp" data-toggle="modal" data-target="#modal-form">Get Started <i class="fa fa-angle-right ml-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="carousel-control-prev" href="#bannerCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#bannerCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
 </section>
+
 
 <section class="section-padding course-grid">
     <div class="container">
@@ -87,36 +135,52 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-auto language-container">
-                <img src="https://flagcdn.com/w160/ke.png" alt="English">
-                <p>Swahili</p>
+                <a href="/languages/swahili">
+                    <img src="https://flagcdn.com/w160/ke.png" alt="English">
+                    <p>Swahili</p>
+                </a>
             </div>
             <div class="col-auto language-container">
-                <img src="https://flagcdn.com/w160/gb.png" alt="English">
-                <p>English</p>
+                <a href="/languages/english">
+                    <img src="https://flagcdn.com/w160/gb.png" alt="English">
+                    <p>English</p>
+                </a>
             </div>
             <div class="col-auto language-container">
-                <img src="https://flagcdn.com/w160/es.png" alt="Spanish">
-                <p>Spanish</p>
+                <a href="/languages/spanish">
+                    <img src="https://flagcdn.com/w160/es.png" alt="Spanish">
+                    <p>Spanish</p>
+                </a>
             </div>
             <div class="col-auto language-container">
-                <img src="https://flagcdn.com/w160/fr.png" alt="French">
-                <p>French</p>
+                <a href="/languages/french">
+                    <img src="https://flagcdn.com/w160/fr.png" alt="French">
+                    <p>French</p>
+                </a>
             </div>
             <div class="col-auto language-container">
-                <img src="https://flagcdn.com/w160/de.png" alt="German">
-                <p>German</p>
+                <a href="/languages/german">
+                    <img src="https://flagcdn.com/w160/de.png" alt="German">
+                    <p>German</p>
+                </a>
             </div>
             <div class="col-auto language-container">
-                <img src="https://flagcdn.com/w160/br.png" alt="Portuguese">
-                <p>Portuguese</p>
+                <a href="/languages/portuguese">
+                    <img src="https://flagcdn.com/w160/br.png" alt="Portuguese">
+                    <p>Portuguese</p>
+                </a>
             </div>
             <div class="col-auto language-container">
-                <img src="https://flagcdn.com/w160/it.png" alt="Italian">
-                <p>Italian</p>
+                <a href="/languages/italian">
+                    <img src="https://flagcdn.com/w160/it.png" alt="Italian">
+                    <p>Italian</p>
+                </a>
             </div>
             <div class="col-auto language-container">
-                <img src="https://flagcdn.com/w160/cn.png" alt="Mandarin Chinese">
-                <p>Mandarin Chinese</p>
+                <a href="/languages/mandarin">
+                    <img src="https://flagcdn.com/w160/cn.png" alt="Mandarin Chinese">
+                    <p>Mandarin Chinese</p>
+                </a>
             </div>
         </div>
     </div>
@@ -208,17 +272,17 @@
             <div class="col-lg-9 col-md-6">
                 <div class="team-item">
                     <p class="text-left">
-                        How about learning Swahili in a fun, interactive and practical way? I am kavulani, a language 
-                        specialist who has a vast experience in teaching swahili as a first language and also as a 
-                        foreign language. 
+                        How about learning Swahili in a fun, interactive and practical way? I am kavulani, a language
+                        specialist who has a vast experience in teaching swahili as a first language and also as a
+                        foreign language.
                     </p>
                     <p class="text-left">
-                        Having worked for cactus language center and Nairobi institute of Swahili and east African culture 
+                        Having worked for cactus language center and Nairobi institute of Swahili and east African culture
                         among other language schools, all I can assure my clients is that it can only get better.
                     </p>
-                    <p class="text-left">   
-                        Having graduated from the University of Nairobi with a major in Swahili language, I enjoy imparting 
-                        my language skills knowledge and culture to diverse individuals, in the process, learning theirs too. 
+                    <p class="text-left">
+                        Having graduated from the University of Nairobi with a major in Swahili language, I enjoy imparting
+                        my language skills knowledge and culture to diverse individuals, in the process, learning theirs too.
                         The beauty of a language is sharing it for others to learn.
                     </p>
                 </div>

@@ -25,6 +25,7 @@ class Enquiry
         $this->name = $data['name'] ?? null;
         $this->email = $data['email'] ?? null;
         $this->language = $data['language'] ?? null;
-        $this->message = $data['message'] ?? 0;
+        $this->subject = $data['subject'] ?? null;
+        $this->message = $data['message'] ?? null;
     }
 }

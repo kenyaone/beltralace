@@ -44,6 +44,7 @@ include_once $dir . '/includes/header.php';
                                         <option value=""></option>
                                         <option value="banner">Banner</option>
                                         <option value="services">Services</option>
+                                        <option value="languages">Languages</option>
                                     </select>
                                 </div>
                             </div>
@@ -174,7 +175,7 @@ include_once $dir . '/includes/header.php';
             cache: false,
             dataType: 'JSON',
             success: function(response) {
-                if (response.section != 'banner' && response.section != 'projects_cta') {
+                if (response.section != 'banner' && response.section != 'projects_cta' && response.section != 'languages') {
                     $('.image-container').addClass('d-none');
                 } else {
                     $('.image-container').removeClass('d-none');
