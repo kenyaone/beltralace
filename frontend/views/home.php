@@ -417,3 +417,29 @@
         </div>
     </div>
 </section>
+
+<section class="testimonial section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="section-heading center-heading text-center">
+                    <span class="subheading">Language Tips!</span>
+                    <h3>How can you learn a new language easily?</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="">
+                    <ul class="list-group">
+                        <li class="list-group-item">1. Consistency- Be consistent in taking the classes, long breaks in between sessions have I counter effect on the progress of the learner</li>
+                        <li class="list-group-item">2. Practice- Use the language in conversations with other speakers apart from your teacher.</li>
+                        <li class="list-group-item">3. Study & Follow-up   - Spare personal study time (at least 30 mins daily) to review the work you covered with your trainer</li>
+                        <li class="list-group-item">4. Flexibility-Be flexible and willing to take some homework, it enhances assimilation of content covered</li>
+                        <li class="list-group-item">5. Learning Aids-Make flash cards, word charts, crosswords and games that will enhance your understanding.</li>
+                        <li class="list-group-item">6. Assessment and Evaluation-Sit for a language exam, to measure milestones covered in the Language</li>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
