@@ -78,6 +78,42 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-6">
+                <div class="course-block">
+                    <div class="course-content">
+                        <div class="course-price ">$40 per hour</div>
+                        <small>
+                            The Private lessons caters for learners who need a tailor made learning programme, with respect to 
+                            the learners’ profession, level of language proficiency, as well as flexibility as to time schedule 
+                            and venue.
+                        </small>
+
+                        <h4><a href="#">Private lessons</a></h4>
+                        <div class="course-footer d-lg-flex align-items-center justify-content-between">
+
+                            <div class="buy-btn"><a href="#" class="btn btn-main-2 btn-small" data-toggle="modal" data-target="#modal-form">Enroll</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="course-block">
+                    <div class="course-content">
+                        <div class="course-price ">$55 per hour</div>
+                        <small>
+                            A crash course is a short, intense language training that covers a lot of content in a short period of time. 
+                            This course caters for students who wish to squeeze as many hours of tuition and knowledge absorption as 
+                            possible within a limited time frame.
+                        </small>
+
+                        <h4><a href="#">Crash course</a></h4>
+                        <div class="course-footer d-lg-flex align-items-center justify-content-between">
+
+                            <div class="buy-btn"><a href="#" class="btn btn-main-2 btn-small" data-toggle="modal" data-target="#modal-form">Enroll</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
