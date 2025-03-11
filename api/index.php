@@ -406,7 +406,7 @@ try {
                     echo json_encode($result, JSON_PRETTY_PRINT);
 
                     if ($result->status) {
-                        $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => 'ianmutevu96@gmail.com', 'subject' => 'Language Learning Inquiry From ' . $params['first_name'], 'content_sections' => $controller->getCtaEmailContent()]);
+                        $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => ADMIN_EMAIL, 'subject' => 'Language Learning Inquiry From ' . $params['first_name'], 'content_sections' => $controller->getCtaEmailContent()]);
                         $enqury_email_obj->enqueue();
 
                         $ack_email_obj = new EmailQueueController(['recipient_name' => $params['first_name'], 'recipient_email' => $params['email'], 'subject' => 'Inquiry Received', 'content_sections' => $controller->getAcknowledgmentEmailContent()]);
@@ -419,7 +419,7 @@ try {
                     echo json_encode($result, JSON_PRETTY_PRINT);
 
                     if ($result->status) {
-                        $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => 'ianmutevu96@gmail.com', 'subject' => 'Website Contact Form Inquiry: '.$params['subject'], 'content_sections' => $controller->getContactFormEmailContent()]);
+                        $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => ADMIN_EMAIL, 'subject' => 'Website Contact Form Inquiry: '.$params['subject'], 'content_sections' => $controller->getContactFormEmailContent()]);
                         $enqury_email_obj->enqueue();
 
                         $ack_email_obj = new EmailQueueController(['recipient_name' => $params['name'], 'recipient_email' => $params['email'], 'subject' => 'Inquiry Received', 'content_sections' => $controller->getContactAcknowledgmentEmailContent()]);
@@ -432,7 +432,7 @@ try {
                     echo json_encode($result, JSON_PRETTY_PRINT);
 
                     if ($result->status) {
-                        $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => 'ianmutevu96@gmail.com', 'subject' => 'Teaching Job Application: '.$params['first_name'] .' '.$params['last_name'], 'content_sections' => $controller->getContactFormEmailContent()]);
+                        $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => ADMIN_EMAIL, 'subject' => 'Teaching Job Application: '.$params['first_name'] .' '.$params['last_name'], 'content_sections' => $controller->getContactFormEmailContent()]);
                         $enqury_email_obj->enqueue();
 
                         $ack_email_obj = new EmailQueueController(['recipient_name' => $params['first_name'], 'recipient_email' => $params['email'], 'subject' => 'Application Received', 'content_sections' => $controller->getAppplicationAcknowledgmentEmailContent()]);

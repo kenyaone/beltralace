@@ -39,6 +39,8 @@ else {
         define('EMAIL', $config->email);
         define('EMAIL_PASSWORD', $config->emailPassword);
 
+        define('ADMIN_EMAIL', "betralace@gmail.com");
+
     } else {
         echo "Configuration file is missing";
         exit;
