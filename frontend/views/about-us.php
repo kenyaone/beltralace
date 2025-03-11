@@ -119,6 +119,45 @@
         </div>
     </div>
 </section>
+
+<section class="about-section section-padding about-2">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-12 col-md-12">
+                <div class="section-heading">
+                    <!-- <span class="subheading">Who we are</span> -->
+                    <h3>Why learn a new language?</h3>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <p>
+                    The world is fast changing and becoming one big community where people need to interact daily in Various ways 
+                    and for different reasons. The use of language in their daily interactions becomes inevitable. There is a need 
+                    for people to learn languages and cultures of those they interact and work with. 
+                </p>
+                <p>  
+                    Companies are more interested in competent multi-lingual employees. Betralace’s goal is to make this possible 
+                    by dissolving existing language barriers and enabling effective communication.
+                </p>
+
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <p>
+                    Research has shown that people make more substantial contribution in activities that they understand especially 
+                    if the concepts are demystified in the language they understand better. Take for instance the Sustainable 
+                    Development Goals, if they are translated in various languages then that in itself will facilitate the 
+                    realization of the goals therein. 
+                </p>
+                <p>  
+                    For this reason, BETRALACE is here to spearhead such initiatives through 
+                    translations that will ensure maximum participation by all people across the world.
+                </p>
+
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="pb-5">
     <div class="py-5 bg-light c2a1"
         style="background-image:url(../frontend/views/assets/images/cta.jpg)">
