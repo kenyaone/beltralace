@@ -43,8 +43,8 @@ switch ($parent) {
         include_once 'views/faqs.php';
         break;
 
-    case 'terms-of-service':
-        include_once 'views/terms-of-service.php';
+    case 'privacy-policy':
+        include_once 'views/privacy-policy.php';
         break;
         
     default:
