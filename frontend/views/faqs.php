@@ -50,22 +50,7 @@
                         </div>
                         <div id="answerTwo" class="collapse" aria-labelledby="faqTwo" data-parent="#faqExample">
                             <div class="faq-card-body">
-                                We offer both self-paced courses and live sessions with professional instructors. You can choose what works best for your schedule.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="faq-card">
-                        <div class="faq-card-header" id="faqThree">
-                            <h5 class="mb-0">
-                                <button class="faq-btn collapsed" type="button" data-toggle="collapse" data-target="#answerThree" aria-expanded="false" aria-controls="answerThree">
-                                    Q: Do I get a certificate after completing a course?
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="answerThree" class="collapse" aria-labelledby="faqThree" data-parent="#faqExample">
-                            <div class="faq-card-body">
-                                Yes, upon successfully completing a course, you will receive a certificate of completion that you can add to your resume or LinkedIn profile.
+                                We offer both self-paced courses with professional instructors. You can choose what works best for your schedule.
                             </div>
                         </div>
                     </div>
@@ -80,22 +65,7 @@
                         </div>
                         <div id="answerFour" class="collapse" aria-labelledby="faqFour" data-parent="#faqExample">
                             <div class="faq-card-body">
-                                Once you enroll in a course, you can access all learning materials, including videos, exercises, and quizzes, directly from your student dashboard.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="faq-card">
-                        <div class="faq-card-header" id="faqFive">
-                            <h5 class="mb-0">
-                                <button class="faq-btn collapsed" type="button" data-toggle="collapse" data-target="#answerFive" aria-expanded="false" aria-controls="answerFive">
-                                    Q: Can I interact with instructors and other students?
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="answerFive" class="collapse" aria-labelledby="faqFive" data-parent="#faqExample">
-                            <div class="faq-card-body">
-                                Yes! Our platform includes discussion forums, live Q&A sessions, and messaging options to interact with instructors and fellow learners.
+                                Once you enroll in a course,your trainer will provide you with the learning materials you need: exercises, and quizzes
                             </div>
                         </div>
                     </div>
@@ -110,7 +80,7 @@
                         </div>
                         <div id="answerSix" class="collapse" aria-labelledby="faqSix" data-parent="#faqExample">
                             <div class="faq-card-body">
-                                We offer both free and premium courses. Pricing varies based on course type, instructor, and duration. Visit our pricing page for details.
+                                Pricing varies based on course type, instructor, and duration. Visit our pricing page for details.
                             </div>
                         </div>
                     </div>
