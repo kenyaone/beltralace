@@ -10,7 +10,13 @@ class Enquiry
     public $middle_name = null;
     public $last_name = null;
     public $name = null;
+    public $phone = null;
     public $email = null;
+    public $address = null;
+    public $town = null;
+    public $country = null;
+    public $nationality = null;
+    public $native_language = null;
     public $language = null;
     public $subject = null;
     public $message = null;
@@ -23,7 +29,13 @@ class Enquiry
         $this->middle_name = $data['middle_name'] ?? null;
         $this->last_name = $data['last_name'] ?? null;
         $this->name = $data['name'] ?? null;
+        $this->phone = $data['phone'] ?? null;
         $this->email = $data['email'] ?? null;
+        $this->address = $data['address'] ?? null;
+        $this->town = $data['town'] ?? null;
+        $this->country = $data['country'] ?? null;
+        $this->nationality = $data['nationality'] ?? null;
+        $this->native_language = $data['native_language'] ?? null;
         $this->language = $data['language'] ?? null;
         $this->subject = $data['subject'] ?? null;
         $this->message = $data['message'] ?? null;

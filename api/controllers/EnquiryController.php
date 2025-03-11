@@ -26,8 +26,8 @@ class EnquiryController
     {
         $connection =  DatabaseController::connect();
         try {
-            $query = $connection->prepare("INSERT INTO enquiries(first_name, middle_name, last_name, name, language, subject, message) VALUES(?, ?, ?, ?, ?, ?, ?)");
-            $query->execute(array($this->enquiry->first_name, $this->enquiry->middle_name, $this->enquiry->last_name, $this->enquiry->name, $this->enquiry->language, $this->enquiry->subject, $this->enquiry->message));
+            $query = $connection->prepare("INSERT INTO enquiries(first_name, middle_name, last_name, name, email, phone, address, town, country, nationality, native_language, language, subject, message) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $query->execute(array($this->enquiry->first_name, $this->enquiry->middle_name, $this->enquiry->last_name, $this->enquiry->name, $this->enquiry->email, $this->enquiry->phone, $this->enquiry->address, $this->enquiry->town, $this->enquiry->country, $this->enquiry->nationality, $this->enquiry->native_language, $this->enquiry->language, $this->enquiry->subject, $this->enquiry->message));
             $this->enquiry->id = $connection->lastInsertId();
             DatabaseController::disconnect();
             return (object) array(
@@ -250,10 +250,28 @@ class EnquiryController
             "type" => "body",
             "content" => 
                 "
-                <span>Name: ".$this->enquiry->last_name."<span><br>
+                <span>Name: ".$this->enquiry->name."<span><br>
                 <span>Email: ".$this->enquiry->email."<span><br>
                 <span>Subject: ".$this->enquiry->subject."<span><br>
                 <span>Message: ".$this->enquiry->message."<span><br>
+                "
+        );
+        return $email_body;
+    }
+    public function getJobApplicationEmailContent()
+    {
+        $email_body = array();
+        $email_body[] = array(
+            "type" => "body",
+            "content" => 
+                "
+                <span>First name: ".$this->enquiry->first_name."<span><br>
+                <span>Middle name: ".$this->enquiry->middle_name."<span><br>
+                <span>Last name: ".$this->enquiry->last_name."<span><br>
+                <span>Email: ".$this->enquiry->email."<span><br>
+                <span>Phone: ".$this->enquiry->phone."<span><br>
+                <span>Native Language: ".$this->enquiry->native_language."<span><br>
+                <span>Nationality: ".$this->enquiry->nationality."<span><br>
                 "
         );
         return $email_body;
@@ -268,6 +286,68 @@ class EnquiryController
                 <p>Hi ".$this->enquiry->first_name.",<p>
                 <p>
                     Thank you for expressing interest in learning ".$this->enquiry->language.". One of our team members will get back to you shortly with more details.
+                </p>
+                "
+        );
+
+        $email_body[] = array(
+            "type" => "more_details",
+            "content" => 
+                "
+                <p>
+                    <i>'Language is the bridge that links people of different nations. A friend afar brings a distant land near!'</i>
+                </p>
+                "
+        );
+
+        $email_body[] = array(
+            "type" => "button",
+            "link" => WEBSITE,
+            "action" => "Click here to learn more"
+        );
+        return $email_body;
+    }
+    public function getContactAcknowledgmentEmailContent()
+    {
+        $email_body = array();
+        $email_body[] = array(
+            "type" => "body",
+            "content" => 
+                "
+                <p>Hi ".$this->enquiry->name.",<p>
+                <p>
+                    Thank you for your email. One of our team members will get back to you shortly with more details on your enquiry.
+                </p>
+                "
+        );
+
+        $email_body[] = array(
+            "type" => "more_details",
+            "content" => 
+                "
+                <p>
+                    <i>'Language is the bridge that links people of different nations. A friend afar brings a distant land near!'</i>
+                </p>
+                "
+        );
+
+        $email_body[] = array(
+            "type" => "button",
+            "link" => WEBSITE,
+            "action" => "Click here to learn more"
+        );
+        return $email_body;
+    }
+    public function getAppplicationAcknowledgmentEmailContent()
+    {
+        $email_body = array();
+        $email_body[] = array(
+            "type" => "body",
+            "content" => 
+                "
+                <p>Hi ".$this->enquiry->first_name.",<p>
+                <p>
+                    Thank you for expressing interest in becoming a trainer. One of our team members will get back to you shortly with more details.
                 </p>
                 "
         );

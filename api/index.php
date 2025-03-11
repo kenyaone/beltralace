@@ -422,7 +422,20 @@ try {
                         $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => 'ianmutevu96@gmail.com', 'subject' => 'Website Contact Form Inquiry: '.$params['subject'], 'content_sections' => $controller->getContactFormEmailContent()]);
                         $enqury_email_obj->enqueue();
 
-                        $ack_email_obj = new EmailQueueController(['recipient_name' => $params['name'], 'recipient_email' => $params['email'], 'subject' => 'Inquiry Received', 'content_sections' => $controller->getAcknowledgmentEmailContent()]);
+                        $ack_email_obj = new EmailQueueController(['recipient_name' => $params['name'], 'recipient_email' => $params['email'], 'subject' => 'Inquiry Received', 'content_sections' => $controller->getContactAcknowledgmentEmailContent()]);
+                        $ack_email_obj->enqueue();
+                    }
+                    break;
+
+                case 'teaching_job_application':
+                    $result = $controller->create();
+                    echo json_encode($result, JSON_PRETTY_PRINT);
+
+                    if ($result->status) {
+                        $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => 'ianmutevu96@gmail.com', 'subject' => 'Teaching Job Application: '.$params['first_name'] .' '.$params['last_name'], 'content_sections' => $controller->getContactFormEmailContent()]);
+                        $enqury_email_obj->enqueue();
+
+                        $ack_email_obj = new EmailQueueController(['recipient_name' => $params['first_name'], 'recipient_email' => $params['email'], 'subject' => 'Application Received', 'content_sections' => $controller->getAppplicationAcknowledgmentEmailContent()]);
                         $ack_email_obj->enqueue();
                     }
                     break;
