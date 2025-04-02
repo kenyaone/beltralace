@@ -34,15 +34,15 @@
                 </div>
 
                 <p>
-                    Belxin Translators and Language Centre (BETRALACE) is a language company based in Nairobi Kenya. Betralace was founded 
-                    in 2012 with the aim of providing language services globally and eliminating the language barrier. Our tailor-made, 
-                    one-to-one and small group language courses for individuals and corporate clients alike are specially designed to 
+                    Belxin Translators and Language Centre (BETRALACE) is a language company based in Nairobi, Kenya. Betralace was founded 
+                    in 2012 with the aim of providing language services globally and eliminating the language barriers. Our tailor-made, 
+                    one-to-one and small group language courses for individuals and corporate clients are specially designed to 
                     fulfill the unique needs of our clients. 
                 </p>
                 <p>  
-                    We also special course on East African Culture for clients who are interested 
-                    in the history and culture of the people. Our other language services include; Translation, Interpretation, Sub-titling, 
-                    Transcription, Male and Female voice over among others
+                    We also offer a special course on East African Culture for clients who are interested 
+                    in the history and culture of the people of the region. Our other language services include Translation, Interpretation, Sub-titling, 
+                    Transcription, Male and Female voice over among other servics.
                 </p>
 
             </div>
@@ -102,7 +102,7 @@
                         <i class="bi bi-rocket2"></i>
                     </div> -->
                     <div class="feature-text">
-                        <h4>Intgrity</h4>
+                        <h4>Integrity</h4>
                     </div>
                 </div>
             </div>
@@ -131,26 +131,26 @@
             </div>
             <div class="col-lg-6 col-md-12">
                 <p>
-                    The world is fast changing and becoming one big community where people need to interact daily in Various ways 
-                    and for different reasons. The use of language in their daily interactions becomes inevitable. There is a need 
+                    The world is fast changing and becoming one big community where people need to interact daily in various ways 
+                    and for different reasons. The use of language in daily interactions has become inevitable. There is a need 
                     for people to learn languages and cultures of those they interact and work with. 
                 </p>
                 <p>  
-                    Companies are more interested in competent multi-lingual employees. Betralace’s goal is to make this possible 
-                    by dissolving existing language barriers and enabling effective communication.
+                    Companies are more interested in competent multilingual employees. Betralace’s goal is to make this possible 
+                    by dissolving language barriers and enabling effective communication.
                 </p>
 
             </div>
             <div class="col-lg-6 col-md-12">
                 <p>
-                    Research has shown that people make more substantial contribution in activities that they understand especially 
-                    if the concepts are demystified in the language they understand better. Take for instance the Sustainable 
+                    Research has shown that people make a more substantial contribution to activities that they understand especially 
+                    if the concepts are demystified and they understand the language better. Take for instance the Sustainable 
                     Development Goals, if they are translated in various languages then that in itself will facilitate the 
-                    realization of the goals therein. 
+                    achievement of the goals therein. 
                 </p>
                 <p>  
                     For this reason, BETRALACE is here to spearhead such initiatives through 
-                    translations that will ensure maximum participation by all people across the world.
+                    translations that will ensure maximum participation by people across the world.
                 </p>
 
             </div>
@@ -166,7 +166,7 @@
                 <div class="col-md-5 text-center">
                     <h2 class="mb-3 text-white font-weight-medium">Mission</h2>
                     <p class="font-weight-light text-white op-8">
-                        To providing quality language services globally while focusing on dissolving language barriers and enhancing knowledge accessibility for a better world.
+                        To provide quality language services globally while focusing on dissolving language barriers and enhancing knowledge accessibility for a better world.
                     </p>
 
                 </div>

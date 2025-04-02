@@ -256,12 +256,12 @@
                     <p class="text-left">
                         Belha has over 10 years of teaching experience in schools across Africa and has previous
                         extensive experience as a Swahili trainer and translator for large organizations and NGO’s in
-                        Nairobi such as Nairobi Institute of Swahili and East African Culture, Helen Keller international, (Nairobi branch).
+                        Nairobi such as Nairobi Institute of Swahili and East African Culture, Helen Keller International (Nairobi branch).
                     </p>
                     <p class="text-left">
                         She has also enjoyed the experience of working with International Language companies such
                         as Language trainers, London Swahili and Listen and Learn, giving her a broad experience in
-                        teaching people across borders and from difference cultures.
+                        teaching people across borders and from different cultures.
                     </p>
                 </div>
             </div>
@@ -272,17 +272,17 @@
             <div class="col-lg-9 col-md-6">
                 <div class="team-item">
                     <p class="text-left">
-                        How about learning Swahili in a fun, interactive and practical way? I am kavulani, a language
-                        specialist who has a vast experience in teaching swahili as a first language and also as a
+                        How about learning Swahili in a fun, interactive and practical way? I am Kavulani, a language
+                        specialist who has vast experience teaching Swahili as a first language and also as a
                         foreign language.
                     </p>
                     <p class="text-left">
-                        Having worked for cactus language center and Nairobi Institute of Swahili and East African Culture
+                        Having worked for Cactus Language Center and Nairobi Institute of Swahili and East African Culture
                         among other language schools, all I can assure my clients is that it can only get better.
                     </p>
                     <p class="text-left">
-                        Having graduated from the University of Nairobi with a major in Swahili language, I enjoy imparting
-                        my language skills knowledge and culture to diverse individuals, in the process, learning theirs too.
+                        As a graduate of the University of Nairobi with a major in Swahili language, I enjoy imparting
+                        my language skills knowledge and culture to diverse individuals, and in the process, learning theirs too.
                         The beauty of a language is sharing it for others to learn.
                     </p>
                 </div>
@@ -310,7 +310,7 @@
                 <div class="col-md-7 text-center">
                     <h2 class="mb-3 text-white font-weight-medium">Take free test</h2>
                     <p class="font-weight-light text-white op-8">
-                        Challenge yourself with our online courses in more than 100 languages! Reach out to us and we will prepare a fun and interactive programme just for you.
+                        Challenge yourself with our online courses in more than 100 languages! Reach out to us and we will prepare a fun and interactive program just for you.
                     </p>
                     <a class="btn btn-main btn-md border-0 text-white mt-3 take-test-btn" href="#">
                         <span>Take test today</span>
