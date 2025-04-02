@@ -10,6 +10,7 @@ if (file_exists($root.'/config/env/.config.json')) {
 
     define('SITETITLE', $data->site_title);
     define('SITEURL', $_SERVER['HTTP_HOST']);
+    define('WEBSITE', $data->website);
     define('DIR', $_SERVER['DOCUMENT_ROOT']);
     define('DIRADMIN', '/');
     define('VIEWS', DIR.'/views');

@@ -41,6 +41,7 @@ use App\Controllers\EmailQueueController;
 use App\Controllers\PageController;
 use App\Controllers\WidgetController;
 use App\Controllers\EnquiryController;
+use App\Controllers\ReviewController;
 
 use App\Helpers\Dropzone;
 use App\Helpers\HelperFunctions;
@@ -442,6 +443,37 @@ try {
                         $enqury_email_obj->enqueue();
 
                         $ack_email_obj = new EmailQueueController(['recipient_name' => $params['first_name'], 'recipient_email' => $params['email'], 'subject' => 'Application Received', 'content_sections' => $controller->getAppplicationAcknowledgmentEmailContent()]);
+                        $ack_email_obj->enqueue();
+                    }
+                    break;
+
+                case 'data_table':
+                    $class_object = new UserController($params);
+                    echo $class_object->dataTable();
+                    break;
+                default:
+                    echo json_encode(array(
+                        'status' => 1,
+                        'message' => "Endpoint not found"
+                    ));
+                    break;
+            }
+
+            exit;
+        }
+
+        if ($object == 'Review') {
+            $controller = new ReviewController($params);
+            switch ($action) {
+                case 'create':
+                    $result = $controller->create();
+                    echo json_encode($result, JSON_PRETTY_PRINT);
+
+                    if ($result->status) {
+                        $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => ADMIN_EMAIL, 'subject' => 'Review From ' . $params['name'], 'content_sections' => $controller->getReviewFormEmailContent()]);
+                        $enqury_email_obj->enqueue();
+
+                        $ack_email_obj = new EmailQueueController(['recipient_name' => $params['name'], 'recipient_email' => $params['email'], 'subject' => 'Review Received', 'content_sections' => $controller->getReviewAcknowledgmentEmailContent()]);
                         $ack_email_obj->enqueue();
                     }
                     break;

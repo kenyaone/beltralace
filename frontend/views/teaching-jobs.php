@@ -32,9 +32,9 @@
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <p class="mb-5">
-                    Language teachers are the backbone of our organization and we value your work tremendously which is why we do everything we can to ensure we find 
-                    you excellent and interesting students with the highest levels of communication, academic support and administrative efficiency when it comes to 
-                    scheduling, payments etc
+                    Language teachers are the heart of our organization, and we deeply appreciate your dedication. That’s why we 
+                    strive to connect you with exceptional and engaging students while providing top-tier communication, academic 
+                    support, and seamless administrative processes for scheduling, payments, and more.
                 </p>
                 <form action="/" id="job-application-form">
                     <input type="hidden" name="object" value="Enquiry">

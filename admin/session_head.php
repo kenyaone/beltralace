@@ -6,8 +6,14 @@ if (!isset($_SESSION)) {
 
 $redirect = LOGIN_PAGE;
 
+
 if (!isset($_SESSION['user']) && $page != 'login') {
     
+    if($page == 'review'){
+        include_once 'views/review.php';
+        exit;
+    }
+
     if (isset($_GET['token'])) {
         $decrypted_token = json_decode(decrypt_data($_GET['token']));
 
