@@ -228,4 +228,35 @@ class HelperFunctions
         }
         return true;
     }
+    public static function uploadFiles($files, $upload_path){
+        $uploaded_files = [];
+
+        if (!file_exists('uploads/'.$upload_path)) {
+            mkdir('uploads/ '.$upload_path, 0777, true);
+        }
+
+        foreach($files as $file){
+            $file_name = $file['name'];
+            $file_tmp_name = $file['tmp_name'];
+            $file_size = $file['size'];
+            $file_error = $file['error'];
+
+            $file_ext = explode('.', $file_name);
+            $file_actual_ext = strtolower(end($file_ext));
+
+            $allowed = array('jpg', 'jpeg', 'png', 'webp', 'pdf');
+
+            if(in_array($file_actual_ext, $allowed) && $file_size <= 10000000){
+                if($file_error === 0){
+                    $file_name_new = time() . str_replace("'", "", $file_name) . '.' . $file_actual_ext;
+                    $file_destination = $upload_path . $file_name_new;
+                    if(move_uploaded_file($file_tmp_name, $file_destination)){
+                        $uploaded_files[] = $file_name_new;
+                    }
+                }
+            }
+        }
+
+        return $uploaded_files;
+    }
 }

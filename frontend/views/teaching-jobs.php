@@ -117,7 +117,7 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="passport">Passport</label>
+                                <label for="passport">Passport-sized photo</label>
                                 <input type="file" name="passport">
                             </div>
                         </div>

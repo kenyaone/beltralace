@@ -429,9 +429,15 @@ try {
 
                 case 'teaching_job_application':
                     $result = $controller->create();
-                    echo json_encode($result, JSON_PRETTY_PRINT);
+                    echo json_encode($_FILES, JSON_PRETTY_PRINT);
 
                     if ($result->status) {
+                        $uploaded_files = HelperFunctions::uploadFiles($_FILES, 'enquiries');
+
+                        foreach ($uploaded_files as $file) {
+                            $enquiry_file_result = EnquiryFileController::create($result->data->id, $file['file_name']);
+                        }
+
                         $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => ADMIN_EMAIL, 'subject' => 'Teaching Job Application: '.$params['first_name'] .' '.$params['last_name'], 'content_sections' => $controller->getContactFormEmailContent()]);
                         $enqury_email_obj->enqueue();
 

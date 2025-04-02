@@ -369,4 +369,7 @@ class EnquiryController
         );
         return $email_body;
     }
+    public static function uploadFiles(){
+        
+    }
 }

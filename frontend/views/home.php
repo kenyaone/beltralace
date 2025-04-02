@@ -241,7 +241,7 @@
                     </div>
                     <div class="team-info">
                         <h4>Belha</h4>
-                        <p>Swahili trainer/expert</p>
+                        <p>Swahili Trainer/Expert</p>
                     </div>
                 </div>
             </div>
@@ -256,7 +256,7 @@
                     <p class="text-left">
                         Belha has over 10 years of teaching experience in schools across Africa and has previous
                         extensive experience as a Swahili trainer and translator for large organizations and NGO’s in
-                        Nairobi such as Nairobi Institute of Swahili and Helen Keller international, (Nairobi branch).
+                        Nairobi such as Nairobi Institute of Swahili and East African Culture, Helen Keller international, (Nairobi branch).
                     </p>
                     <p class="text-left">
                         She has also enjoyed the experience of working with International Language companies such
@@ -277,7 +277,7 @@
                         foreign language.
                     </p>
                     <p class="text-left">
-                        Having worked for cactus language center and Nairobi institute of Swahili and east African culture
+                        Having worked for cactus language center and Nairobi Institute of Swahili and East African Culture
                         among other language schools, all I can assure my clients is that it can only get better.
                     </p>
                     <p class="text-left">
@@ -294,7 +294,7 @@
                     </div>
                     <div class="team-info">
                         <h4>Pascalliah</h4>
-                        <p>Swahili trainer/expert</p>
+                        <p>Swahili Trainer/Expert</p>
                     </div>
                 </div>
             </div>
@@ -429,17 +429,64 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="">
-                    <ul class="list-group">
-                        <li class="list-group-item">1. Consistency- Be consistent in taking the classes, long breaks in between sessions have I counter effect on the progress of the learner</li>
-                        <li class="list-group-item">2. Practice- Use the language in conversations with other speakers apart from your teacher.</li>
-                        <li class="list-group-item">3. Study & Follow-up   - Spare personal study time (at least 30 mins daily) to review the work you covered with your trainer</li>
-                        <li class="list-group-item">4. Flexibility-Be flexible and willing to take some homework, it enhances assimilation of content covered</li>
-                        <li class="list-group-item">5. Learning Aids-Make flash cards, word charts, crosswords and games that will enhance your understanding.</li>
-                        <li class="list-group-item">6. Assessment and Evaluation-Sit for a language exam, to measure milestones covered in the Language</li>
-                </div>
+            <div class="col-lg-10">
+                <ul class="list-group learning-tips">
+                    <li class="list-group-item">
+                        <span class="bullet-point">•</span>
+                        <span class="text-bold tip">Consistency:</span> Regular practice is crucial. Long breaks slow progress and make retention harder.
+                    </li>
+                    <li class="list-group-item">
+                        <span class="bullet-point">•</span>
+                        <span class="text-bold tip">Practice Daily:</span> Speak with native speakers or fellow learners as much as possible. The more you use the language, the more natural it becomes.
+                    </li>
+                    <li class="list-group-item">
+                        <span class="bullet-point">•</span>
+                        <span class="text-bold tip">Study & Review:</span> Set aside at least 30 minutes daily to go over what you've learned. Repetition reinforces memory.
+                    </li>
+                    <li class="list-group-item">
+                        <span class="bullet-point">•</span>
+                        <span class="text-bold tip">Be Flexible:</span> Homework and exercises are essential. Doing extra tasks helps reinforce your learning.
+                    </li>
+                    <li class="list-group-item">
+                        <span class="bullet-point">•</span>
+                        <span class="text-bold tip">Use Learning Aids:</span> Flashcards, word charts, language games, and crosswords make learning more interactive and fun.
+                    </li>
+                    <li class="list-group-item">
+                        <span class="bullet-point">•</span>
+                        <span class="text-bold tip">Test Yourself:</span> Take periodic language tests to track your progress and adjust your learning strategies.
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+.learning-tips {
+    padding: 10px 0;
+}
+
+.list-group-item {
+    /* display: flex; */
+    align-items: center;
+    gap: 10px; /* Space between bullet and text */
+    flex-wrap: nowrap; /* Prevents wrapping */
+    border: none;
+}
+
+.list-group-item:hover {
+    background: #f8f9fa;
+}
+
+/* Bullet Point Styling */
+.bullet-point {
+    font-size: 24px;
+    color: #263b5e;
+}
+
+.tip{
+    font-weight: 900;
+    padding-right: 10px
+}
+</style>
+

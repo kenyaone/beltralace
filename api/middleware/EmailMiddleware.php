@@ -67,6 +67,9 @@ class EmailMiddleware{
             $mail->Password = EMAIL_PASSWORD; // SMTP password
             $mail->setFrom(EMAIL, SITETITLE);  
             $mail->addAddress($this->recipient_email, $this->recipient_name);
+            if($this->recipient_email == ADMIN_EMAIL){
+                $mail->addCC("info@beltralace.com");
+            }
             $mail->Subject = $this->subject;
             $mail->Body= $this->message;
             $mail->send();

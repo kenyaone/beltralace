@@ -232,7 +232,7 @@
 						<div class="col-lg-12">
 							<div class="form-check form-check-inline">
 								<input type="checkbox" name="Agree" class="form-check-input" id="accept-policy">
-								<label class="form-check-label">I agree with the <?php echo SITE_TITLE; ?> Privacy and Cookies Policy (GDPR Compliant)</label>
+								<label class="form-check-label">I agree with the <?php echo SITE_TITLE; ?> <a href="/privacy-policy">Privacy and Cookies Policy</a> (GDPR Compliant)</label>
 							</div>
 						</div>
 					</div>
