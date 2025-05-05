@@ -312,8 +312,16 @@ try {
                     echo json_encode(BlogArticleController::getById($params['id']), JSON_PRETTY_PRINT);
                     break;
 
+                case 'get_by_slug':
+                    echo json_encode(BlogArticleController::getBySlug($params['slug']), JSON_PRETTY_PRINT);
+                    break;
+
                 case 'get_published':
                     echo json_encode(BlogArticleController::getPublished(), JSON_PRETTY_PRINT);
+                    break;
+
+                case 'get_latest':
+                    echo json_encode(BlogArticleController::getLatest(), JSON_PRETTY_PRINT);
                     break;
 
                 case 'data_table':

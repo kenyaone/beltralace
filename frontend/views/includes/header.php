@@ -96,11 +96,11 @@
                                     Pricing
                                 </a>
                             </li>
-                            <!-- <li class="nav-item ">
-                                <a href="/" class="nav-link js-scroll-trigger">
+                            <li class="nav-item ">
+                                <a href="/blog" class="nav-link js-scroll-trigger">
                                     Blog
                                 </a>
-                            </li> -->
+                            </li>
                             <li class="nav-item ">
                                 <a href="/faqs" class="nav-link js-scroll-trigger">
                                     FAQs

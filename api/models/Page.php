@@ -47,4 +47,24 @@ class Page
             }
         }
     }
+
+    public function toArray()
+    {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'sub_title' => $this->sub_title,
+            'section' => $this->section,
+            'slug' => $this->slug,
+            'url' => $this->url,
+            'page_type' => $this->page_type,
+            'meta_description' => $this->meta_description,
+            'body' => $this->body,
+            'cover_image' => $this->cover_image,
+            'cover_image_thumbnail' => $this->cover_image_thumbnail,
+            'header_image' => $this->header_image,
+            'published' => $this->published,
+            'author' => $this->author
+        ];
+    }
 }

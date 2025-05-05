@@ -4853,6 +4853,28 @@ Blog Main
   color: #303590;
 }
 
+.blog-post-item .post-preview-thumb {
+  max-height: 350px;
+  overflow: hidden;
+}
+
+.blog-post-item .post-preview-thumb img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.blog-post-item .post-thumb {
+  max-height: 450px;
+  overflow: hidden;
+}
+
+.blog-post-item .post-thumb img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 .blog-post-item .post-title {
   margin: 10px 0px 20px;
 }

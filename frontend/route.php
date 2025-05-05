@@ -13,6 +13,7 @@ switch ($parent) {
         include_once 'views/teaching-jobs.php';
         break;
 
+    case 'blog':
     case 'blogs':
         if(isset($child)){
             include_once 'views/blog-details.php';

@@ -76,7 +76,18 @@ class BlogArticleController
         DatabaseController::disconnect();
         return $query->fetch(PDO::FETCH_OBJ);
     }
-
+    public static function getBySlug($slug)
+    {
+        $connection =  DatabaseController::connect();
+        $query = $connection->prepare("SELECT pages.title, pages.slug, pages.url, pages.meta_description, pages.body, pages.cover_image, pages.cover_image_thumbnail, pages.header_image, pages.published, blog_articles.*, DATE_FORMAT(blog_articles.created_at, '%b %e, %Y') AS created_at FROM blog_articles 
+            LEFT JOIN pages ON blog_articles.page_id = pages.id 
+            WHERE pages.slug = ? AND pages.page_type = ?");
+        $query->execute(array($slug, 'blog-article'));
+        DatabaseController::disconnect();
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        $blog_article = new BlogArticle($result);
+        return $result;
+    }
     public static function getFeaturedProduct()
     {
         $connection =  DatabaseController::connect();
@@ -98,7 +109,7 @@ class BlogArticleController
     public static function getLatest()
     {
         $connection =  DatabaseController::connect();
-        $query = $connection->prepare("SELECT blog_articles.*, pages.*, users.username AS author, DATE_FORMAT(blog_articles.created_at, '%b %e, %Y %l:%i%p') AS created_at, DATE_FORMAT(blog_articles.updated_at, '%b %e, %Y %l:%i%p') AS updated_at FROM blog_articles 
+        $query = $connection->prepare("SELECT blog_articles.*, pages.*, users.username AS author, DATE_FORMAT(blog_articles.created_at, '%b %e, %Y') AS created_at, DATE_FORMAT(blog_articles.updated_at, '%b %e, %Y') AS updated_at FROM blog_articles 
             LEFT JOIN pages ON blog_articles.page_id = pages.id
             LEFT JOIN users ON pages.author = users.id
             WHERE pages.published = ? ORDER BY blog_articles.id DESC");

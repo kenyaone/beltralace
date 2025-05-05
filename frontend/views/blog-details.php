@@ -1,123 +1,98 @@
-<section class="news-single section">
+<section class="page-header">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+          <div class="page-header-content">
+            <h1>Blog</h1>
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item">
+                <a href="#">Home</a>
+              </li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                  Blog
+              </li>
+            </ul>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="page-wrapper">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-12">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="single-main">
-                            <!-- News Head -->
-                            <div class="news-head">
-                                <img src="<?php echo $page->cover_image ? (UPLOAD_SERVER . '/' . $page->cover_image) : 'https://wellsaidlabs.com/wp-content/uploads/2023/09/blog_header_custom-voice-768x432.jpg'; ?>" alt="#">
-                            </div>
-                            <!-- News Title -->
-                            <h1 class="news-title"><?php echo $page->title; ?></h1>
-                            <!-- Meta -->
-                            <div class="meta">
-                                <div class="meta-left">
-                                    <!-- <span class="author"><a href="#"><img src="img/author1.jpg" alt="#">Naimur Rahman</a></span> -->
-                                    <!-- <span class="date"><i class="fa fa-clock-o"></i><?php echo $page->blog_details->authored_on; ?></span> -->
-                                </div>
-                                <div class="meta-right">
-                                    <!-- <span class="comments"><a href="#"><i class="fa fa-comments"></i>05 Comments</a></span> -->
-                                    <span class="views"><i class="fa fa-eye"></i>33K Views</span>
-                                </div>
-                            </div>
-                            <!-- News Text -->
-                            <div class="news-text">
-                                <?php echo $page->body; ?>
-                            </div>
-                            <div class="blog-bottom">
-                                <!-- Social Share -->
-                                <ul class="social-share">
-                                    <li class="facebook"><a href="#"><i class="fa fa-facebook"></i><span>Facebook</span></a></li>
-                                    <li class="twitter"><a href="#"><i class="fa fa-twitter"></i><span>Twitter</span></a></li>
-                                    <!-- <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                    <li class="pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li> -->
-                                </ul>
-                                <!-- Next Prev -->
-                                <ul class="prev-next">
-                                    <li class="prev"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
-                                    <li class="next"><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
-                                </ul>
-                                <!--/ End Next Prev -->
-                            </div>
+            <div class="col-md-8">
+                <article class="blog-post-item">
+                    <div class="post-thumb">
+                        <img src="" alt="" class="img-fluid post-image">
+                    </div>
+                    <div class="post-item mt-4">
+                        <div class="post-meta">
+                            <span class="post-date"><i class="fa fa-calendar-alt mr-2"></i>May 9, 2020</span>
+                            <span class="post-author"><i class="fa fa-user mr-2"></i>Admin</span>
+                            <!-- <span><a href="#" class="post-comment"><i class="fa fa-comments mr-2"></i>1 Comment</a></span> -->
+                        </div>
+                        <h2 class="post-title"></h2>
+                        <div class="post-content">
+                            
                         </div>
                     </div>
+                </article>
 
-                    <!-- <div class="col-12">
-                        <div class="comments-form">
-                            <h2>Leave Comments</h2>
-                            <form class="form" method="post" action="/">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-12">
-                                        <div class="form-group">
-                                            <i class="fa fa-user"></i>
-                                            <input type="text" name="first-name" placeholder="First name" required="required">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-12">
-                                        <div class="form-group">
-                                            <i class="fa fa-envelope"></i>
-                                            <input type="text" name="last-name" placeholder="Last name" required="required">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-12">
-                                        <div class="form-group">
-                                            <i class="fa fa-envelope"></i>
-                                            <input type="email" name="email" placeholder="Your Email" required="required">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group message">
-                                            <i class="fa fa-pencil"></i>
-                                            <textarea name="message" rows="7" placeholder="Type Your Message Here"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group button">
-                                            <button type="button" class="btn primary"><i class="fa fa-send"></i>Submit Comment</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div> -->
-                </div>
             </div>
-            <div class="col-lg-4 col-12">
-                <div class="main-sidebar">
-                    <div class="single-widget search">
-                        <div class="form">
-                            <input type="email" placeholder="Search Here...">
-                            <a class="button" href="#"><i class="fa fa-search"></i></a>
-                        </div>
+            <div class="col-md-4">
+                <div class="blog-sidebar mt-5 mt-lg-0 mt-md-0">
+                    <div class="widget widget_search">
+                        <h4 class="widget-title">Search</h4>
+                        <form role="search" class="search-form">
+                            <input type="text" class="form-control" placeholder="Search">
+                            <button type="submit" class="search-submit"><i class="fa fa-search"></i></button>
+                        </form>
                     </div>
-                    <div class="single-widget recent-post">
-                        <h3 class="title">Recent post</h3>
-                        <!-- Single Post -->
-                        <div class="single-post">
-                            <div class="image">
-                                <img src="https://wellsaidlabs.com/wp-content/uploads/2023/09/blog_header_custom-voice-768x432.jpg" alt="#">
-                            </div>
-                            <div class="content">
-                                <h5><a href="#">We have annnocuced our new product.</a></h5>
-                                <ul class="comment">
-                                    <li><i class="fa fa-calendar" aria-hidden="true"></i>Jan 11, 2020</li>
-                                    <!-- <li><i class="fa fa-commenting-o" aria-hidden="true"></i>35</li> -->
-                                </ul>
-                            </div>
-                        </div>
 
+                    <div class="widget widget_news">
+                        <h4 class="widget-title">Latest Posts</h4>
+                        <ul class="recent-posts">
+
+                        </ul>
                     </div>
+
+
+                    <!-- <div class="widget widget_categories">
+                        <h4 class="widget-title">Categories</h4>
+                        <ul>
+                            <li class="cat-item"><a href="#"><i class="fa fa-angle-right"></i>Web Design</a>(4)</li>
+                            <li class="cat-item"><a href="#"><i class="fa fa-angle-right"></i>Wordpress</a>(14)</li>
+                            <li class="cat-item"><a href="#"><i class="fa fa-angle-right"></i>Marketing</a>(24)</li>
+                            <li class="cat-item"><a href="#"><i class="fa fa-angle-right"></i>Design & dev</a>(6)</li>
+                        </ul>
+                    </div> -->
+
+                    <!-- <div class="widget widget_tag_cloud">
+                        <h4 class="widget-title">Tags</h4>
+                        <a href="#">Design</a>
+                        <a href="#">Development</a>
+                        <a href="#">UX</a>
+                        <a href="#">Marketing</a>
+                        <a href="#">Tips</a>
+                        <a href="#">Tricks</a>
+                        <a href="#">Ui</a>
+                        <a href="#">Free</a>
+                        <a href="#">Wordpress</a>
+                        <a href="#">bootstrap</a>
+                        <a href="#">Tutorial</a>
+                        <a href="#">Html</a>
+                    </div> -->
+
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
 <script>
     $(document).ready(function() {
-        // loadBlog()
+        loadBlog();
+        loadLatestBlogs();
     });
 
     function loadBlog() {
@@ -126,41 +101,61 @@
             url: '<?php echo API; ?>',
             data: {
                 object: 'BlogArticle',
-                action: 'get_details',
-                id: '',
+                action: 'get_by_slug',
+                slug: '<?php echo $child; ?>',
             },
             cache: false,
             dataType: 'JSON',
             success: function(response) {
                 var blogs_html = "";
+                var upload_server = "<?php echo UPLOAD_SERVER; ?>/";
 
-                if(response.length > 0){
-                    $(response).each(function(k, v){
-                        blogs_html += 
+                if(response){
+                    $(".post-image").attr('src', upload_server+response.cover_image);
+                    $(".post-title").html(response.title);
+                    $(".post-content").html(response.body);
+                    $(".post-date").html(response.created_at);
+                }
+
+            }
+        });
+    }
+
+    function loadLatestBlogs() {
+        $.ajax({
+            type: 'GET',
+            url: '<?php echo API; ?>',
+            data: {
+                object: 'BlogArticle',
+                action: 'get_latest',
+            },
+            cache: false,
+            dataType: 'JSON',
+            success: function(response) {
+                var blogs_html = "";
+                var upload_server = "<?php echo UPLOAD_SERVER; ?>/";
+
+                if (response.length > 0) {
+                    $(response).each(function(k, v) {
+                        blogs_html +=
                             `
-                            <div class="col-lg-4 col-md-6 col-12">
-                                <div class="single-news">
-                                    <div class="news-head">
-                                        <img src="http://api.hpew.local/${v.cover_image}" alt="#">
-                                    </div>
-                                    <div class="news-body">
-                                        <div class="news-content">
-                                            <div class="date">${v.created_at}</div>
-                                            <h2><a href="/${v.url}">${v.title}</a></h2>
-                                            <p class="text">${v.meta_description}.</p>
-                                        </div>
-                                    </div>
+                            <li>
+                                <div class="widget-post-thumb">
+                                    <a href="#"><img src="${upload_server}${v.cover_image_thumbnail}" alt="" class="img-fluid"></a>
                                 </div>
-                            </div>
+                                <div class="widget-post-body">
+                                    <span>${v.created_at}</span>
+                                    <h6> <a href="#">${v.title}</a></h6>
+                                </div>
+                            </li>
                             `;
                     });
-                }
-                else{
+                } else {
                     blogs_html = `<div class="col-12"><p class="text-center">No blogs to display</p></div>`;
                 }
 
-                $("#blogs-container").html(blogs_html);
-                
+                $(".recent-posts").html(blogs_html);
+
             }
         });
     }
