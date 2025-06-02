@@ -444,8 +444,7 @@
                             <div class="client-info">
                                 <i class="fa fa-quote-left"></i>
                                 <p>
-                                    I am happy I learnt spanish. Super grateful to Betralace because they made the experience
-                                    easy and enjoyable.
+                                    ${v.body}
                                 </p>
                                 <div class="rating">
                                     <a href="#"><i class="fa fa-star"></i></a>
@@ -460,8 +459,8 @@
                                     <img src="assets/images/clients/test-3.jpg" alt="" class="img-fluid">
                                 </div>
                                 <div class="client-text">
-                                    <h4>Sasha Mwanzo</h4>
-                                    <span class="designation">Project Manager</span>
+                                    <h4>${v.title}</h4>
+                                    <span class="designation">${v.sub_title}</span>
                                 </div>
                             </div>
                         </div>
