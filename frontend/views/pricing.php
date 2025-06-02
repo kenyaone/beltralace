@@ -148,7 +148,7 @@
                     <tr>
                         <th scope="col">No. of Hours</th>
                         <th scope="col">Face-to-Face Lessons</th>
-                        <th scope="col">Skype Lessons (Worldwide)</th>
+                        <th scope="col">Virtual Lessons (Worldwide)</th>
                     </tr>
                 </thead>
                 <tbody>

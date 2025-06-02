@@ -45,6 +45,7 @@ include_once $dir . '/includes/header.php';
                                         <option value="banner">Banner</option>
                                         <option value="services">Services</option>
                                         <option value="languages">Languages</option>
+                                        <option value="testimonials">Testimonials</option>
                                     </select>
                                 </div>
                             </div>

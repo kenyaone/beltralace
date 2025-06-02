@@ -185,6 +185,7 @@
         </div>
     </div>
 </section>
+
 <section class="about-section section-padding about-2">
     <div class="container">
         <div class="row align-items-center">
@@ -334,84 +335,8 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-12">
-                <div class="testimonials-slides owl-carousel owl-theme">
-                    <div class="review-item">
-                        <div class="client-info">
-                            <i class="fa fa-quote-left"></i>
-                            <p>
-                                Learning swahili was life-changing for me. It helped me enjoy my trip to East Africa
-                            </p>
-                            <div class="rating">
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                            </div>
-                        </div>
-                        <div class="client-desc">
-                            <div class="client-img">
-                                <img src="assets/images/clients/test-1.jpg" alt="" class="img-fluid">
-                            </div>
-                            <div class="client-text">
-                                <h4>Jean Annika</h4>
-                                <span class="designation">Student</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="review-item">
-                        <div class="client-info">
-                            <i class="fa fa-quote-left"></i>
-                            <p>
-                                Having our materials translated by Betralace has been awesome. Their service is top-notch.
-                                Highly recommend.
-                            </p>
-                            <div class="rating">
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                            </div>
-                        </div>
-                        <div class="client-desc">
-                            <div class="client-img">
-                                <img src="assets/images/clients/test-2.jpg" alt="" class="img-fluid">
-                            </div>
-                            <div class="client-text">
-                                <h4>Howard Mason</h4>
-                                <span class="designation">Finance Manager</span>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="review-item">
-                        <div class="client-info">
-                            <i class="fa fa-quote-left"></i>
-                            <p>
-                                I am happy I learnt spanish. Super grateful to Betralace because they made the experience
-                                easy and enjoyable.
-                            </p>
-                            <div class="rating">
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                            </div>
-                        </div>
-                        <div class="client-desc">
-                            <div class="client-img">
-                                <img src="assets/images/clients/test-3.jpg" alt="" class="img-fluid">
-                            </div>
-                            <div class="client-text">
-                                <h4>Sasha Mwanzo</h4>
-                                <span class="designation">Project Manager</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="testimonials-slides owl-carousel owl-theme" id="testimonials-slides">
+                    
                 </div>
             </div>
         </div>
@@ -462,31 +387,111 @@
 </section>
 
 <style>
-.learning-tips {
-    padding: 10px 0;
-}
+    .learning-tips {
+        padding: 10px 0;
+    }
 
-.list-group-item {
-    /* display: flex; */
-    align-items: center;
-    gap: 10px; /* Space between bullet and text */
-    flex-wrap: nowrap; /* Prevents wrapping */
-    border: none;
-}
+    .list-group-item {
+        /* display: flex; */
+        align-items: center;
+        gap: 10px;
+        /* Space between bullet and text */
+        flex-wrap: nowrap;
+        /* Prevents wrapping */
+        border: none;
+    }
 
-.list-group-item:hover {
-    background: #f8f9fa;
-}
+    .list-group-item:hover {
+        background: #f8f9fa;
+    }
 
-/* Bullet Point Styling */
-.bullet-point {
-    font-size: 24px;
-    color: #263b5e;
-}
+    /* Bullet Point Styling */
+    .bullet-point {
+        font-size: 24px;
+        color: #263b5e;
+    }
 
-.tip{
-    font-weight: 900;
-    padding-right: 10px
-}
+    .tip {
+        font-weight: 900;
+        padding-right: 10px
+    }
 </style>
+<script>
+    $(document).ready(function() {
+        loadTestimonials();
+    });
 
+    function loadTestimonials() {
+        $.ajax({
+            type: 'GET',
+            url: '<?php echo API; ?>',
+            data: {
+                object: 'Widget',
+                action: 'get_by_section',
+                section: 'testimonials'
+            },
+            cache: false,
+            dataType: 'JSON',
+            success: function(response) {
+                var html = "";
+                var upload_server = "<?php echo UPLOAD_SERVER; ?>/";
+
+                if (response.length > 0) {
+                    $(response).each(function(k, v) {
+                        html +=
+                            `
+                        <div class="review-item">
+                            <div class="client-info">
+                                <i class="fa fa-quote-left"></i>
+                                <p>
+                                    I am happy I learnt spanish. Super grateful to Betralace because they made the experience
+                                    easy and enjoyable.
+                                </p>
+                                <div class="rating">
+                                    <a href="#"><i class="fa fa-star"></i></a>
+                                    <a href="#"><i class="fa fa-star"></i></a>
+                                    <a href="#"><i class="fa fa-star"></i></a>
+                                    <a href="#"><i class="fa fa-star"></i></a>
+                                    <a href="#"><i class="fa fa-star"></i></a>
+                                </div>
+                            </div>
+                            <div class="client-desc">
+                                <div class="client-img">
+                                    <img src="assets/images/clients/test-3.jpg" alt="" class="img-fluid">
+                                </div>
+                                <div class="client-text">
+                                    <h4>Sasha Mwanzo</h4>
+                                    <span class="designation">Project Manager</span>
+                                </div>
+                            </div>
+                        </div>
+                            `;
+                    });
+                } else {
+                    html = `<div class="col-12"><p class="text-center">No testimonials to display</p></div>`;
+                }
+
+                $("#testimonials-slides").html(html);
+
+                $('#testimonials-slides').owlCarousel({
+                    loop: true,
+                    margin: 10,
+                    nav: true,
+                    dots: false,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        600: {
+                            items: 2
+                        },
+                        1000: {
+                            items: 3
+                        }
+                    }
+                });
+
+            }
+        });
+    }
+</script>
