@@ -42,7 +42,7 @@
                 <p>  
                     We also offer a special course on East African Culture for clients who are interested 
                     in the history and culture of the people of the region. Our other language services include Translation, Interpretation, Sub-titling, 
-                    Transcription, Male and Female voice over among other servics.
+                    Transcription, Male and Female voice over among other services.
                 </p>
 
             </div>
