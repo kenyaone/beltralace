@@ -6,24 +6,30 @@ $grand_child = isset($_GET['grand_child']) ? $_GET['grand_child'] : null;
 $great_grand_child = isset($_GET['great_grand_child']) ? $_GET['great_grand_child'] : null;
 
 $url = implode("/", $_GET);
+$response = null;
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, API);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+try{
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, API);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+    
+    $post_data = array(
+        'object' => 'Page',
+        'action' => 'get_by_url',
+        'url' => $url
+    );
+    
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post_data));
+    $response = curl_exec($ch);
+    
+    // echo $url;
+    // echo $response;
+    // exit;
+}
+catch(Throwable $th){
+    error_log($th->getMessage());
+}
 
-$post_data = array(
-    'object' => 'Page',
-    'action' => 'get_by_url',
-    'url' => $url
-);
-
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post_data));
-$response = curl_exec($ch);
-
-// echo $url;
-// echo $response;
-// exit;
-
-$page = json_decode($response);
+$page = $response ? json_decode($response) : null;
