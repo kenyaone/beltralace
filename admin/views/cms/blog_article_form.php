@@ -18,7 +18,7 @@ include_once $dir . '/includes/header.php';
         </div>
         <div class="row">
             <div class="col-12 col-lg-12">
-                <form action="<?php echo API; ?>" method="POST" role="form" id="blog-article-form" class="blog-article-form">
+                <form action="<?php echo API; ?>" method="POST" role="form" id="blog-article-form" class="blog-article-form" accept-charset="UTF-8">
                     <div>
                         <div class="mb-3">
                             <input type="hidden" name="object" value="BlogArticle">
