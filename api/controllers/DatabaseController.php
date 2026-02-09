@@ -39,6 +39,7 @@ class DatabaseController
 				if (!is_null(self::$dbname)) {
 					self::$connection = new PDO("mysql:host=" . self::$host . ";" . "dbname=" . self::$dbname, self::$user, self::$password);
 					self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+					self::$connection->setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND, "SET NAMES utf8");
 				} else {
 					self::$connection = 0;
 				}
