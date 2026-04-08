@@ -24,3 +24,5 @@ assets/node_modules
 uploads
 debug
 debug.log
+
+.env

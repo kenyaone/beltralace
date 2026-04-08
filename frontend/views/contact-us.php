@@ -1,24 +1,22 @@
-
-
 <section class="page-header">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
-          <div class="page-header-content">
-            <h1>Contact Us</h1>
-            <ul class="list-inline mb-0">
-              <li class="list-inline-item">
-                <a href="#">Home</a>
-              </li>
-              <li class="list-inline-item">/</li>
-              <li class="list-inline-item">
-                  Contact
-              </li>
-            </ul>
-          </div>
-      </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="page-header-content">
+                    <h1>Contact Us</h1>
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item">
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="list-inline-item">/</li>
+                        <li class="list-inline-item">
+                            Contact
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
 <section class="contact-info section-padding">
@@ -34,7 +32,7 @@
                 </div>
             </div>
         </div>
-       
+
         <div class="row justify-content-center">
             <div class="col-lg-4">
                 <div class="row">
@@ -44,13 +42,13 @@
                             <h4>info@beltralace.com</h4>
                         </div>
                     </div>
-                     <div class="col-lg-12 col-md-6">
+                    <div class="col-lg-12 col-md-6">
                         <div class="contact-item">
                             <p>Make a Call</p>
                             <h4>+254 724 736 255</h4>
                         </div>
                     </div>
-                     <div class="col-lg-12 col-md-6">
+                    <div class="col-lg-12 col-md-6">
                         <div class="contact-item">
                             <p>Corporate Office</p>
                             <h4>Nairobi, Kenya</h4>
@@ -60,82 +58,91 @@
             </div>
 
             <div class="col-lg-8">
-                <form class="contact__form form-row " action="/" id="contact-us-form">
+                <form class="contact__form form-row" action="/" id="contact-us-form">
                     <input type="hidden" name="object" value="Enquiry">
                     <input type="hidden" name="action" value="contact_form_enquiry">
                     <div class="row">
-                       <div class="col-12">
-                           <div class="alert alert-success contact__msg" style="display: none" role="alert">
-                               Your message was sent successfully.
-                           </div>
-                       </div>
-                   </div>
+                        <div class="col-12">
+                            <div class="alert alert-success contact__msg" style="display: none" role="alert">
+                                Your message was sent successfully.
+                            </div>
+                        </div>
+                    </div>
 
-                   <div class="row">
-                       <div class="col-lg-6">
-                           <div class="form-group">
-                               <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
-                           </div>
-                       </div>
-                       
-                       <div class="col-lg-6">
-                           <div class="form-group">
-                               <input type="text" name="email" id="email" class="form-control" placeholder="Email Address" required>
-                           </div>
-                       </div>
-                       <div class="col-lg-12">
-                           <div class="form-group">
-                               <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject" required>
-                           </div>
-                       </div>
-                       
-                       <div class="col-lg-12">
-                           <div class="form-group">
-                               <textarea id="message" name="message" cols="30" rows="6" class="form-control" placeholder="Your Message" required></textarea>    
-                           </div>
-                       </div>
-                   </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
+                            </div>
+                        </div>
 
-                   <div class="col-lg-12">
-                       <div class="mt-4 text-right">
-                           <button class="btn btn-main" type="submit">Send Message <i class="fa fa-angle-right ml-2"></i></button>
-                       </div>
-                   </div>
-               </form> 
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <input type="text" name="email" id="email" class="form-control" placeholder="Email Address" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject" required>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <textarea id="message" name="message" cols="30" rows="6" class="form-control" placeholder="Your Message" required></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-12">
+                            <div class="mt-4 text-right">
+                                <button class="btn btn-main" type="submit">Send Message <i class="fa fa-angle-right ml-2"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </section>
+
+<script src="https://www.google.com/recaptcha/api.js?render=<?php echo GOOGLE_RECAPTCHA_SITE_KEY; ?>"></script>
+
 <script>
-	$(document).ready(function(){
+    $(document).ready(function() {
         $("#contact-us-form").validate({
             submitHandler: function(form) {
-                var formData = new FormData(form);
-                $.ajax({
-                    beforeSend: function() {
-                        // $('#overlay').removeClass('d-none');
-                    },
-                    complete: function() {
-                        // $('#overlay').addClass('d-none');
-                    },
-                    url: '<?php echo API; ?>',
-                    method: 'POST',
-                    data: formData,
-                    processData: false,
-                    dataType: 'json',
-                    contentType: false,
-                    success: function(response, textStatus, jqXHR) {
-                        form.reset();
-						$('#modal-form').modal('hide');
-						$('#modal-confirm').modal('show');
-                    },
-                    error: function(data) {
-
-                        toastr.error(data.responseJSON.message);
-                    }
+                // Get reCAPTCHA token before submitting
+                grecaptcha.ready(function() {
+                    grecaptcha.execute('<?php echo GOOGLE_RECAPTCHA_SITE_KEY; ?>', {action: 'contact_form'}).then(function(token) {
+                        // Add token to form data
+                        var formData = new FormData(form);
+                        formData.append('g-recaptcha-response', token);
+                        
+                        $.ajax({
+                            beforeSend: function() {
+                                $('#overlay').removeClass('d-none');
+                            },
+                            complete: function() {
+                                $('#overlay').addClass('d-none');
+                            },
+                            url: '<?php echo API; ?>',
+                            method: 'POST',
+                            data: formData,
+                            processData: false,
+                            dataType: 'json',
+                            contentType: false,
+                            success: function(response, textStatus, jqXHR) {
+                                form.reset();
+                                $('#modal-form').modal('hide');
+                                $('#modal-confirm').modal('show');
+                            },
+                            error: function(data) {
+                                toastr.error(data.responseJSON.message);
+                            }
+                        });
+                    });
                 });
             }
         });
-	})
+    });
 </script>
-

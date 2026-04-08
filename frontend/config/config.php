@@ -24,6 +24,7 @@ if (file_exists($root.'/frontend/config/env/.config.json')) {
     define('CMS', $data->cms);
     define('ASSETS', $data->assets);
     define('UPLOAD_SERVER', $data->uploadServer);
+    define('GOOGLE_RECAPTCHA_SITE_KEY', $data->googleRecaptchaSiteKey);
 
     require_once 'frontend/variable_declare.php';
 }

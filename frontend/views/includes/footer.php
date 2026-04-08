@@ -270,37 +270,37 @@
 </div>
 
 <script>
-	$(document).ready(function(){
-        $("#cta-form").validate({
-            submitHandler: function(form) {
-                var formData = new FormData(form);
-                $.ajax({
-                    beforeSend: function() {
-                        // $('#overlay').removeClass('d-none');
-                    },
-                    complete: function() {
-                        // $('#overlay').addClass('d-none');
-                    },
-                    url: '<?php echo API; ?>',
-                    method: 'POST',
-                    data: formData,
-                    processData: false,
-                    dataType: 'json',
-                    contentType: false,
-                    success: function(response, textStatus, jqXHR) {
-                        form.reset();
+	$(document).ready(function() {
+		$("#cta-form").validate({
+			submitHandler: function(form) {
+				var formData = new FormData(form);
+				$.ajax({
+					beforeSend: function() {
+						// $('#overlay').removeClass('d-none');
+					},
+					complete: function() {
+						// $('#overlay').addClass('d-none');
+					},
+					url: '<?php echo API; ?>',
+					method: 'POST',
+					data: formData,
+					processData: false,
+					dataType: 'json',
+					contentType: false,
+					success: function(response, textStatus, jqXHR) {
+						form.reset();
 						$('#modal-form').modal('hide');
 						$('#modal-confirm').modal('show');
-                    },
-                    error: function(data) {
+					},
+					error: function(data) {
 
-                        toastr.error(data.responseJSON.message);
-                    }
-                });
-            }
-        });
+						toastr.error(data.responseJSON.message);
+					}
+				});
+			}
+		});
 
-		$(document).on('click', '.take-test-btn', function(e){
+		$(document).on('click', '.take-test-btn', function(e) {
 			e.preventDefault();
 			$('.cta-title').text('Take a free 30-min taster');
 			$('.cta-subtitle').addClass('d-none');
@@ -326,10 +326,19 @@
 <!--  Owlk Carousel-->
 <script src="<?php echo ASSETS; ?>/js/owl.carousel.min.js"></script>
 <script src="<?php echo ASSETS; ?>/js/script.js"></script>
-
-
+<script src="<?php echo ASSETS; ?>/js/toastr.min.js"></script>
 <script src="<?php echo ASSETS; ?>/js/jquery.validate.js"></script>
 
+<script type="text/javascript">
+	window.onload = function() {
+		toastr.options = {
+			"closeButton": true,
+			"progressBar": true,
+			"positionClass": "toast-bottom-right",
+			"timeOut": "10000",
+		};
+	};
+</script>
 </body>
 
 </html>

@@ -5,6 +5,9 @@ $child = isset($_GET['child']) ? $_GET['child'] : null;
 $grand_child = isset($_GET['grand_child']) ? $_GET['grand_child'] : null;
 $great_grand_child = isset($_GET['great_grand_child']) ? $_GET['great_grand_child'] : null;
 
+// echo "Array is " . json_encode($_GET) . "<br>";
+// echo "Parent is $parent, child is $child, grand_child is $grand_child and great_grand_child is $great_grand_child<br>";
+
 $url = implode("/", $_GET);
 $response = null;
 
