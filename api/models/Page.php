@@ -39,8 +39,7 @@ class Page
 
         if(array_key_exists('body', $data)){
             if(HelperFunctions::isBase64Encoded($data['body'])){
-                $decoded_body = base64_decode($data['body']);
-                $this->body = mb_convert_encoding($decoded_body, 'ISO-8859-1', 'UTF-8');
+                $this->body = base64_decode($data['body']);
             }
             else{
                 $this->body = $data['body'];
