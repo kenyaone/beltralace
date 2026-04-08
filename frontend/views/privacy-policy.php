@@ -109,7 +109,7 @@
     <li>Object to data processing for marketing purposes</li>
     <li>Withdraw consent at any time</li>
   </ul>
-  <p>To exercise these rights, contact us at <strong>[Insert Contact Email]</strong>.</p>
+  <p>To exercise these rights, contact us at <strong><a href="mailto:info@beltralace.com">info@beltralace.com</a></strong>.</p>
 
   <h2>6. Cookies and Tracking Technologies</h2>
   <p>We use cookies and similar tracking technologies. You can manage cookie preferences through your browser settings.</p>
