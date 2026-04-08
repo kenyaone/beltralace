@@ -309,7 +309,6 @@
 	})
 </script>
 
-
 <!-- 
     Essential Scripts
     =====================================-->
@@ -328,6 +327,10 @@
 <script src="<?php echo ASSETS; ?>/js/script.js"></script>
 <script src="<?php echo ASSETS; ?>/js/toastr.min.js"></script>
 <script src="<?php echo ASSETS; ?>/js/jquery.validate.js"></script>
+
+<!-- WhatsApp Chat Widget -->
+<script src="https://sofowfweidqzxgaojsdq.supabase.co/storage/v1/object/public/widget-scripts/widget.js" data-widget-id="wa_qjimsuptz" async></script>
+
 
 <script type="text/javascript">
 	window.onload = function() {
