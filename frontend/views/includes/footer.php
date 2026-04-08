@@ -29,7 +29,7 @@
 						and translation services to individuals, groups and companies across the world.
 					</p>
 					<ul class="list-inline footer-socials">
-						<li class="list-inline-item"><a href="https://web.facebook.com/BelxinTranslatorsAndLanguageCentreBetralace" target="_blank"><i class="fa fa-facebook-f"></i></a></li>
+						<li class="list-inline-item"><a href="https://web.facebook.com/BelxinTranslatorsAndLanguageCentreBeltralace" target="_blank"><i class="fa fa-facebook-f"></i></a></li>
 						<!-- <li class="list-inline-item"> <a href="#"><i class="fa fa-twitter"></i></a></li> -->
 						<li class="list-inline-item"><a href="https://www.linkedin.com/in/belxin-translators-language-centre-5075b65a/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
 					</ul>

@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="page-header-content">
-                    <h1><?php echo $child ? ucfirst(htmlspecialchars($child)) . ' Language Course | BETRALACE' : 'Our Languages'; ?></h1>
+                    <h1><?php echo $child ? ucfirst(htmlspecialchars($child)) . ' Language Course | BELTRALACE' : 'Our Languages'; ?></h1>
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item">
                             <a href="#">Home</a>
@@ -69,7 +69,7 @@ $widget = json_decode($response);
                     the African union because of its fast spread to the Western, Northern and Southern Africa as
                     a language of trade and inter-ethnic communication. It will not take long before Swahili
                     becomes a ‘must know’ language in Africa. We therefore warmly welcome you to register for
-                    Swahili lessons at Betralace, taught by experienced natives from East Africa.
+                    Swahili lessons at Beltralace, taught by experienced natives from East Africa.
                     <?php
                     }
                     ?>

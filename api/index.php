@@ -118,7 +118,7 @@ try {
                     echo json_encode($result, JSON_PRETTY_PRINT);
 
                     if ($result->status) {
-                        $email_obj = new EmailQueueController(['recipient_name' => $params['first_name'] . " " . $params['last_name'], 'recipient_email' => $params['email'], 'subject' => 'Welcome to Betralace', 'content_sections' => $controller->getUserCreateEmailMessage()]);
+                        $email_obj = new EmailQueueController(['recipient_name' => $params['first_name'] . " " . $params['last_name'], 'recipient_email' => $params['email'], 'subject' => 'Welcome to Beltralace', 'content_sections' => $controller->getUserCreateEmailMessage()]);
                         $email_obj->enqueue();
                     }
 
