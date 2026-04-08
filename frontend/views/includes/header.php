@@ -2,25 +2,62 @@
 <html class="no-js" lang="en">
 
 <head>
-    <title><?php echo  $page->title ? $page->title . " | " . SITE_TITLE : SITE_TITLE; ?></title>
+    <?php
+    // Route-based fallback titles and meta descriptions when no database entry exists
+    $route_titles = [
+        ''               => 'Online Language Courses with Native-Speaking Trainers | BETRALACE',
+        'about-us'       => 'About Us | Language School Nairobi | BETRALACE',
+        'pricing'        => 'Language Course Pricing | Private & Group Lessons | BETRALACE',
+        'blog'           => 'Language Learning Blog | Tips & Resources | BETRALACE',
+        'blogs'          => 'Language Learning Blog | Tips & Resources | BETRALACE',
+        'faqs'           => 'Frequently Asked Questions | Language Courses | BETRALACE',
+        'contact-us'     => 'Contact Us | Book a Free Consultation | BETRALACE',
+        'teaching-jobs'  => 'Language Teaching Jobs in Nairobi & Online | BETRALACE',
+        'privacy-policy' => 'Privacy Policy | BETRALACE',
+    ];
+    $route_descriptions = [
+        ''               => 'BETRALACE offers online and in-person language courses — Swahili, English, French, Spanish, German and more — with native-speaking trainers in Nairobi, Kenya. Book a free consultation today.',
+        'about-us'       => 'Meet the BETRALACE team — qualified professional linguists and native-speaking trainers based in Nairobi, Kenya, delivering language courses worldwide.',
+        'pricing'        => 'Transparent pricing for private, semi-private, group, and crash course language lessons at BETRALACE. Virtual and face-to-face options available worldwide.',
+        'blog'           => 'Language learning tips, guides, and resources from the BETRALACE team — covering Swahili, French, Spanish, German, English and more.',
+        'blogs'          => 'Language learning tips, guides, and resources from the BETRALACE team — covering Swahili, French, Spanish, German, English and more.',
+        'faqs'           => 'Answers to frequently asked questions about BETRALACE language courses, pricing, online lessons, and enrollment.',
+        'contact-us'     => 'Get in touch with BETRALACE to book a free consultation, enquire about a language course, or reach our team in Nairobi, Kenya.',
+        'teaching-jobs'  => 'Join the BETRALACE team as a language trainer. We hire native-speaking teachers for Swahili, French, Spanish, German, English and more — remote and Nairobi-based roles.',
+        'privacy-policy' => 'BETRALACE privacy policy — how we collect, use, and protect your personal data in line with GDPR.',
+    ];
+    // Language page fallbacks
+    if ($parent === 'languages' && $child) {
+        $lang = ucfirst($child);
+        $route_titles['languages'] = "Learn $lang Online | $lang Lessons with Native Speakers | BETRALACE";
+        $route_descriptions['languages'] = "Learn $lang with BETRALACE — native-speaking trainers, flexible online and in-person lessons, tailored to your level and goals. Based in Nairobi, Kenya. Enroll today.";
+    }
+    $resolved_title = $page->title
+        ? $page->title . ' | ' . SITE_TITLE
+        : ($route_titles[$parent] ?? SITE_TITLE);
+    $resolved_description = $page->meta_description
+        ? $page->meta_description
+        : ($route_descriptions[$parent] ?? SITE_DESCRIPTION);
+    ?>
+    <title><?php echo htmlspecialchars($resolved_title); ?></title>
     
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="keywords" content="<?php echo SITE_KEYWORDS; ?>">
-	<meta name="description" content="<?php echo $page->meta_description ? $page->meta_description : SITE_DESCRIPTION; ?>">
+	<meta name="description" content="<?php echo htmlspecialchars($resolved_description); ?>">
 	<meta property="og:url" content="<?php echo SITE_URL .  "/" . $page->slug; ?>">
 	<meta property="og:type" content="website">
-	<meta property="og:title" content="<?php echo  $page->title ? $page->title . " | " . SITE_TITLE : SITE_TITLE; ?>">
-	<meta property="og:description" content="<?php echo $page->meta_description ? $page->meta_description : SITE_DESCRIPTION; ?>">
+	<meta property="og:title" content="<?php echo htmlspecialchars($resolved_title); ?>">
+	<meta property="og:description" content="<?php echo htmlspecialchars($resolved_description); ?>">
 	<meta property="og:image" content="<?php echo UPLOAD_SERVER . "/" . $page->cover_image; ?>">
-	<meta property="og:site_name" content="<?php echo  $page->title ? $page->title . " | " . SITE_TITLE : SITE_TITLE; ?>">
+	<meta property="og:site_name" content="BETRALACE">
 	<meta name="twitter:card" content="summary">
 	<!-- <meta name="twitter:site" content="@tonisoft_web"> -->
-	<meta name="twitter:title" content="<?php echo  $page->title ? $page->title . " | " . SITE_TITLE : SITE_TITLE; ?>">
-	<meta name="twitter:description" content="<?php echo $page->meta_description ? $page->meta_description : SITE_DESCRIPTION; ?>">
+	<meta name="twitter:title" content="<?php echo htmlspecialchars($resolved_title); ?>">
+	<meta name="twitter:description" content="<?php echo htmlspecialchars($resolved_description); ?>">
 	<meta name="twitter:image" content="<?php echo UPLOAD_SERVER . "/" . $page->cover_image; ?>">
-	<meta name="twitter:image:alt" content="<?php echo  $page->title ? $page->title . " | " . SITE_TITLE : SITE_TITLE; ?>">
+	<meta name="twitter:image:alt" content="<?php echo htmlspecialchars($resolved_title); ?>">
 	<link rel="shortcut icon" href="<?php echo ASSETS; ?>/images/favicon/favicon.ico" type="image/x-icon">
 	<link rel="canonical" href="<?php echo SITE_URL .  "/" . $page->slug; ?>">
 	<!-- Title -->

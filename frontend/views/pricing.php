@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="page-header-content">
-                    <h1>Language Course Pricing | Private &amp; Group Lessons | BELTRALACE</h1>
+                    <h1>Language Course Pricing | Private &amp; Group Lessons | BETRALACE</h1>
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item">
                             <a href="#">Home</a>
@@ -24,8 +24,9 @@
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-6 ">
                 <div class="section-heading center-heading">
-                    <span class="subheading">Detailed pricing</span>
+                    <span class="subheading">Online / Virtual Lessons</span>
                     <h3>Select a package that best suits you</h3>
+                    <p class="mt-3">The rates below apply to <strong>virtual (online) lessons</strong> delivered via video conferencing. Scroll down for our full <strong>private lesson package rates</strong> covering both virtual and face-to-face options.</p>
                 </div>
             </div>
         </div>
@@ -141,7 +142,8 @@
 
 <section class="section-padding">
     <div class="container">
-        <h2 class="text-center mb-4">Lesson Pricing</h2>
+        <h2 class="text-center mb-2">Private Lesson Package Pricing</h2>
+        <p class="text-center text-muted mb-4">The table below shows our <strong>private one-to-one lesson</strong> packages. Prices vary by total hours committed — the more hours, the lower the hourly rate. Both virtual (worldwide) and face-to-face (Nairobi) options are available.</p>
         <div class="table-responsive">
             <table class="table table-bordered table-striped text-center">
                 <thead class="thead-dark">

@@ -136,49 +136,49 @@
         <div class="row justify-content-center">
             <div class="col-auto language-container">
                 <a href="/languages/swahili">
-                    <img src="https://flagcdn.com/w160/ke.png" alt="English">
+                    <img src="https://flagcdn.com/w160/ke.png" alt="Kenya flag – learn Swahili">
                     <p>Swahili</p>
                 </a>
             </div>
             <div class="col-auto language-container">
                 <a href="/languages/english">
-                    <img src="https://flagcdn.com/w160/gb.png" alt="English">
+                    <img src="https://flagcdn.com/w160/gb.png" alt="UK flag – learn English">
                     <p>English</p>
                 </a>
             </div>
             <div class="col-auto language-container">
                 <a href="/languages/spanish">
-                    <img src="https://flagcdn.com/w160/es.png" alt="Spanish">
+                    <img src="https://flagcdn.com/w160/es.png" alt="Spain flag – learn Spanish">
                     <p>Spanish</p>
                 </a>
             </div>
             <div class="col-auto language-container">
                 <a href="/languages/french">
-                    <img src="https://flagcdn.com/w160/fr.png" alt="French">
+                    <img src="https://flagcdn.com/w160/fr.png" alt="France flag – learn French">
                     <p>French</p>
                 </a>
             </div>
             <div class="col-auto language-container">
                 <a href="/languages/german">
-                    <img src="https://flagcdn.com/w160/de.png" alt="German">
+                    <img src="https://flagcdn.com/w160/de.png" alt="Germany flag – learn German">
                     <p>German</p>
                 </a>
             </div>
             <div class="col-auto language-container">
                 <a href="/languages/portuguese">
-                    <img src="https://flagcdn.com/w160/br.png" alt="Portuguese">
+                    <img src="https://flagcdn.com/w160/br.png" alt="Brazil flag – learn Portuguese">
                     <p>Portuguese</p>
                 </a>
             </div>
             <div class="col-auto language-container">
                 <a href="/languages/italian">
-                    <img src="https://flagcdn.com/w160/it.png" alt="Italian">
+                    <img src="https://flagcdn.com/w160/it.png" alt="Italy flag – learn Italian">
                     <p>Italian</p>
                 </a>
             </div>
             <div class="col-auto language-container">
                 <a href="/languages/mandarin">
-                    <img src="https://flagcdn.com/w160/cn.png" alt="Mandarin Chinese">
+                    <img src="https://flagcdn.com/w160/cn.png" alt="China flag – learn Mandarin Chinese">
                     <p>Mandarin Chinese</p>
                 </a>
             </div>
