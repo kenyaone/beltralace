@@ -8,6 +8,7 @@ include_once dirname(__DIR__) . '/vendor/autoload.php';
 
 use App\Controllers\DatabaseController;
 use App\Controllers\SettingsController;
+use App\Core\EnvLoader;
 
 $connection = DatabaseController::connect();
 
@@ -41,6 +42,8 @@ else {
 
         define('ADMIN_EMAIL', "betralace@gmail.com");
 
+        
+        EnvLoader::load();
     } else {
         echo "Configuration file is missing";
         exit;

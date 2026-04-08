@@ -112,13 +112,13 @@ try {
                         throw new ValidationException('User with this email already exists');
                     }
                     $params['password'] = HelperFunctions::generatePassword();
-                    
+
                     $controller = new UserController($params);
                     $result = $controller->create();
                     echo json_encode($result, JSON_PRETTY_PRINT);
 
                     if ($result->status) {
-                        $email_obj = new EmailQueueController(['recipient_name' => $params['first_name'] . " " .$params['last_name'], 'recipient_email' => $params['email'], 'subject' => 'Welcome to Betralace', 'content_sections' => $controller->getUserCreateEmailMessage()]);
+                        $email_obj = new EmailQueueController(['recipient_name' => $params['first_name'] . " " . $params['last_name'], 'recipient_email' => $params['email'], 'subject' => 'Welcome to Betralace', 'content_sections' => $controller->getUserCreateEmailMessage()]);
                         $email_obj->enqueue();
                     }
 
@@ -298,15 +298,15 @@ try {
                     echo json_encode($result, JSON_PRETTY_PRINT);
                     break;
 
-                    // case 'publish':
-                    //     $class_object = new BlogArticleController($params);
-                    //     echo json_encode($class_object->publish(), JSON_PRETTY_PRINT);
-                    //     break;
+                // case 'publish':
+                //     $class_object = new BlogArticleController($params);
+                //     echo json_encode($class_object->publish(), JSON_PRETTY_PRINT);
+                //     break;
 
-                    // case 'unpublish':
-                    //     $class_object = new BlogArticleController($params);
-                    //     echo json_encode($class_object->unpublish(), JSON_PRETTY_PRINT);
-                    //     break;
+                // case 'unpublish':
+                //     $class_object = new BlogArticleController($params);
+                //     echo json_encode($class_object->unpublish(), JSON_PRETTY_PRINT);
+                //     break;
 
                 case 'get_details':
                     echo json_encode(BlogArticleController::getById($params['id']), JSON_PRETTY_PRINT);
@@ -366,9 +366,7 @@ try {
                             $uploaded_image_data = $class_object->uploadImage();
                             $uploaded_image_data['id'] = $params['widget_id'];
                             WidgetController::updateImage($uploaded_image_data);
-                        }
-                        else{
-                            
+                        } else {
                         }
                     }
                     echo json_encode($result, JSON_PRETTY_PRINT);
@@ -386,7 +384,7 @@ try {
                 case 'get_by_section':
                     echo json_encode(WidgetController::getBySection($params['section']), JSON_PRETTY_PRINT);
                     break;
-                
+
                 case 'get_by_title':
                     echo json_encode(WidgetController::getByTitle($params['title']), JSON_PRETTY_PRINT);
                     break;
@@ -424,14 +422,69 @@ try {
                     break;
 
                 case 'contact_form_enquiry':
+                    // Validate reCAPTCHA first
+                    $recaptcha_response = isset($_POST['g-recaptcha-response']) ? $_POST['g-recaptcha-response'] : '';
+                    $recaptcha_secret = $_ENV['GOOGLE_RECAPTCHA_SECRET_KEY'];
+
+                    if (empty($recaptcha_response)) {
+                        echo json_encode([
+                            'status' => false,
+                            'message' => 'reCAPTCHA validation failed. Please try again.'
+                        ], JSON_PRETTY_PRINT);
+                        break;
+                    }
+
+                    // Verify reCAPTCHA with Google
+                    $verify_url = 'https://www.google.com/recaptcha/api/siteverify';
+                    $verify_data = [
+                        'secret' => $recaptcha_secret,
+                        'response' => $recaptcha_response,
+                        'remoteip' => $_SERVER['REMOTE_ADDR']
+                    ];
+
+                    $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_URL, $verify_url);
+                    curl_setopt($ch, CURLOPT_POST, true);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($verify_data));
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    $verify_response = curl_exec($ch);
+                    curl_close($ch);
+
+                    $response_data = json_decode($verify_response);
+
+                    // Check if verification was successful and score is acceptable
+                    // For v3, Google returns a score between 0.0 (bot) and 1.0 (human)
+                    // Recommended threshold is 0.5
+                    if (!$response_data->success || $response_data->score < 0.5) {
+                        http_response_code(400);
+                        echo json_encode([
+                            'status' => false,
+                            'message' => 'reCAPTCHA verification failed. You appear to be a bot.',
+                            'score' => $response_data
+                        ], JSON_PRETTY_PRINT);
+                        break;
+                    }
+
+                    // reCAPTCHA passed, proceed with form processing
                     $result = $controller->create();
+                    http_response_code(400);
                     echo json_encode($result, JSON_PRETTY_PRINT);
 
                     if ($result->status) {
-                        $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => ADMIN_EMAIL, 'subject' => 'Website Contact Form Inquiry: '.$params['subject'], 'content_sections' => $controller->getContactFormEmailContent()]);
+                        $enqury_email_obj = new EmailQueueController([
+                            'recipient_name' => 'Admin',
+                            'recipient_email' => ADMIN_EMAIL,
+                            'subject' => 'Website Contact Form Inquiry: ' . $params['subject'],
+                            'content_sections' => $controller->getContactFormEmailContent()
+                        ]);
                         $enqury_email_obj->enqueue();
 
-                        $ack_email_obj = new EmailQueueController(['recipient_name' => $params['name'], 'recipient_email' => $params['email'], 'subject' => 'Inquiry Received', 'content_sections' => $controller->getContactAcknowledgmentEmailContent()]);
+                        $ack_email_obj = new EmailQueueController([
+                            'recipient_name' => $params['name'],
+                            'recipient_email' => $params['email'],
+                            'subject' => 'Inquiry Received',
+                            'content_sections' => $controller->getContactAcknowledgmentEmailContent()
+                        ]);
                         $ack_email_obj->enqueue();
                     }
                     break;
@@ -447,7 +500,7 @@ try {
                             $enquiry_file_result = EnquiryFileController::create($result->data->id, $file['file_name']);
                         }
 
-                        $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => ADMIN_EMAIL, 'subject' => 'Teaching Job Application: '.$params['first_name'] .' '.$params['last_name'], 'content_sections' => $controller->getContactFormEmailContent()]);
+                        $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => ADMIN_EMAIL, 'subject' => 'Teaching Job Application: ' . $params['first_name'] . ' ' . $params['last_name'], 'content_sections' => $controller->getContactFormEmailContent()]);
                         $enqury_email_obj->enqueue();
 
                         $ack_email_obj = new EmailQueueController(['recipient_name' => $params['first_name'], 'recipient_email' => $params['email'], 'subject' => 'Application Received', 'content_sections' => $controller->getAppplicationAcknowledgmentEmailContent()]);
