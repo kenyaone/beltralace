@@ -4,44 +4,226 @@ namespace App\Controllers;
 
 use \PDO;
 use \PDOException;
+use \Exception;
+use \Throwable;
+
 use App\Models\Enquiry;
 use App\Models\Datatable;
 use App\Helpers\HelperFunctions;
+use App\Helpers\Database;
+use App\Services\Recaptcha\GoogleRecaptchaService;
 
 class EnquiryController
 {
     public $enquiry = null;
     public $datatable = null;
     public $data = null;
+    private $connection;
 
 
     public function __construct($data = array())
     {
+        $this->connection = Database::getInstance()->getConnection();
+
         $this->enquiry = new Enquiry($data);
         $this->datatable = new Datatable($data);
         $this->data = $data;
     }
 
-    public function create()
+    // ──────────────────────────────────────────────
+    // Shared helpers
+    // ──────────────────────────────────────────────
+
+    private function verifyRecaptcha(): ?object
     {
-        $connection =  DatabaseController::connect();
+        $verification = GoogleRecaptchaService::verify(
+            $_POST['g-recaptcha-response'] ?? '',
+            $_SERVER['REMOTE_ADDR']
+        );
+
+        if (!$verification->success) {
+            http_response_code(400);
+            return (object) [
+                'status' => 0,
+                'message' => $verification->message
+            ];
+        }
+
+        return null; // null means passed
+    }
+
+    private function saveEnquiry(): object
+    {
+        $enquiry = new Enquiry($this->data, $this->connection);
+        $enquiry_id = $enquiry->save();
+
+        if (!$enquiry_id) {
+            http_response_code(500);
+            throw new Exception('Failed to create enquiry.', 500);
+        }
+
+        return (object) [
+            'status' => 1,
+            'message' => 'Enquiry created',
+            'data' => $this->enquiry
+        ];
+    }
+
+    private function queueEmail(string $recipientName, string $recipientEmail, string $subject, array $contentSections): void
+    {
+        $email = new EmailQueueController([
+            'recipient_name' => $recipientName,
+            'recipient_email' => $recipientEmail,
+            'subject' => $subject,
+            'content_sections' => $contentSections
+        ]);
+        $email->enqueue();
+    }
+
+    // ──────────────────────────────────────────────
+    // Endpoints
+    // ──────────────────────────────────────────────
+
+    public function createLanguageEnquiry()
+    {
         try {
-            $query = $connection->prepare("INSERT INTO enquiries(first_name, middle_name, last_name, name, email, phone, address, town, country, nationality, native_language, language, subject, message) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $query->execute(array($this->enquiry->first_name, $this->enquiry->middle_name, $this->enquiry->last_name, $this->enquiry->name, $this->enquiry->email, $this->enquiry->phone, $this->enquiry->address, $this->enquiry->town, $this->enquiry->country, $this->enquiry->nationality, $this->enquiry->native_language, $this->enquiry->language, $this->enquiry->subject, $this->enquiry->message));
-            $this->enquiry->id = $connection->lastInsertId();
-            DatabaseController::disconnect();
-            return (object) array(
-                'status' => 1,
-                'message' => 'Enquiry created',
-                'data' => $this->enquiry
+            $failed = $this->verifyRecaptcha();
+            if ($failed) return $failed;
+
+            $result = $this->saveEnquiry();
+
+            $this->queueEmail(
+                'Admin',
+                ADMIN_EMAIL,
+                'Language Learning Inquiry From ' . $this->enquiry->first_name,
+                $this->getCtaEmailContent()
             );
 
-        } catch (PDOException $e) {
-            error_log($e->getMessage() .": ".$e->getTraceAsString());
-            echo json_encode(array(
-                'status' => 0,
-                'message' => $e->getMessage() .": ".$e->getTraceAsString()
-            ));
+            $this->queueEmail(
+                $this->enquiry->first_name,
+                $this->enquiry->email,
+                'Inquiry Received',
+                $this->getAcknowledgmentEmailContent()
+            );
+
+            return $result;
+
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        } catch (Throwable $th) {
+            return $this->handleThrowable($th);
+        }
+    }
+
+    public function createContactEnquiry()
+    {
+        try {
+            $failed = $this->verifyRecaptcha();
+            if ($failed) return $failed;
+
+            $result = $this->saveEnquiry();
+
+            $this->queueEmail(
+                'Admin',
+                ADMIN_EMAIL,
+                'Website Contact Form Inquiry: ' . $this->enquiry->subject,
+                $this->getContactFormEmailContent()
+            );
+
+            $this->queueEmail(
+                $this->enquiry->name,
+                $this->enquiry->email,
+                'Inquiry Received',
+                $this->getContactAcknowledgmentEmailContent()
+            );
+
+            return $result;
+
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        } catch (Throwable $th) {
+            return $this->handleThrowable($th);
+        }
+    }
+
+    public function createJobApplication()
+    {
+        try {
+            $failed = $this->verifyRecaptcha();
+            if ($failed) return $failed;
+
+            $result = $this->saveEnquiry();
+
+            // Upload files
+            $uploaded_files = HelperFunctions::uploadFiles($_FILES, 'enquiries');
+            foreach ($uploaded_files as $file) {
+                EnquiryFileController::create($this->enquiry->id, $file['file_name']);
+            }
+
+            $this->queueEmail(
+                'Admin',
+                ADMIN_EMAIL,
+                'Teaching Job Application: ' . $this->enquiry->first_name . ' ' . $this->enquiry->last_name,
+                $this->getJobApplicationEmailContent()
+            );
+
+            $this->queueEmail(
+                $this->enquiry->first_name,
+                $this->enquiry->email,
+                'Application Received',
+                $this->getAppplicationAcknowledgmentEmailContent()
+            );
+
+            return $result;
+
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        } catch (Throwable $th) {
+            return $this->handleThrowable($th);
+        }
+    }
+
+    // ──────────────────────────────────────────────
+    // Error handling
+    // ──────────────────────────────────────────────
+
+    private function handleException(Exception $e): object
+    {
+        if ($this->connection && $this->connection->inTransaction()) {
+            $this->connection->rollBack();
+        }
+        error_log($e->getMessage() . ": " . $e->getTraceAsString());
+        return (object) [
+            'status' => 0,
+            'message' => $e->getMessage()
+        ];
+    }
+
+    private function handleThrowable(Throwable $th): object
+    {
+        if ($this->connection && $this->connection->inTransaction()) {
+            $this->connection->rollBack();
+        }
+        error_log($th->getMessage() . ": " . $th->getLine() . " " . $th->getTraceAsString());
+        return (object) [
+            'status' => 0,
+            'message' => DEBUG_MODE ? $th->getMessage() . ": " . $th->getLine() . " " . $th->getTraceAsString() : SERVER_ERROR_MESSAGE
+        ];
+    }
+
+    // ──────────────────────────────────────────────
+    // Existing CRUD methods (unchanged)
+    // ──────────────────────────────────────────────
+
+    public function create()
+    {
+        try {
+            $result = $this->saveEnquiry();
+            return $result;
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        } catch (Throwable $th) {
+            return $this->handleThrowable($th);
         }
     }
 
@@ -67,6 +249,7 @@ class EnquiryController
             ));
         }
     }
+
     public static function updateImage($data)
     {
         $connection =  DatabaseController::connect();
@@ -88,6 +271,7 @@ class EnquiryController
             );
         }
     }
+
     public function delete()
     {
         $connection =  DatabaseController::connect();
@@ -109,6 +293,7 @@ class EnquiryController
             );
         }
     }
+
     public static function getById($id)
     {
         $connection =  DatabaseController::connect();
@@ -117,6 +302,7 @@ class EnquiryController
          DatabaseController::disconnect();
         return $query->fetch(PDO::FETCH_OBJ);
     }
+
     public static function getBySection($last_name)
     {
         $connection =  DatabaseController::connect();
@@ -125,6 +311,7 @@ class EnquiryController
         DatabaseController::disconnect();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+
     public static function getList()
     {
         $connection =  DatabaseController::connect();
@@ -133,6 +320,7 @@ class EnquiryController
          DatabaseController::disconnect();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+
     public function dataTable()
     {
         $connection =  DatabaseController::connect();
@@ -204,6 +392,7 @@ class EnquiryController
             "data" => $data
         ), JSON_PRETTY_PRINT + JSON_UNESCAPED_SLASHES);
     }
+
     public function totalRecords()
     {
         $connection =  DatabaseController::connect();
@@ -226,6 +415,11 @@ class EnquiryController
          DatabaseController::disconnect();
         return $query->fetchColumn();
     }
+
+    // ──────────────────────────────────────────────
+    // Email content templates (unchanged)
+    // ──────────────────────────────────────────────
+
     public function getCtaEmailContent()
     {
         $email_body = array();
@@ -243,6 +437,7 @@ class EnquiryController
         );
         return $email_body;
     }
+
     public function getContactFormEmailContent()
     {
         $email_body = array();
@@ -258,6 +453,7 @@ class EnquiryController
         );
         return $email_body;
     }
+
     public function getJobApplicationEmailContent()
     {
         $email_body = array();
@@ -276,6 +472,7 @@ class EnquiryController
         );
         return $email_body;
     }
+
     public function getAcknowledgmentEmailContent()
     {
         $email_body = array();
@@ -307,6 +504,7 @@ class EnquiryController
         );
         return $email_body;
     }
+
     public function getContactAcknowledgmentEmailContent()
     {
         $email_body = array();
@@ -338,6 +536,7 @@ class EnquiryController
         );
         return $email_body;
     }
+
     public function getAppplicationAcknowledgmentEmailContent()
     {
         $email_body = array();
@@ -369,6 +568,7 @@ class EnquiryController
         );
         return $email_body;
     }
+
     public static function uploadFiles(){
         
     }

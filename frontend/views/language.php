@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="page-header-content">
-                    <h1>Our Languages</h1>
+                    <h1><?php echo $child ? ucfirst(htmlspecialchars($child)) . ' Language Course | BETRALACE' : 'Our Languages'; ?></h1>
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item">
                             <a href="#">Home</a>

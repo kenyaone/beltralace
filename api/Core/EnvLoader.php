@@ -14,7 +14,7 @@ class EnvLoader
             return;
         }
 
-        $rootPath = $rootPath ? $rootPath : dirname(__DIR__);
+        $rootPath = $rootPath ? $rootPath : dirname(__DIR__, 2);
         if ($rootPath && file_exists($rootPath . '/.env')) {
             Dotenv::createImmutable($rootPath)->safeLoad();
             self::$loaded = true;

@@ -1,12 +1,11 @@
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en">
 
 <head>
     <title><?php echo  $page->title ? $page->title . " | " . SITE_TITLE : SITE_TITLE; ?></title>
     
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="keywords" content="<?php echo SITE_KEYWORDS; ?>">
 	<meta name="description" content="<?php echo $page->meta_description ? $page->meta_description : SITE_DESCRIPTION; ?>">
@@ -26,8 +25,6 @@
 	<link rel="canonical" href="<?php echo SITE_URL .  "/" . $page->slug; ?>">
 	<!-- Title -->
 
-    <!-- Mobile Specific Meta-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- bootstrap.min css -->
     <link rel="stylesheet" href="<?php echo ASSETS; ?>/css/bootstrap.min.css">
     <!-- Iconfont Css -->
@@ -53,16 +50,55 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-</head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HEHWG8NTHE"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-HEHWG8NTHE"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'G-HEHWG8NTHE');
+	</script>
 
-  gtag('config', 'G-HEHWG8NTHE');
-</script>
+	<!-- JSON-LD Structured Data -->
+	<?php if (!$parent): ?>
+	<script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "LanguageSchool",
+	  "name": "BETRALACE",
+	  "url": "<?php echo SITE_URL; ?>",
+	  "description": "<?php echo SITE_DESCRIPTION; ?>",
+	  "address": {
+	    "@type": "PostalAddress",
+	    "addressLocality": "Nairobi",
+	    "addressCountry": "KE"
+	  },
+	  "telephone": "+254724736255",
+	  "email": "info@beltralace.com",
+	  "sameAs": [
+	    "https://web.facebook.com/BelxinTranslatorsAndLanguageCentreBetralace",
+	    "https://www.linkedin.com/in/belxin-translators-language-centre-5075b65a/"
+	  ]
+	}
+	</script>
+	<?php elseif ($parent === 'languages' && $child): ?>
+	<script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "Course",
+	  "name": "<?php echo ucfirst(htmlspecialchars($child)); ?> Language Course",
+	  "description": "Learn <?php echo ucfirst(htmlspecialchars($child)); ?> online or in-person with native-speaking trainers at BETRALACE, Nairobi, Kenya.",
+	  "provider": {
+	    "@type": "LanguageSchool",
+	    "name": "BETRALACE",
+	    "url": "<?php echo SITE_URL; ?>"
+	  },
+	  "url": "<?php echo SITE_URL; ?>/languages/<?php echo htmlspecialchars($child); ?>"
+	}
+	</script>
+	<?php endif; ?>
+
+</head>
 <body id="top-header">
     <header>
         <!-- Main Menu Start -->

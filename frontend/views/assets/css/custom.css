@@ -1,4 +1,14 @@
 
+/* Banner title for non-H1 carousel slides (SEO: single H1 per page) */
+.banner .banner-content .banner-title {
+    font-size: 56px;
+    margin: 15px 0px 45px;
+    line-height: 65px;
+    letter-spacing: -1.3px;
+    color: #fff;
+    font-weight: 700;
+}
+
 /* FAQ Section Styles - Scoped to .faq-accordion */
 .faq-accordion {
     /* max-width: 800px; */

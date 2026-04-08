@@ -1,10 +1,27 @@
 <?php
 
 namespace App\Models;
-use App\Helpers\HelperFunctions;
-
-class Enquiry
+use App\Helpers\Database;
+class Enquiry extends Model
 {
+    // SELECT `id`, `first_name`, `middle_name`, `last_name`, `name`, `phone`, `email`, `address`, `town`, `country`, `nationality`, `native_language`, `language`, `subject`, `message`, `created_at`, `updated_at` FROM `enquiries` WHERE 1
+    protected $table = 'enquiries';
+    protected $fillable = [
+        'first_name',
+        'middle_name',
+        'last_name',
+        'name',
+        'phone',
+        'email',
+        'address',
+        'town',
+        'country',
+        'nationality',
+        'native_language',
+        'language',
+        'subject',
+        'message'
+    ];
     public $id = null;
     public $first_name = null;
     public $middle_name = null;
@@ -22,7 +39,13 @@ class Enquiry
     public $message = null;
     public $author = null;
 
-    public function __construct($data = array())
+    public function __construct($data = [], $connection = null)
+    {
+        $this->fill($data);
+        // Check if connection is provided and is valid
+        $this->connection = $connection ?? Database::getInstance()->getConnection();
+    }
+    private function fill($data)
     {
         $this->id = $data['id'] ?? null;
         $this->first_name = $data['first_name'] ?? null;
