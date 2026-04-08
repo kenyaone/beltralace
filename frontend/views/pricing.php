@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="page-header-content">
-                    <h1>Language Course Pricing | Private &amp; Group Lessons | BETRALACE</h1>
+                    <h1>Language Course Pricing | Private &amp; Group Lessons | BELTRALACE</h1>
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item">
                             <a href="#">Home</a>

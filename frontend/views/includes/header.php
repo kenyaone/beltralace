@@ -65,7 +65,7 @@
 	{
 	  "@context": "https://schema.org",
 	  "@type": "LanguageSchool",
-	  "name": "BETRALACE",
+	  "name": "BELTRALACE",
 	  "url": "<?php echo SITE_URL; ?>",
 	  "description": "<?php echo SITE_DESCRIPTION; ?>",
 	  "address": {
@@ -76,7 +76,7 @@
 	  "telephone": "+254724736255",
 	  "email": "info@beltralace.com",
 	  "sameAs": [
-	    "https://web.facebook.com/BelxinTranslatorsAndLanguageCentreBetralace",
+	    "https://web.facebook.com/BelxinTranslatorsAndLanguageCentreBeltralace",
 	    "https://www.linkedin.com/in/belxin-translators-language-centre-5075b65a/"
 	  ]
 	}
@@ -87,10 +87,10 @@
 	  "@context": "https://schema.org",
 	  "@type": "Course",
 	  "name": "<?php echo ucfirst(htmlspecialchars($child)); ?> Language Course",
-	  "description": "Learn <?php echo ucfirst(htmlspecialchars($child)); ?> online or in-person with native-speaking trainers at BETRALACE, Nairobi, Kenya.",
+	  "description": "Learn <?php echo ucfirst(htmlspecialchars($child)); ?> online or in-person with native-speaking trainers at BELTRALACE, Nairobi, Kenya.",
 	  "provider": {
 	    "@type": "LanguageSchool",
-	    "name": "BETRALACE",
+	    "name": "BELTRALACE",
 	    "url": "<?php echo SITE_URL; ?>"
 	  },
 	  "url": "<?php echo SITE_URL; ?>/languages/<?php echo htmlspecialchars($child); ?>"
