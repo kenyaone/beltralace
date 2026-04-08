@@ -215,7 +215,6 @@
 <script src="<?php echo ASSETS_PATH; ?>/admin/js/popper.min.js"></script>
 <script src="<?php echo ASSETS_PATH; ?>/admin/js/app.js"></script>
 <script src="<?php echo ASSETS_PATH; ?>/admin/js/jquery.validate.js"></script>
-<script src="<?php echo ASSETS_PATH; ?>/admin/js/ckeditor.classic.js"></script>
 <script src="<?php echo ASSETS_PATH; ?>/admin/js/dropzone.min.js"></script>
 <script src="<?php echo ASSETS_PATH; ?>/admin/js/doka.min.js"></script>
 <!-- <script src="<?php echo ASSETS_PATH; ?>/admin/js/settings.js"></script> -->

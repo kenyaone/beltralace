@@ -27,7 +27,8 @@
 
 	<link rel="stylesheet" href="<?php echo ASSETS_PATH; ?>/css/magnific.popup.css">
 
-	<script src="<?php echo ASSETS_PATH; ?>/admin/js/jquery.min.js"></script> 
+	<script src="<?php echo ASSETS_PATH; ?>/admin/js/jquery.min.js"></script>
+	<script src="<?php echo ASSETS_PATH; ?>/admin/js/ckeditor.classic.js"></script>
 	
 	<script type="text/javascript" src="<?php echo ASSETS_PATH; ?>/js/magnific.popup.js"></script>
 	
