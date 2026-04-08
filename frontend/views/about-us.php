@@ -24,7 +24,7 @@
         <div class="row align-items-center">
             <div class="col-lg-6 col-md-12">
                 <div class="about-img2">
-                    <img src="https://pxelcode.com/tf-db/edutim/edutim/assets/images/bg/choose.png" alt="" class="img-fluid">
+                    <img src="<?php echo ASSETS; ?>/images/home.jpg" alt="" class="img-fluid">
                 </div>
             </div>
             <div class="col-lg-6 col-md-12">
@@ -34,7 +34,7 @@
                 </div>
 
                 <p>
-                    Belxin Translators and Language Centre (BETRALACE) is a language company based in Nairobi, Kenya. Betralace was founded 
+                    Belxin Translators and Language Centre (BELTRALACE) is a language company based in Nairobi, Kenya. Beltralace was founded 
                     in 2012 with the aim of providing language services globally and eliminating the language barriers. Our tailor-made, 
                     one-to-one and small group language courses for individuals and corporate clients are specially designed to 
                     fulfill the unique needs of our clients. 
@@ -136,7 +136,7 @@
                     for people to learn languages and cultures of those they interact and work with. 
                 </p>
                 <p>  
-                    Companies are more interested in competent multilingual employees. Betralace’s goal is to make this possible 
+                    Companies are more interested in competent multilingual employees. Beltralace’s goal is to make this possible 
                     by dissolving language barriers and enabling effective communication.
                 </p>
 
@@ -149,7 +149,7 @@
                     achievement of the goals therein. 
                 </p>
                 <p>  
-                    For this reason, BETRALACE is here to spearhead such initiatives through 
+                    For this reason, BELTRALACE is here to spearhead such initiatives through 
                     translations that will ensure maximum participation by people across the world.
                 </p>
 
