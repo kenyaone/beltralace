@@ -17,7 +17,7 @@ if (is_numeric($connection)) {
     exit;
 } 
 else {
-    include_once realpath(__DIR__ .'/../controllers/Functions.php');
+    include_once realpath(__DIR__ .'/../Controllers/Functions.php');
 
     $config = SettingsController::get_configs();
 
