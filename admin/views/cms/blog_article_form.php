@@ -54,7 +54,7 @@ include_once $dir . '/includes/header.php';
                             <div class="form-group row mb-3">
                                 <div class="col-md-12">
                                     <label for="body" class="col-form-label">Body</label>
-                                    <textarea name="body" class="form-control summernote" rows="5"></textarea>
+                                    <textarea name="body" class="form-control" id="blog-article-body" rows="5"></textarea>
                                     <small class="characters-indicator float-right"></small>
                                 </div>
                             </div>
@@ -91,12 +91,21 @@ include_once $dir . '/includes/header.php';
 </main>
 
 <script>
+    var blogBodyEditor = null;
+    ClassicEditor.create(document.querySelector('#blog-article-body'), {
+        placeholder: 'Add text here',
+        toolbar: {
+            items: ['heading', '|', 'bold', 'italic', 'underline', 'strikethrough', '|',
+                    'bulletedList', 'numberedList', '|', 'blockQuote', 'code', '|',
+                    'link', 'insertTable', '|', 'undo', 'redo']
+        }
+    }).then(function(editor) {
+        blogBodyEditor = editor;
+    }).catch(function(error) {
+        console.error('CKEditor init error:', error);
+    });
+
     $(document).ready(function() {
-        $('.summernote').summernote({
-            placeholder: 'Add text here',
-            tabsize: 2,
-            height: 150
-        });
 
         var section = "blogs";
         var current_record = 0;
@@ -155,7 +164,7 @@ include_once $dir . '/includes/header.php';
                 }
             },
             submitHandler: function(form) {
-                var body = $("#blog-article-form").find('[name="body"]').val();
+                var body = blogBodyEditor ? blogBodyEditor.getData() : '';
                 var formData = new FormData(form);
                 formData.set('body', btoa(unescape(encodeURIComponent(body))));
                 $.ajax({
@@ -208,7 +217,9 @@ include_once $dir . '/includes/header.php';
                     .find('[name="meta_description"]').val(response.meta_description).end()
                     .find('[name="cover_image"]').val(response.cover_image).end()
                     .find('[name="cover_image_thumbnail"]').val(response.cover_image_thumbnail).end()
-                    .find('[name="body"]').summernote('code', response.body);
+                if (blogBodyEditor) {
+                    blogBodyEditor.setData(response.body || '');
+                }
 
                 if (response.published == 1) {
                     $('#blog-article-form').find('input[name="published"]').prop('checked', true);

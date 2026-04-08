@@ -16,13 +16,14 @@
 	<link href="<?php echo ASSETS_PATH;?>/admin/css/light.css" rel="stylesheet">
 	<link href="<?php echo ASSETS_PATH;?>/admin/css/style.css" rel="stylesheet">
 	<link href="<?php echo ASSETS_PATH;?>/admin/css/choices.min.css"  rel="stylesheet">
-	<link href="<?php echo ASSETS_PATH;?>/admin/css/summernote.min.css"  rel="stylesheet">
 
 	<link href="<?php echo ASSETS_PATH;?>/admin/css/dropzone.min.css"  rel="stylesheet">
 	<link href="<?php echo ASSETS_PATH;?>/admin/css/doka.min.css"  rel="stylesheet">
 	
 	<link href="<?php echo ASSETS_PATH;?>/node_modules/toastr/build/toastr.min.css" rel="stylesheet">
-	<link href="<?php echo ASSETS_PATH;?>/packages/summernote-0.9.0-dist/summernote-bs5.css" rel="stylesheet">
+	<style>
+		.ck-editor__editable { min-height: 250px; font-family: 'Inter', sans-serif; font-size: 14px; }
+	</style>
 
 	<link rel="stylesheet" href="<?php echo ASSETS_PATH; ?>/css/magnific.popup.css">
 
