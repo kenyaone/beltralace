@@ -409,116 +409,32 @@ try {
             $controller = new EnquiryController($params);
             switch ($action) {
                 case 'language_enquiry':
-                    $result = $controller->create();
+                    $result = $controller->createLanguageEnquiry();
                     echo json_encode($result, JSON_PRETTY_PRINT);
-
-                    if ($result->status) {
-                        $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => ADMIN_EMAIL, 'subject' => 'Language Learning Inquiry From ' . $params['first_name'], 'content_sections' => $controller->getCtaEmailContent()]);
-                        $enqury_email_obj->enqueue();
-
-                        $ack_email_obj = new EmailQueueController(['recipient_name' => $params['first_name'], 'recipient_email' => $params['email'], 'subject' => 'Inquiry Received', 'content_sections' => $controller->getAcknowledgmentEmailContent()]);
-                        $ack_email_obj->enqueue();
-                    }
                     break;
 
                 case 'contact_form_enquiry':
-                    // Validate reCAPTCHA first
-                    $recaptcha_response = isset($_POST['g-recaptcha-response']) ? $_POST['g-recaptcha-response'] : '';
-                    $recaptcha_secret = $_ENV['GOOGLE_RECAPTCHA_SECRET_KEY'];
-
-                    if (empty($recaptcha_response)) {
-                        echo json_encode([
-                            'status' => false,
-                            'message' => 'reCAPTCHA validation failed. Please try again.'
-                        ], JSON_PRETTY_PRINT);
-                        break;
-                    }
-
-                    // Verify reCAPTCHA with Google
-                    $verify_url = 'https://www.google.com/recaptcha/api/siteverify';
-                    $verify_data = [
-                        'secret' => $recaptcha_secret,
-                        'response' => $recaptcha_response,
-                        'remoteip' => $_SERVER['REMOTE_ADDR']
-                    ];
-
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_URL, $verify_url);
-                    curl_setopt($ch, CURLOPT_POST, true);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($verify_data));
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    $verify_response = curl_exec($ch);
-                    curl_close($ch);
-
-                    $response_data = json_decode($verify_response);
-
-                    // Check if verification was successful and score is acceptable
-                    // For v3, Google returns a score between 0.0 (bot) and 1.0 (human)
-                    // Recommended threshold is 0.5
-                    if (!$response_data->success || $response_data->score < 0.5) {
-                        http_response_code(400);
-                        echo json_encode([
-                            'status' => false,
-                            'message' => 'reCAPTCHA verification failed. You appear to be a bot.',
-                            'score' => $response_data
-                        ], JSON_PRETTY_PRINT);
-                        break;
-                    }
-
-                    // reCAPTCHA passed, proceed with form processing
-                    $result = $controller->create();
+                    $result = $controller->createContactEnquiry();
                     echo json_encode($result, JSON_PRETTY_PRINT);
-
-                    if ($result->status) {
-                        $enqury_email_obj = new EmailQueueController([
-                            'recipient_name' => 'Admin',
-                            'recipient_email' => ADMIN_EMAIL,
-                            'subject' => 'Website Contact Form Inquiry: ' . $params['subject'],
-                            'content_sections' => $controller->getContactFormEmailContent()
-                        ]);
-                        $enqury_email_obj->enqueue();
-
-                        $ack_email_obj = new EmailQueueController([
-                            'recipient_name' => $params['name'],
-                            'recipient_email' => $params['email'],
-                            'subject' => 'Inquiry Received',
-                            'content_sections' => $controller->getContactAcknowledgmentEmailContent()
-                        ]);
-                        $ack_email_obj->enqueue();
-                    }
                     break;
 
                 case 'teaching_job_application':
-                    $result = $controller->create();
-                    echo json_encode($_FILES, JSON_PRETTY_PRINT);
-
-                    if ($result->status) {
-                        $uploaded_files = HelperFunctions::uploadFiles($_FILES, 'enquiries');
-
-                        foreach ($uploaded_files as $file) {
-                            $enquiry_file_result = EnquiryFileController::create($result->data->id, $file['file_name']);
-                        }
-
-                        $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => ADMIN_EMAIL, 'subject' => 'Teaching Job Application: ' . $params['first_name'] . ' ' . $params['last_name'], 'content_sections' => $controller->getContactFormEmailContent()]);
-                        $enqury_email_obj->enqueue();
-
-                        $ack_email_obj = new EmailQueueController(['recipient_name' => $params['first_name'], 'recipient_email' => $params['email'], 'subject' => 'Application Received', 'content_sections' => $controller->getAppplicationAcknowledgmentEmailContent()]);
-                        $ack_email_obj->enqueue();
-                    }
+                    $result = $controller->createJobApplication();
+                    echo json_encode($result, JSON_PRETTY_PRINT);
                     break;
 
                 case 'data_table':
                     $class_object = new UserController($params);
                     echo $class_object->dataTable();
                     break;
+
                 default:
-                    echo json_encode(array(
+                    echo json_encode([
                         'status' => 1,
-                        'message' => "Endpoint not found"
-                    ));
+                        'message' => 'Endpoint not found'
+                    ]);
                     break;
             }
-
             exit;
         }
 

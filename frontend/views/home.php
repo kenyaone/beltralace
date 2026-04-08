@@ -69,7 +69,7 @@
                     <div class="col-md-12 col-lg-8">
                         <div class="banner-content center-heading">
                             <span class="subheading">Expert instruction</span>
-                            <h1>For all your professional language solutions!</h1>
+                            <h1>Online Language Courses with Native-Speaking Trainers in Nairobi</h1>
                             <a href="/pricing#our-courses" class="btn btn-main"><i class="fa fa-list-ul mr-2"></i>Our Courses</a>
                             <a href="#" class="btn btn-tp" data-toggle="modal" data-target="#modal-form">Get Started <i class="fa fa-angle-right ml-2"></i></a>
                         </div>
@@ -85,7 +85,7 @@
                     <div class="col-md-12 col-lg-8">
                         <div class="banner-content center-heading">
                             <span class="subheading">Tailored Language Courses</span>
-                            <h1>Learn at your own pace with expert trainers</h1>
+                            <p class="banner-title">Learn at your own pace with expert trainers</p>
                             <a href="/pricing#our-courses" class="btn btn-main"><i class="fa fa-list-ul mr-2"></i>Our Courses</a>
                             <a href="#" class="btn btn-tp" data-toggle="modal" data-target="#modal-form">Get Started <i class="fa fa-angle-right ml-2"></i></a>
                         </div>
@@ -101,7 +101,7 @@
                     <div class="col-md-12 col-lg-8">
                         <div class="banner-content center-heading">
                             <span class="subheading">Certified Translation Services</span>
-                            <h1>Accurate & Reliable Translation for Your Business</h1>
+                            <p class="banner-title">Accurate &amp; Reliable Translation for Your Business</p>
                             <a href="/pricing#our-courses" class="btn btn-main"><i class="fa fa-list-ul mr-2"></i>Our Services</a>
                             <a href="#" class="btn btn-tp" data-toggle="modal" data-target="#modal-form">Get Started <i class="fa fa-angle-right ml-2"></i></a>
                         </div>
