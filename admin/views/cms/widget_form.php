@@ -52,7 +52,7 @@ include_once $dir . '/includes/header.php';
                             <div class="form-group row mb-3">
                                 <div class="col-md-12">
                                     <label for="body" class="col-form-label">Body</label>
-                                    <textarea name="body" class="form-control" rows="5"></textarea>
+                                    <textarea name="body" class="form-control" id="widget-body" rows="5"></textarea>
                                     <small class="characters-indicator float-right"></small>
                                 </div>
                             </div>
@@ -89,12 +89,21 @@ include_once $dir . '/includes/header.php';
 </main>
 
 <script>
+    var widgetBodyEditor = null;
+    ClassicEditor.create(document.querySelector('#widget-body'), {
+        placeholder: 'Add text here',
+        toolbar: {
+            items: ['heading', '|', 'bold', 'italic', 'underline', 'strikethrough', '|',
+                    'bulletedList', 'numberedList', '|', 'blockQuote', 'code', '|',
+                    'link', 'insertTable', '|', 'undo', 'redo']
+        }
+    }).then(function(editor) {
+        widgetBodyEditor = editor;
+    }).catch(function(error) {
+        console.error('CKEditor init error:', error);
+    });
+
     $(document).ready(function() {
-        $('.summernote').summernote({
-            placeholder: 'Add text here',
-            tabsize: 2,
-            height: 150
-        });
 
         <?php
         if($action == 'edit'){
@@ -128,7 +137,7 @@ include_once $dir . '/includes/header.php';
                 }
             },
             submitHandler: function(form) {
-                var body = $("#widget-form").find('[name="body"]').val();
+                var body = widgetBodyEditor ? widgetBodyEditor.getData() : '';
                 var formData = new FormData(form);
                 formData.set('body', btoa(unescape(encodeURIComponent(body))));
                 $.ajax({
@@ -198,7 +207,9 @@ include_once $dir . '/includes/header.php';
                     .find('[name="section"]').selectpicker('val', response.section).end()
                     .find('[name="image"]').val(response.image).end();
                     
-                $('[name="body"]').val(response.body);
+                if (widgetBodyEditor) {
+                    widgetBodyEditor.setData(response.body || '');
+                }
 
                 if (response.published == 1) {
                     $('input[name="published"]').prop('checked', true);
