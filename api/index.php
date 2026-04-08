@@ -467,7 +467,6 @@ try {
 
                     // reCAPTCHA passed, proceed with form processing
                     $result = $controller->create();
-                    http_response_code(400);
                     echo json_encode($result, JSON_PRETTY_PRINT);
 
                     if ($result->status) {
