@@ -199,7 +199,7 @@ $ld_description = htmlspecialchars($post->meta_description ?? '', ENT_QUOTES);
 $ld_image       = !empty($post->cover_image) ? rtrim(UPLOAD_SERVER, '/') . '/' . ltrim($post->cover_image, '/') : '';
 $ld_url         = SITE_URL . '/blog/' . htmlspecialchars($post->slug ?? $child);
 $ld_date        = htmlspecialchars($post->created_at ?? '');
-$ld_author      = htmlspecialchars($post->author_name ?? 'BETRALACE');
+$ld_author      = htmlspecialchars($post->author_name ?? '<?php echo SITE_TITLE; ?>');
 ?>
 <script type="application/ld+json">
 {
@@ -216,7 +216,7 @@ $ld_author      = htmlspecialchars($post->author_name ?? 'BETRALACE');
   },
   "publisher": {
     "@type": "LanguageSchool",
-    "name": "BETRALACE",
+    "name": "<?php echo SITE_TITLE; ?>",
     "url": "<?php echo SITE_URL; ?>"
   }
 }

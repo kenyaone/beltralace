@@ -5,32 +5,32 @@
     <?php
     // Route-based fallback titles and meta descriptions when no database entry exists
     $route_titles = [
-        ''               => 'Online Language Courses with Native-Speaking Trainers | BETRALACE',
-        'about-us'       => 'About Us | Language School Nairobi | BETRALACE',
-        'pricing'        => 'Language Course Pricing | Private & Group Lessons | BETRALACE',
-        'blog'           => 'Language Learning Blog | Tips & Resources | BETRALACE',
-        'blogs'          => 'Language Learning Blog | Tips & Resources | BETRALACE',
-        'faqs'           => 'Frequently Asked Questions | Language Courses | BETRALACE',
-        'contact-us'     => 'Contact Us | Book a Free Consultation | BETRALACE',
-        'teaching-jobs'  => 'Language Teaching Jobs in Nairobi & Online | BETRALACE',
-        'privacy-policy' => 'Privacy Policy | BETRALACE',
+        ''               => 'Online Language Courses with Native-Speaking Trainers | ' . SITE_TITLE ,
+        'about-us'       => 'About Us | Language School Nairobi | ' . SITE_TITLE ,
+        'pricing'        => 'Language Course Pricing | Private & Group Lessons | ' . SITE_TITLE ,
+        'blog'           => 'Language Learning Blog | Tips & Resources | ' . SITE_TITLE ,
+        'blogs'          => 'Language Learning Blog | Tips & Resources | ' . SITE_TITLE ,
+        'faqs'           => 'Frequently Asked Questions | Language Courses | ' . SITE_TITLE ,
+        'contact-us'     => 'Contact Us | Book a Free Consultation | ' . SITE_TITLE ,
+        'teaching-jobs'  => 'Language Teaching Jobs in Nairobi & Online | ' . SITE_TITLE ,
+        'privacy-policy' => 'Privacy Policy | ' . SITE_TITLE ,
     ];
     $route_descriptions = [
-        ''               => 'BETRALACE offers online and in-person language courses — Swahili, English, French, Spanish, German and more — with native-speaking trainers in Nairobi, Kenya. Book a free consultation today.',
-        'about-us'       => 'Meet the BETRALACE team — qualified professional linguists and native-speaking trainers based in Nairobi, Kenya, delivering language courses worldwide.',
-        'pricing'        => 'Transparent pricing for private, semi-private, group, and crash course language lessons at BETRALACE. Virtual and face-to-face options available worldwide.',
-        'blog'           => 'Language learning tips, guides, and resources from the BETRALACE team — covering Swahili, French, Spanish, German, English and more.',
-        'blogs'          => 'Language learning tips, guides, and resources from the BETRALACE team — covering Swahili, French, Spanish, German, English and more.',
-        'faqs'           => 'Answers to frequently asked questions about BETRALACE language courses, pricing, online lessons, and enrollment.',
-        'contact-us'     => 'Get in touch with BETRALACE to book a free consultation, enquire about a language course, or reach our team in Nairobi, Kenya.',
-        'teaching-jobs'  => 'Join the BETRALACE team as a language trainer. We hire native-speaking teachers for Swahili, French, Spanish, German, English and more — remote and Nairobi-based roles.',
-        'privacy-policy' => 'BETRALACE privacy policy — how we collect, use, and protect your personal data in line with GDPR.',
+        ''               => '' . SITE_TITLE . ' offers online and in-person language courses — Swahili, English, French, Spanish, German and more — with native-speaking trainers in Nairobi, Kenya. Book a free consultation today.',
+        'about-us'       => 'Meet the ' . SITE_TITLE . ' team — qualified professional linguists and native-speaking trainers based in Nairobi, Kenya, delivering language courses worldwide.',
+        'pricing'        => 'Transparent pricing for private, semi-private, group, and crash course language lessons at ' . SITE_TITLE . '. Virtual and face-to-face options available worldwide.',
+        'blog'           => 'Language learning tips, guides, and resources from the ' . SITE_TITLE . ' team — covering Swahili, French, Spanish, German, English and more.',
+        'blogs'          => 'Language learning tips, guides, and resources from the ' . SITE_TITLE . ' team — covering Swahili, French, Spanish, German, English and more.',
+        'faqs'           => 'Answers to frequently asked questions about ' . SITE_TITLE . ' language courses, pricing, online lessons, and enrollment.',
+        'contact-us'     => 'Get in touch with ' . SITE_TITLE . ' to book a free consultation, enquire about a language course, or reach our team in Nairobi, Kenya.',
+        'teaching-jobs'  => 'Join the ' . SITE_TITLE . ' team as a language trainer. We hire native-speaking teachers for Swahili, French, Spanish, German, English and more — remote and Nairobi-based roles.',
+        'privacy-policy' => '' . SITE_TITLE . ' privacy policy — how we collect, use, and protect your personal data in line with GDPR.',
     ];
     // Language page fallbacks
     if ($parent === 'languages' && $child) {
         $lang = ucfirst($child);
-        $route_titles['languages'] = "Learn $lang Online | $lang Lessons with Native Speakers | BETRALACE";
-        $route_descriptions['languages'] = "Learn $lang with BETRALACE — native-speaking trainers, flexible online and in-person lessons, tailored to your level and goals. Based in Nairobi, Kenya. Enroll today.";
+        $route_titles['languages'] = "Learn $lang Online | $lang Lessons with Native Speakers | " . SITE_TITLE;
+        $route_descriptions['languages'] = "Learn $lang with " . SITE_TITLE . " — native-speaking trainers, flexible online and in-person lessons, tailored to your level and goals. Based in Nairobi, Kenya. Enroll today.";
     }
     // For blog posts, $post is fetched server-side in blog-details.php before the header is output.
     // Use it to populate accurate per-post title, description and cover image for SEO.
@@ -60,7 +60,7 @@
 	<meta property="og:title" content="<?php echo htmlspecialchars($resolved_title); ?>">
 	<meta property="og:description" content="<?php echo htmlspecialchars($resolved_description); ?>">
 	<meta property="og:image" content="<?php echo htmlspecialchars($resolved_image); ?>">
-	<meta property="og:site_name" content="BETRALACE">
+	<meta property="og:site_name" content="' . SITE_TITLE . '">
 	<meta name="twitter:card" content="summary_large_image">
 	<!-- <meta name="twitter:site" content="@tonisoft_web"> -->
 	<meta name="twitter:title" content="<?php echo htmlspecialchars($resolved_title); ?>">
