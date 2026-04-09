@@ -32,12 +32,21 @@
         $route_titles['languages'] = "Learn $lang Online | $lang Lessons with Native Speakers | BETRALACE";
         $route_descriptions['languages'] = "Learn $lang with BETRALACE — native-speaking trainers, flexible online and in-person lessons, tailored to your level and goals. Based in Nairobi, Kenya. Enroll today.";
     }
-    $resolved_title = $page->title
-        ? $page->title . ' | ' . SITE_TITLE
-        : ($route_titles[$parent] ?? SITE_TITLE);
-    $resolved_description = $page->meta_description
-        ? $page->meta_description
-        : ($route_descriptions[$parent] ?? SITE_DESCRIPTION);
+    // For blog posts, $post is fetched server-side in blog-details.php before the header is output.
+    // Use it to populate accurate per-post title, description and cover image for SEO.
+    $is_blog_post = ($parent === 'blog' || $parent === 'blogs') && !empty($child) && isset($post);
+    $resolved_title = $is_blog_post && !empty($post->title)
+        ? $post->title . ' | ' . SITE_TITLE
+        : ($page->title ? $page->title . ' | ' . SITE_TITLE : ($route_titles[$parent] ?? SITE_TITLE));
+    $resolved_description = $is_blog_post && !empty($post->meta_description)
+        ? $post->meta_description
+        : ($page->meta_description ? $page->meta_description : ($route_descriptions[$parent] ?? SITE_DESCRIPTION));
+    $resolved_image = $is_blog_post && !empty($post->cover_image)
+        ? rtrim(UPLOAD_SERVER, '/') . '/' . ltrim($post->cover_image, '/')
+        : (isset($page->cover_image) ? UPLOAD_SERVER . '/' . $page->cover_image : '');
+    $resolved_canonical = $is_blog_post
+        ? SITE_URL . '/blog/' . htmlspecialchars($post->slug ?? $child)
+        : SITE_URL . '/' . ($page->slug ?? '');
     ?>
     <title><?php echo htmlspecialchars($resolved_title); ?></title>
     
@@ -46,20 +55,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="keywords" content="<?php echo SITE_KEYWORDS; ?>">
 	<meta name="description" content="<?php echo htmlspecialchars($resolved_description); ?>">
-	<meta property="og:url" content="<?php echo SITE_URL .  "/" . $page->slug; ?>">
-	<meta property="og:type" content="website">
+	<meta property="og:url" content="<?php echo htmlspecialchars($resolved_canonical); ?>">
+	<meta property="og:type" content="<?php echo $is_blog_post ? 'article' : 'website'; ?>">
 	<meta property="og:title" content="<?php echo htmlspecialchars($resolved_title); ?>">
 	<meta property="og:description" content="<?php echo htmlspecialchars($resolved_description); ?>">
-	<meta property="og:image" content="<?php echo UPLOAD_SERVER . "/" . $page->cover_image; ?>">
+	<meta property="og:image" content="<?php echo htmlspecialchars($resolved_image); ?>">
 	<meta property="og:site_name" content="BETRALACE">
-	<meta name="twitter:card" content="summary">
+	<meta name="twitter:card" content="summary_large_image">
 	<!-- <meta name="twitter:site" content="@tonisoft_web"> -->
 	<meta name="twitter:title" content="<?php echo htmlspecialchars($resolved_title); ?>">
 	<meta name="twitter:description" content="<?php echo htmlspecialchars($resolved_description); ?>">
-	<meta name="twitter:image" content="<?php echo UPLOAD_SERVER . "/" . $page->cover_image; ?>">
+	<meta name="twitter:image" content="<?php echo htmlspecialchars($resolved_image); ?>">
 	<meta name="twitter:image:alt" content="<?php echo htmlspecialchars($resolved_title); ?>">
 	<link rel="shortcut icon" href="<?php echo ASSETS; ?>/images/favicon/favicon.ico" type="image/x-icon">
-	<link rel="canonical" href="<?php echo SITE_URL .  "/" . $page->slug; ?>">
+	<link rel="canonical" href="<?php echo htmlspecialchars($resolved_canonical); ?>">
 	<!-- Title -->
 
     <!-- bootstrap.min css -->
