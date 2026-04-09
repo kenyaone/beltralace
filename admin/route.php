@@ -13,6 +13,10 @@ switch ($page) {
         include_once 'route/route-blogs.php';
         break;
     
+    case 'enquiries':
+        include_once 'route/route-enquiries.php';
+        break;
+
     case 'users':
         include_once 'route/route-users.php';
         break;

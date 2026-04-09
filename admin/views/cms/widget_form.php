@@ -139,7 +139,7 @@ include_once $dir . '/includes/header.php';
             submitHandler: function(form) {
                 var body = widgetBodyEditor ? widgetBodyEditor.getData() : '';
                 var formData = new FormData(form);
-                formData.set('body', btoa(unescape(encodeURIComponent(body))));
+                formData.set('body', body);
                 $.ajax({
                     beforeSend: function() {
                         $('#overlay').removeClass('d-none');

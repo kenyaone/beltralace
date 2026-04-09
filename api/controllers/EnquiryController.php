@@ -296,11 +296,22 @@ class EnquiryController
 
     public static function getById($id)
     {
-        $connection =  DatabaseController::connect();
-        $query = $connection->prepare("SELECT * FROM enquiries WHERE id = ?");
-        $query->execute(array($id));
-         DatabaseController::disconnect();
-        return $query->fetch(PDO::FETCH_OBJ);
+        $connection = DatabaseController::connect();
+        $query = $connection->prepare(
+            "SELECT enquiries.*, DATE_FORMAT(enquiries.created_at, '%b %e, %Y %l:%i%p') AS created_at
+             FROM enquiries WHERE id = ?"
+        );
+        $query->execute([$id]);
+        $enquiry = $query->fetch(PDO::FETCH_OBJ);
+
+        if ($enquiry) {
+            $filesQuery = $connection->prepare("SELECT * FROM enquiry_files WHERE enquiry_id = ?");
+            $filesQuery->execute([$id]);
+            $enquiry->files = $filesQuery->fetchAll(PDO::FETCH_OBJ);
+        }
+
+        DatabaseController::disconnect();
+        return $enquiry;
     }
 
     public static function getBySection($last_name)
@@ -323,18 +334,20 @@ class EnquiryController
 
     public function dataTable()
     {
-        $connection =  DatabaseController::connect();
-        $query = "SELECT enquiries.*, users.username, DATE_FORMAT(enquiries.created_at, '%b %e, %Y %l:%i%p') AS created_at, DATE_FORMAT(enquiries.updated_at, '%b %e, %Y %l:%i%p') AS updated_at FROM enquiries LEFT JOIN users ON enquiries.author = users.id ";
+        $connection = DatabaseController::connect();
+        $query = "SELECT enquiries.id,
+                         COALESCE(NULLIF(TRIM(CONCAT(enquiries.first_name, ' ', COALESCE(enquiries.last_name,''))), ''), enquiries.name) AS display_name,
+                         enquiries.email,
+                         enquiries.language,
+                         enquiries.subject,
+                         enquiries.phone,
+                         DATE_FORMAT(enquiries.created_at, '%b %e, %Y %l:%i%p') AS created_at
+                  FROM enquiries ";
         $query_params = array();
         $keyword = (isset($this->datatable->search['value'])) ? '%' . $this->datatable->search['value'] . '%' : '%%';
         if (isset($this->datatable->search['value'])) {
-            if (strpos($query, "WHERE") !== false) {
-                $query .= "AND ";
-            } else {
-                $query .= "WHERE ";
-            }
-            $query .= "(enquiries.first_name LIKE ? OR enquiries.language LIKE ?) ";
-            for ($i = 0; $i < 2; $i++) {
+            $query .= "WHERE (enquiries.first_name LIKE ? OR enquiries.last_name LIKE ? OR enquiries.email LIKE ? OR enquiries.language LIKE ? OR enquiries.name LIKE ?) ";
+            for ($i = 0; $i < 5; $i++) {
                 $query_params[] = $keyword;
             }
         }
@@ -345,7 +358,9 @@ class EnquiryController
                 case 0:
                     $column = 'enquiries.first_name';
                     break;
-
+                case 2:
+                    $column = 'enquiries.email';
+                    break;
                 default:
                     $column = 'enquiries.id';
                     break;
@@ -359,29 +374,23 @@ class EnquiryController
         }
         $statement = $connection->prepare($query);
         $statement->execute($query_params);
-         DatabaseController::disconnect();
+        DatabaseController::disconnect();
         $results = $statement->fetchAll(PDO::FETCH_OBJ);
         $data = array();
         foreach ($results as $row) {
             $table_row = array();
-            $status = '<span class="badge bg-warning p-1 ms-2"> </span>';
-            
-            $publish_btn = $row->is_default ? '' : '<button type="button" class="btn btn-outline-success btn-sm publish-enquiry-btn" data-id="' . $row->id . '"><i class="fas fa-fw fa-check"></i></button>';
-            $delete_btn = $row->is_default ? '' : '<button type="button" class="btn btn-outline-danger btn-sm delete-enquiry-btn" data-id="' . $row->id . '"><i class="fa fa-trash"></i></button>';
-            if($row->message){
-                $status = '<span class="badge bg-success p-1 ms-2"> </span>';
-                $publish_btn = $row->is_default ? '' : '<button type="button" class="btn btn-outline-warning btn-sm unpublish-enquiry-btn" data-id="' . $row->id . '"><i class="fas fa-fw fa-times"></i></button>';
-            }
 
-            $table_row[] = HelperFunctions::limit_text($row->first_name, 5) ." ".$status;
-            $table_row[] = $row->last_name;
-            $table_row[] = $row->username;
+            $label = $row->language ? htmlspecialchars($row->language) : ($row->subject ? HelperFunctions::limit_text($row->subject, 6) : '—');
+            $delete_btn = '<button type="button" class="btn btn-outline-danger btn-sm delete-enquiry-btn" data-id="' . $row->id . '"><i class="fa fa-trash"></i></button>';
+
+            $table_row[] = htmlspecialchars($row->display_name ?: '—');
+            $table_row[] = htmlspecialchars($row->email ?: '—');
+            $table_row[] = $label;
             $table_row[] = $row->created_at;
-            $table_row[] = $row->updated_at;
             $table_row[] = '<div class="btn-group">
-                                    <a href="'.DIRADMIN.'/enquiries/edit/'.HelperFunctions::encryptData($row->id).'" type="button" class="btn btn-outline-primary btn-sm edit-enquiry-btn" data-id="' . $row->id . '"><i class="fas fa-fw fa-edit"></i></a>
-                                    '.$delete_btn.'
-                                </div>';
+                                <button type="button" class="btn btn-outline-primary btn-sm view-enquiry-btn" data-id="' . $row->id . '"><i class="fas fa-eye"></i></button>
+                                ' . $delete_btn . '
+                            </div>';
 
             $data[] = $table_row;
         }

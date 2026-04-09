@@ -73,6 +73,12 @@
                                         <span class="align-middle">FAQs</span>
                                     </a>
                                 </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="<?php echo DIRADMIN; ?>enquiries">
+                                        <i class="fas fa-fw fa-envelope dash-icon"></i>
+                                        <span class="align-middle">Enquiries</span>
+                                    </a>
+                                </li>
 
                                 <li class="sidebar-header d-none">
                                     <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">

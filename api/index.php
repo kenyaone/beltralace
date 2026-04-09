@@ -42,6 +42,7 @@ use App\Controllers\PageController;
 use App\Controllers\WidgetController;
 use App\Controllers\EnquiryController;
 use App\Controllers\ReviewController;
+use App\Controllers\StatsController;
 
 use App\Helpers\Dropzone;
 use App\Helpers\HelperFunctions;
@@ -424,8 +425,17 @@ try {
                     break;
 
                 case 'data_table':
-                    $class_object = new UserController($params);
+                    $class_object = new EnquiryController($params);
                     echo $class_object->dataTable();
+                    break;
+
+                case 'get_details':
+                    echo json_encode(EnquiryController::getById($params['id']), JSON_PRETTY_PRINT);
+                    break;
+
+                case 'delete':
+                    $result = $controller->delete();
+                    echo json_encode($result, JSON_PRETTY_PRINT);
                     break;
 
                 default:
@@ -436,6 +446,14 @@ try {
                     break;
             }
             exit;
+        }
+
+        if ($object == 'Stats') {
+            if ($action == 'get_dashboard') {
+                $controller = new StatsController();
+                echo json_encode($controller->getDashboard(), JSON_PRETTY_PRINT);
+                exit;
+            }
         }
 
         if ($object == 'Review') {
