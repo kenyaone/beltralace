@@ -1,4 +1,191 @@
 
+/* =====================================================================
+   Blog post body — styles for CKEditor 5 generated content
+   CKEditor produces semantic HTML but ships no frontend CSS; without
+   these rules the browser falls back to bare Bootstrap Reboot defaults
+   which collapse list spacing, strip figure sizing, and remove table
+   borders.
+   ===================================================================== */
+
+.blog-post-item .post-content {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #444;
+}
+
+/* Paragraphs */
+.blog-post-item .post-content p {
+    margin-bottom: 1.2rem;
+}
+
+/* Headings */
+.blog-post-item .post-content h2,
+.blog-post-item .post-content h3,
+.blog-post-item .post-content h4,
+.blog-post-item .post-content h5,
+.blog-post-item .post-content h6 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #222;
+}
+
+/* CKEditor wraps heading text in a <span style="font-size:..."> —
+   reset it so the heading tag controls size, not an inline style */
+.blog-post-item .post-content h2 span,
+.blog-post-item .post-content h3 span,
+.blog-post-item .post-content h4 span,
+.blog-post-item .post-content h5 span,
+.blog-post-item .post-content h6 span {
+    font-size: inherit !important;
+}
+
+/* Lists — CKEditor 5 wraps <li> content in a <p>, causing Bootstrap's
+   paragraph margin to create huge gaps between items */
+.blog-post-item .post-content ul,
+.blog-post-item .post-content ol {
+    padding-left: 1.75rem;
+    margin-bottom: 1.2rem;
+}
+
+.blog-post-item .post-content li {
+    margin-bottom: 0.35rem;
+}
+
+.blog-post-item .post-content li > p {
+    margin-bottom: 0;
+}
+
+/* Inline formatting */
+.blog-post-item .post-content strong,
+.blog-post-item .post-content b {
+    font-weight: 700;
+    color: #222;
+}
+
+.blog-post-item .post-content em,
+.blog-post-item .post-content i {
+    font-style: italic;
+}
+
+/* Images — CKEditor wraps images in <figure class="image"> */
+.blog-post-item .post-content figure {
+    margin: 1.5rem 0;
+}
+
+.blog-post-item .post-content figure.image {
+    display: table;
+    clear: both;
+    text-align: center;
+    max-width: 100%;
+}
+
+.blog-post-item .post-content figure.image img,
+.blog-post-item .post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.blog-post-item .post-content figure figcaption {
+    display: table-caption;
+    caption-side: bottom;
+    font-size: 0.85rem;
+    color: #888;
+    text-align: center;
+    padding-top: 0.4rem;
+}
+
+/* Tables — CKEditor wraps tables in <figure class="table"> */
+.blog-post-item .post-content figure.table {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.blog-post-item .post-content table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.blog-post-item .post-content table th,
+.blog-post-item .post-content table td {
+    padding: 0.6rem 0.85rem;
+    border: 1px solid #dee2e6;
+    vertical-align: top;
+}
+
+.blog-post-item .post-content table th {
+    background-color: #f5f5f5;
+    font-weight: 700;
+    text-align: left;
+}
+
+.blog-post-item .post-content table tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+/* Blockquote */
+.blog-post-item .post-content blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    border-left: 4px solid #303590;
+    background: #f8f9ff;
+    color: #555;
+    font-style: italic;
+    border-radius: 0 4px 4px 0;
+}
+
+.blog-post-item .post-content blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* Code */
+.blog-post-item .post-content pre {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin-bottom: 1.2rem;
+}
+
+.blog-post-item .post-content code {
+    background: #f4f4f4;
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.9em;
+    color: #c7254e;
+}
+
+.blog-post-item .post-content pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+}
+
+/* Horizontal rule */
+.blog-post-item .post-content hr {
+    margin: 2rem 0;
+    border-color: #eee;
+}
+
+/* Links */
+.blog-post-item .post-content a {
+    color: #303590;
+    text-decoration: underline;
+}
+
+.blog-post-item .post-content a:hover {
+    color: #1e2363;
+}
+
+/* =====================================================================
+   End blog post content styles
+   ===================================================================== */
+
 /* Banner title for non-H1 carousel slides (SEO: single H1 per page) */
 .banner .banner-content .banner-title {
     font-size: 56px;
