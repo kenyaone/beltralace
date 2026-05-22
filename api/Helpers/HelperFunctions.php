@@ -231,29 +231,45 @@ class HelperFunctions
     public static function uploadFiles($files, $upload_path){
         $uploaded_files = [];
 
-        if (!file_exists('uploads/'.$upload_path)) {
-            mkdir('uploads/ '.$upload_path, 0777, true);
+        $base_dir = realpath(dirname(__DIR__)) . '/uploads/' . trim($upload_path, '/');
+        if (!is_dir($base_dir) && !mkdir($base_dir, 0775, true) && !is_dir($base_dir)) {
+            error_log("uploadFiles: failed to create directory $base_dir");
+            return $uploaded_files;
         }
 
-        foreach($files as $file){
-            $file_name = $file['name'];
-            $file_tmp_name = $file['tmp_name'];
-            $file_size = $file['size'];
-            $file_error = $file['error'];
+        $allowed = array('jpg', 'jpeg', 'png', 'webp', 'pdf');
 
-            $file_ext = explode('.', $file_name);
-            $file_actual_ext = strtolower(end($file_ext));
+        foreach($files as $field => $file){
+            if (!is_array($file) || !isset($file['error'])) {
+                continue;
+            }
+            if ($file['error'] === UPLOAD_ERR_NO_FILE) {
+                continue;
+            }
+            if ($file['error'] !== UPLOAD_ERR_OK || empty($file['tmp_name']) || !is_uploaded_file($file['tmp_name'])) {
+                continue;
+            }
 
-            $allowed = array('jpg', 'jpeg', 'png', 'webp', 'pdf');
+            $original_name = (string) $file['name'];
+            $file_size = (int) $file['size'];
+            $base_name = pathinfo($original_name, PATHINFO_FILENAME);
+            $file_actual_ext = strtolower(pathinfo($original_name, PATHINFO_EXTENSION));
 
-            if(in_array($file_actual_ext, $allowed) && $file_size <= 10000000){
-                if($file_error === 0){
-                    $file_name_new = time() . str_replace("'", "", $file_name) . '.' . $file_actual_ext;
-                    $file_destination = $upload_path . $file_name_new;
-                    if(move_uploaded_file($file_tmp_name, $file_destination)){
-                        $uploaded_files[] = $file_name_new;
-                    }
-                }
+            if (!in_array($file_actual_ext, $allowed, true) || $file_size <= 0 || $file_size > 10000000) {
+                continue;
+            }
+
+            $safe_base = preg_replace('/[^A-Za-z0-9_-]+/', '_', $base_name);
+            $file_name_new = time() . '_' . $field . '_' . $safe_base . '.' . $file_actual_ext;
+            $file_destination = $base_dir . '/' . $file_name_new;
+
+            if (move_uploaded_file($file['tmp_name'], $file_destination)) {
+                $uploaded_files[] = [
+                    'field'         => $field,
+                    'file_name'     => $file_name_new,
+                    'original_name' => $original_name,
+                    'path'          => $file_destination,
+                ];
             }
         }
 

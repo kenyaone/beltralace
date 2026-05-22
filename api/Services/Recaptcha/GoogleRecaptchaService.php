@@ -64,7 +64,7 @@ class GoogleRecaptchaService
             ];
         }
 
-        if (isset($data->score) && $data->score < $this->threshold) {
+        if (isset($data->score) && $data->score < $threshold) {
             return (object) [
                 'success' => false,
                 'message' => 'reCAPTCHA score too low.',

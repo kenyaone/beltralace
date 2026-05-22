@@ -194,3 +194,60 @@
         </div>
     </div>
 </section>
+<!-- Swahili Language Packages -->
+<section style="padding: 60px 0; background: #f0f5ff;">
+    <div class="container">
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-8 text-center">
+                <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#4db8e8;">New Programs</span>
+                <h2 style="font-size:30px;font-weight:800;color:#1a1a6e;margin-top:8px;" id="our-courses">Swahili Language Packages</h2>
+                <p style="color:#666;">Fixed-price structured programs — pay once, follow a full curriculum. No per-lesson billing.</p>
+                <div style="background:#fefae6;border:1px solid #f5c518;border-radius:8px;padding:12px 20px;font-size:14px;color:#7a5000;margin-bottom:24px;font-weight:600;">
+                    <i class="fa fa-clock-o mr-2"></i><strong>Intake ongoing</strong> — Start date <strong>May 5th</strong> &nbsp;|&nbsp; <strong style="color:#cc2020;">Limited slots available!</strong>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <!-- Beginner -->
+            <div class="col-lg-4 col-md-4 mb-4">
+                <div style="background:#fff;border-radius:16px;border:2px solid #eee;padding:32px 24px;text-align:center;height:100%;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+                    <span style="background:#edf8fd;color:#2a9fd4;font-size:11px;font-weight:700;text-transform:uppercase;padding:6px 16px;border-radius:20px;display:inline-block;margin-bottom:16px;">Beginner &middot; 4 weeks</span>
+                    <h4 style="font-size:18px;font-weight:800;color:#1a1a6e;margin-bottom:12px;line-height:1.4;">Speak Swahili in 4 Weeks</h4>
+                    <p style="font-size:14px;color:#666;margin-bottom:20px;">Build core conversational Swahili skills from scratch with our beginner's structured program.</p>
+                    <div style="font-size:32px;font-weight:900;color:#4db8e8;">KSh 25,000</div>
+                    <div style="font-size:12px;color:#999;margin-bottom:24px;">4-week structured program</div>
+                    <a href="#" class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#modal-form" style="border-radius:8px;font-weight:700;">Enroll Now</a>
+                </div>
+            </div>
+            <!-- Intermediate -->
+            <div class="col-lg-4 col-md-4 mb-4">
+                <div style="background:#fff;border-radius:16px;border:3px solid #1a1a6e;padding:32px 24px;text-align:center;height:100%;box-shadow:0 8px 30px rgba(26,26,110,0.15);">
+                    <span style="background:#eaeaf8;color:#1a1a6e;font-size:11px;font-weight:700;text-transform:uppercase;padding:6px 16px;border-radius:20px;display:inline-block;margin-bottom:8px;">Intermediate &middot; 6 weeks</span><br>
+                    <span style="background:#f5c518;color:#1a1a6e;font-size:11px;font-weight:800;padding:4px 14px;border-radius:4px;display:inline-block;margin-bottom:14px;">&#11088; Most Popular</span>
+                    <h4 style="font-size:18px;font-weight:800;color:#1a1a6e;margin-bottom:12px;line-height:1.4;">Become a Confident Swahili Speaker in 6 Weeks</h4>
+                    <p style="font-size:14px;color:#666;margin-bottom:20px;">Intermediate boot camp — gain real-world fluency and confidence in Swahili.</p>
+                    <div style="font-size:32px;font-weight:900;color:#4db8e8;">KSh 35,000</div>
+                    <div style="font-size:12px;color:#999;margin-bottom:24px;">6-week boot camp</div>
+                    <a href="#" class="btn btn-main btn-block" data-toggle="modal" data-target="#modal-form" style="border-radius:8px;font-weight:700;">Enroll Now</a>
+                </div>
+            </div>
+            <!-- Advanced -->
+            <div class="col-lg-4 col-md-4 mb-4">
+                <div style="background:#fff;border-radius:16px;border:2px solid #eee;padding:32px 24px;text-align:center;height:100%;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+                    <span style="background:#fdeaea;color:#cc2020;font-size:11px;font-weight:700;text-transform:uppercase;padding:6px 16px;border-radius:20px;display:inline-block;margin-bottom:16px;">Advanced &middot; 10 weeks</span>
+                    <h4 style="font-size:18px;font-weight:800;color:#1a1a6e;margin-bottom:12px;line-height:1.4;">Advance Your Swahili Skills in 10 Weeks</h4>
+                    <p style="font-size:14px;color:#666;margin-bottom:20px;">Intensive crash program — master advanced grammar and professional-level Swahili.</p>
+                    <div style="font-size:32px;font-weight:900;color:#4db8e8;">KSh 55,000</div>
+                    <div style="font-size:12px;color:#999;margin-bottom:24px;">10-week crash program</div>
+                    <a href="#" class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#modal-form" style="border-radius:8px;font-weight:700;">Enroll Now</a>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom note -->
+        <div class="row justify-content-center mt-2">
+            <div class="col-lg-8 text-center">
+                <p style="color:#777;font-size:14px;"><i class="fa fa-info-circle mr-1" style="color:#4db8e8;"></i> All Swahili packages include lesson materials, exercises, and a certificate of completion. <a href="#" data-toggle="modal" data-target="#modal-form" style="color:#4db8e8;font-weight:700;">Contact us</a> to reserve your slot.</p>
+            </div>
+        </div>
+    </div>
+</section>

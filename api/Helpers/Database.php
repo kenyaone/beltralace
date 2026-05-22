@@ -77,5 +77,5 @@ class Database
     /**
      * Prevent unserializing the singleton instance.
      */
-    private function __wakeup() {}
+    public function __wakeup() {}
 }

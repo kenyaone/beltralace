@@ -40,7 +40,7 @@ else {
         define('EMAIL', $config->email);
         define('EMAIL_PASSWORD', $config->emailPassword);
 
-        define('ADMIN_EMAIL', "beltralace@gmail.com");
+        define('ADMIN_EMAIL', "belhaumwigama@gmail.com");
 
         
         EnvLoader::load();

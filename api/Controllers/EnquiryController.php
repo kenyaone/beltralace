@@ -62,6 +62,8 @@ class EnquiryController
             throw new Exception('Failed to create enquiry.', 500);
         }
 
+        $this->enquiry->id = $enquiry_id;
+
         return (object) [
             'status' => 1,
             'message' => 'Enquiry created',

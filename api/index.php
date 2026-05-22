@@ -1,9 +1,18 @@
 <?php
 
+// CORS headers must be set first before anything else
+$allowed_origins = ['https://www.beltralace.com', 'https://beltralace.com', 'https://cms.beltralace.com', 'https://staging.beltralace.com', 'https://www.staging.beltralace.com'];
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if (in_array($origin, $allowed_origins)) {
+    header("Access-Control-Allow-Origin: $origin");
+    header("Access-Control-Allow-Credentials: true");
+}
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+
 header("Content-Type: application/json");
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    // Respond with 200 OK status and exit
     http_response_code(200);
     exit();
 }
@@ -31,9 +40,7 @@ if (!file_exists($htaccessFile)) {
 
 require_once 'config/config.php';
 
-
 use App\Models\User;
-
 use App\Controllers\AuthController;
 use App\Controllers\UserController;
 use App\Controllers\BlogArticleController;
@@ -43,11 +50,9 @@ use App\Controllers\WidgetController;
 use App\Controllers\EnquiryController;
 use App\Controllers\ReviewController;
 use App\Controllers\StatsController;
-
 use App\Helpers\Dropzone;
 use App\Helpers\HelperFunctions;
 use App\Helpers\ValidationException;
-
 use App\Middleware\EmailMiddleware;
 
 if (isset($params['user_token'])) {
@@ -71,19 +76,13 @@ try {
                 case 'login':
                     echo json_encode($controller->login(new User($params)), JSON_PRETTY_PRINT);
                     break;
-
                 case 'register':
                     echo json_encode($controller->register(new User($params)), JSON_PRETTY_PRINT);
                     break;
-
                 default:
-                    echo json_encode(array(
-                        'status' => 1,
-                        'message' => "Endpoint not found"
-                    ));
+                    echo json_encode(array('status' => 1, 'message' => "Endpoint not found"));
                     break;
             }
-
             exit;
         }
 
@@ -93,15 +92,10 @@ try {
                 case 'upload':
                     echo json_encode($class_object->upload());
                     break;
-
                 default:
-                    echo json_encode(array(
-                        'status' => 1,
-                        'message' => "Endpoint not found"
-                    ));
+                    echo json_encode(array('status' => 1, 'message' => "Endpoint not found"));
                     break;
             }
-
             exit;
         }
 
@@ -113,31 +107,22 @@ try {
                         throw new ValidationException('User with this email already exists');
                     }
                     $params['password'] = HelperFunctions::generatePassword();
-
                     $controller = new UserController($params);
                     $result = $controller->create();
                     echo json_encode($result, JSON_PRETTY_PRINT);
-
                     if ($result->status) {
                         $email_obj = new EmailQueueController(['recipient_name' => $params['first_name'] . " " . $params['last_name'], 'recipient_email' => $params['email'], 'subject' => 'Welcome to Beltralace', 'content_sections' => $controller->getUserCreateEmailMessage()]);
                         $email_obj->enqueue();
                     }
-
                     break;
-
                 case 'data_table':
                     $class_object = new UserController($params);
                     echo $class_object->dataTable();
                     break;
-
                 default:
-                    echo json_encode(array(
-                        'status' => 1,
-                        'message' => "Endpoint not found"
-                    ));
+                    echo json_encode(array('status' => 1, 'message' => "Endpoint not found"));
                     break;
             }
-
             exit;
         }
 
@@ -149,13 +134,11 @@ try {
                     echo json_encode($result, JSON_PRETTY_PRINT);
                     if ($result->status) {
                         $params['page_id'] = $result->data->id;
-
                         if (array_key_exists('tempFile', $params) && !empty($params['tempFile'])) {
                             $uploaded_cover_image_data = $class_object->uploadCoverImage();
                             $uploaded_cover_image_data['id'] = $params['page_id'];
                             PageController::updateCoverImage($uploaded_cover_image_data);
                         }
-
                         if (array_key_exists('tempHeaderFile', $params) && !empty($params['tempHeaderFile'])) {
                             $uploaded_header_image_data = $class_object->uploadHeaderImage();
                             $uploaded_header_image_data['id'] = $params['page_id'];
@@ -163,19 +146,11 @@ try {
                         }
                     }
                     break;
-
                 case 'update':
                     $class_object = new PageController($params);
                     $result = $class_object->update();
-
                     if ($result->status) {
                         $page = PageController::getById($result->data->id);
-
-                        // $file = fopen("debug.log", "a");
-                        // fwrite($file, "Page id is ".$result->data->id."\n");
-                        // fwrite($file, json_encode($page)."\n");
-                        // fclose($file);
-
                         if (array_key_exists('tempFile', $params) && !empty($params['tempFile'])) {
                             $uploaded_cover_image_data = $class_object->uploadCoverImage();
                             $uploaded_cover_image_data['id'] = $page->id;
@@ -183,7 +158,6 @@ try {
                                 PageController::updateCoverImage($uploaded_cover_image_data);
                             }
                         }
-
                         if (array_key_exists('tempHeaderFile', $params) && !empty($params['tempHeaderFile'])) {
                             $uploaded_header_image_data = $class_object->uploadHeaderImage();
                             $uploaded_header_image_data['id'] = $page->id;
@@ -194,38 +168,28 @@ try {
                     }
                     echo json_encode($result, JSON_PRETTY_PRINT);
                     break;
-
                 case 'delete':
                     $class_object = new PageController($params);
                     echo json_encode($class_object->delete(), JSON_PRETTY_PRINT);
                     break;
-
                 case 'publish':
                     $class_object = new PageController($params);
                     echo json_encode($class_object->publish(), JSON_PRETTY_PRINT);
                     break;
-
                 case 'unpublish':
                     $class_object = new PageController($params);
                     echo json_encode($class_object->unpublish(), JSON_PRETTY_PRINT);
                     break;
-
                 case 'get_details':
                     echo json_encode(PageController::getById($params['id']), JSON_PRETTY_PRINT);
                     break;
-
                 case 'get_by_slug':
                     echo json_encode(PageController::getBySlug($params['slug']), JSON_PRETTY_PRINT);
                     break;
-
                 case 'get_by_url':
                     $page = PageController::getByUrl($params['url']);
-                    // if(isset($page)){
-                    // $page->blog_details = BlogArticleController::getByPage($page->id);
-                    // }
                     echo json_encode($page, JSON_PRETTY_PRINT);
                     break;
-
                 case 'check_slug':
                     $page = PageController::getBySlug($params['slug'], array_key_exists('section', $params) ? $params['section'] : null, array_key_exists('current_record', $params) ? $params['current_record'] : null);
                     $response = false;
@@ -234,20 +198,14 @@ try {
                     }
                     echo json_encode($response);
                     break;
-
                 case 'data_table':
                     $class_object = new PageController($params);
                     echo $class_object->dataTable();
                     break;
-
                 default:
-                    echo json_encode(array(
-                        'status' => 1,
-                        'message' => "Endpoint not found"
-                    ));
+                    echo json_encode(array('status' => 1, 'message' => "Endpoint not found"));
                     break;
             }
-
             exit;
         }
 
@@ -261,7 +219,6 @@ try {
                         $params['page_id'] = $result->data->id;
                         $class_object = new BlogArticleController($params);
                         $result = $class_object->create();
-
                         if (array_key_exists('tempFile', $params) && !empty($params['tempFile'])) {
                             $uploaded_cover_image_data = $pc_object->uploadCoverImage();
                             $uploaded_cover_image_data['id'] = $params['page_id'];
@@ -270,7 +227,6 @@ try {
                     }
                     echo json_encode($result, JSON_PRETTY_PRINT);
                     break;
-
                 case 'update':
                     $params['page_type'] = 'blog-article';
                     $page = PageController::getById($params['id']);
@@ -280,7 +236,6 @@ try {
                         $params['page_id'] = $result->data->id;
                         $class_object = new BlogArticleController($params);
                         $result = $class_object->update();
-
                         if (array_key_exists('tempFile', $params)) {
                             $uploaded_cover_image_data = $pc_object->uploadCoverImage();
                             $uploaded_cover_image_data['id'] = $params['page_id'];
@@ -289,7 +244,6 @@ try {
                     }
                     echo json_encode($result, JSON_PRETTY_PRINT);
                     break;
-
                 case 'delete':
                     $class_object = new PageController($params);
                     $result = $class_object->delete();
@@ -298,46 +252,26 @@ try {
                     }
                     echo json_encode($result, JSON_PRETTY_PRINT);
                     break;
-
-                // case 'publish':
-                //     $class_object = new BlogArticleController($params);
-                //     echo json_encode($class_object->publish(), JSON_PRETTY_PRINT);
-                //     break;
-
-                // case 'unpublish':
-                //     $class_object = new BlogArticleController($params);
-                //     echo json_encode($class_object->unpublish(), JSON_PRETTY_PRINT);
-                //     break;
-
                 case 'get_details':
                     echo json_encode(BlogArticleController::getById($params['id']), JSON_PRETTY_PRINT);
                     break;
-
                 case 'get_by_slug':
                     echo json_encode(BlogArticleController::getBySlug($params['slug']), JSON_PRETTY_PRINT);
                     break;
-
                 case 'get_published':
                     echo json_encode(BlogArticleController::getPublished(), JSON_PRETTY_PRINT);
                     break;
-
                 case 'get_latest':
                     echo json_encode(BlogArticleController::getLatest(), JSON_PRETTY_PRINT);
                     break;
-
                 case 'data_table':
                     $class_object = new BlogArticleController($params);
                     echo $class_object->dataTable();
                     break;
-
                 default:
-                    echo json_encode(array(
-                        'status' => 1,
-                        'message' => "Endpoint not found"
-                    ));
+                    echo json_encode(array('status' => 1, 'message' => "Endpoint not found"));
                     break;
             }
-
             exit;
         }
 
@@ -356,7 +290,6 @@ try {
                     }
                     echo json_encode($result, JSON_PRETTY_PRINT);
                     break;
-
                 case 'update':
                     $class_object = new WidgetController($params);
                     $result = $class_object->update();
@@ -367,42 +300,31 @@ try {
                             $uploaded_image_data = $class_object->uploadImage();
                             $uploaded_image_data['id'] = $params['widget_id'];
                             WidgetController::updateImage($uploaded_image_data);
-                        } else {
                         }
                     }
                     echo json_encode($result, JSON_PRETTY_PRINT);
                     break;
-
                 case 'delete':
                     $class_object = new WidgetController($params);
                     echo json_encode($class_object->delete(), JSON_PRETTY_PRINT);
                     break;
-
                 case 'get_details':
                     echo json_encode(WidgetController::getById($params['id']), JSON_PRETTY_PRINT);
                     break;
-
                 case 'get_by_section':
                     echo json_encode(WidgetController::getBySection($params['section']), JSON_PRETTY_PRINT);
                     break;
-
                 case 'get_by_title':
                     echo json_encode(WidgetController::getByTitle($params['title']), JSON_PRETTY_PRINT);
                     break;
-
                 case 'data_table':
                     $class_object = new WidgetController($params);
                     echo $class_object->dataTable();
                     break;
-
                 default:
-                    echo json_encode(array(
-                        'status' => 1,
-                        'message' => "Endpoint not found"
-                    ));
+                    echo json_encode(array('status' => 1, 'message' => "Endpoint not found"));
                     break;
             }
-
             exit;
         }
 
@@ -413,36 +335,27 @@ try {
                     $result = $controller->createLanguageEnquiry();
                     echo json_encode($result, JSON_PRETTY_PRINT);
                     break;
-
                 case 'contact_form_enquiry':
                     $result = $controller->createContactEnquiry();
                     echo json_encode($result, JSON_PRETTY_PRINT);
                     break;
-
                 case 'teaching_job_application':
                     $result = $controller->createJobApplication();
                     echo json_encode($result, JSON_PRETTY_PRINT);
                     break;
-
                 case 'data_table':
                     $class_object = new EnquiryController($params);
                     echo $class_object->dataTable();
                     break;
-
                 case 'get_details':
                     echo json_encode(EnquiryController::getById($params['id']), JSON_PRETTY_PRINT);
                     break;
-
                 case 'delete':
                     $result = $controller->delete();
                     echo json_encode($result, JSON_PRETTY_PRINT);
                     break;
-
                 default:
-                    echo json_encode([
-                        'status' => 1,
-                        'message' => 'Endpoint not found'
-                    ]);
+                    echo json_encode(['status' => 1, 'message' => 'Endpoint not found']);
                     break;
             }
             exit;
@@ -462,47 +375,52 @@ try {
                 case 'create':
                     $result = $controller->create();
                     echo json_encode($result, JSON_PRETTY_PRINT);
-
                     if ($result->status) {
-                        $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => ADMIN_EMAIL, 'subject' => 'Review From ' . $params['name'], 'content_sections' => $controller->getReviewFormEmailContent()]);
+                        $enqury_email_obj = new EmailQueueController(['recipient_name' => 'Admin', 'recipient_email' => ADMIN_EMAIL, 'subject'=> 'Review From ' . $params['name'], 'content_sections' => $controller->getReviewFormEmailContent()]);
                         $enqury_email_obj->enqueue();
-
-                        $ack_email_obj = new EmailQueueController(['recipient_name' => $params['name'], 'recipient_email' => $params['email'], 'subject' => 'Review Received', 'content_sections' => $controller->getReviewAcknowledgmentEmailContent()]);
+                        $ack_email_obj = new EmailQueueController(['recipient_name' => $params['name'], 'recipient_email' => $params['email'],'subject' => 'Review Received', 'content_sections' => $controller->getReviewAcknowledgmentEmailContent()]);
                         $ack_email_obj->enqueue();
                     }
                     break;
-
+                case 'approve':
+                    $result = $controller->approve();
+                    echo json_encode($result, JSON_PRETTY_PRINT);
+                    break;
+                case 'unpublish':
+                    $result = $controller->unpublish();
+                    echo json_encode($result, JSON_PRETTY_PRINT);
+                    break;
+                case 'delete':
+                    $result = $controller->delete();
+                    echo json_encode($result, JSON_PRETTY_PRINT);
+                    break;
+                case 'get_published':
+                    echo json_encode(ReviewController::getPublished(), JSON_PRETTY_PRINT);
+                    break;
+                case 'get_list':
+                    echo json_encode(ReviewController::getList(), JSON_PRETTY_PRINT);
+                    break;
+                case 'get_details':
+                    echo json_encode(ReviewController::getById($params['id']), JSON_PRETTY_PRINT);
+                    break;
                 case 'data_table':
-                    $class_object = new UserController($params);
-                    echo $class_object->dataTable();
+                    echo $controller->dataTable();
                     break;
                 default:
-                    echo json_encode(array(
-                        'status' => 1,
-                        'message' => "Endpoint not found"
-                    ));
+                    echo json_encode(array('status' => 1, 'message' => "Endpoint not found"));
                     break;
             }
-
             exit;
         }
     }
 
     http_response_code(404);
-    echo json_encode(array(
-        'status' => 1,
-        'message' => "Endpoint not found here"
-    ));
+    echo json_encode(array('status' => 1, 'message' => "Endpoint not found here"));
+
 } catch (ValidationException $e) {
     http_response_code(422);
-    echo json_encode(array(
-        'status' => 0,
-        'message' => $e->getMessage()
-    ));
+    echo json_encode(array('status' => 0, 'message' => $e->getMessage()));
 } catch (PDOException $e) {
     http_response_code(500);
-    echo json_encode(array(
-        'status' => 0,
-        'message' => DEBUG_MODE ? $e->getMessage() : SERVER_ERROR_MESSAGE
-    ));
+    echo json_encode(array('status' => 0, 'message' => DEBUG_MODE ? $e->getMessage() : SERVER_ERROR_MESSAGE));
 }

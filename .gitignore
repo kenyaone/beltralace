@@ -15,14 +15,31 @@ vendor
 
 # Ignore error log
 error.log
+error_log
 api/error.log
+api/error_log
 admin/error.log
+admin/error_log
 
+# Editor / OS / build artefacts
 .vscode
 .DS_Store
 assets/node_modules
 uploads
 debug
 debug.log
+
+# Local backup / scratch files
+*.bak
+*.bak-*
+*.backup
+*.backup2
+*.bak2
+
+# Applicant uploads that landed outside uploads/ due to past bug
+api/enquiries*.jpg
+api/enquiries*.jpeg
+api/enquiries*.png
+api/enquiries*.pdf
 
 .env

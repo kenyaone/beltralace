@@ -19,7 +19,7 @@ class EnquiryFileController
     {
         $connection =  DatabaseController::connect();
         try {
-            $query = $connection->prepare("INSERT INTO enquiry_files(enquiry_id, enquiry_id) VALUES(?, ?, ?, ?)");
+            $query = $connection->prepare("INSERT INTO enquiry_files(enquiry_id, file_name) VALUES(?, ?)");
             $query->execute(array($enquiry_id, $file_name));
             DatabaseController::disconnect();
             return (object) array(
@@ -29,10 +29,10 @@ class EnquiryFileController
 
         } catch (PDOException $e) {
             error_log($e->getMessage() .": ".$e->getTraceAsString());
-            echo json_encode(array(
+            return (object) array(
                 'status' => 0,
-                'message' => $e->getMessage() .": ".$e->getTraceAsString()
-            ));
+                'message' => $e->getMessage()
+            );
         }
     }
 }

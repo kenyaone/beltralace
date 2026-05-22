@@ -69,6 +69,8 @@ class EmailMiddleware{
             $mail->addAddress($this->recipient_email, $this->recipient_name);
             if($this->recipient_email == ADMIN_EMAIL){
                 $mail->addCC("info@beltralace.com");
+                $mail->addCC("mmosiannelise@gmail.com");
+                $mail->addCC("belhaumwigama@gmail.com");
             }
             $mail->Subject = $this->subject;
             $mail->Body= $this->message;

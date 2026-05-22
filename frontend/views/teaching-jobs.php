@@ -133,35 +133,35 @@
         </div>
     </div>
 </section>
+<script src="https://www.google.com/recaptcha/api.js?render=<?php echo GOOGLE_RECAPTCHA_SITE_KEY; ?>"></script>
 <script>
 	$(document).ready(function(){
         $("#job-application-form").validate({
             submitHandler: function(form) {
-                var formData = new FormData(form);
-                $.ajax({
-                    beforeSend: function() {
-                        // $('#overlay').removeClass('d-none');
-                    },
-                    complete: function() {
-                        // $('#overlay').addClass('d-none');
-                    },
-                    url: '<?php echo API; ?>',
-                    method: 'POST',
-                    data: formData,
-                    processData: false,
-                    dataType: 'json',
-                    contentType: false,
-                    success: function(response, textStatus, jqXHR) {
-                        form.reset();
-						$('#modal-form').modal('hide');
-						$('#modal-confirm').modal('show');
-                    },
-                    error: function(data) {
-
-                        toastr.error(data.responseJSON.message);
-                    }
+                grecaptcha.ready(function() {
+                    grecaptcha.execute('<?php echo GOOGLE_RECAPTCHA_SITE_KEY; ?>', {action: 'teaching_job_application'}).then(function(token) {
+                        var formData = new FormData(form);
+                        formData.append('g-recaptcha-response', token);
+                        $.ajax({
+                            url: '<?php echo API; ?>',
+                            method: 'POST',
+                            data: formData,
+                            processData: false,
+                            dataType: 'json',
+                            contentType: false,
+                            success: function(response, textStatus, jqXHR) {
+                                form.reset();
+                                $('#modal-form').modal('hide');
+                                $('#modal-confirm').modal('show');
+                            },
+                            error: function(data) {
+                                toastr.error(data.responseJSON.message);
+                            }
+                        });
+                    });
                 });
             }
         });
 	})
 </script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"JobPosting","title":"Language Teacher","description":"BELTRALACE is hiring native-speaking language trainers for Swahili, English, French, Spanish, German, and more. We offer remote and Nairobi-based roles with flexible schedules.","datePosted":"2026-04-08","validThrough":"2026-12-31","employmentType":["FULL_TIME","PART_TIME","CONTRACTOR"],"hiringOrganization":{"@type":"Organization","name":"BELTRALACE","sameAs":"https://www.beltralace.com"},"jobLocation":[{"@type":"Place","address":{"@type":"PostalAddress","addressLocality":"Nairobi","addressCountry":"KE"}}],"jobLocationType":"TELECOMMUTE"}</script>
