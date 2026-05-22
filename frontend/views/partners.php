@@ -127,7 +127,7 @@
                             <img src="<?php echo ASSETS; ?>/images/partners/london swahili.jpeg" alt="London Swahili" class="img-fluid partner-logo">
                         </div>
                         <div class="col-md-9">
-                            <h4>London Swahili</h4>
+                            <h4>London Swahili (UK)</h4>
                             <p>In collaboration with London Swahili, Beltralace translated climate change training manuals from English into Swahili to support accessible climate education for communities in Zanzibar and Tanzania.</p>
                         </div>
                     </div>
@@ -210,8 +210,8 @@
                             <img src="<?php echo ASSETS; ?>/images/partners/language-trainers.jpeg" alt="Language Trainers" class="img-fluid partner-logo">
                         </div>
                         <div class="col-md-9">
-                            <h4>Language Trainers (UK)</h4>
-                            <p><strong>Teaching partnerships:</strong> We have handled clients for Language Trainers (UK) and Listen & Learn, connecting our native-speaking trainers with learners worldwide.</p>
+                            <h4>Language Trainers (USA)</h4>
+                            <p><strong>Teaching partnerships:</strong> We have handled clients for Language Trainers (USA) and Listen & Learn, connecting our native-speaking trainers with learners worldwide.</p>
                         </div>
                     </div>
                 </div>
