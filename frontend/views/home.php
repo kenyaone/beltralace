@@ -239,7 +239,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-12 col-lg-8">
                         <div class="banner-content center-heading">
-                            <div class="hero-urgency">⚡ Next intake: May 5th · Limited slots available</div>
+                            <div class="hero-urgency">⚡ Enroll anytime · Flexible scheduling available</div>
                             <span class="subheading">Expert instruction</span>
                             <h1>Online Language Courses with Native-Speaking Trainers — Worldwide</h1>
                             <div style="margin-top:20px;">
@@ -445,7 +445,7 @@
                 <span class="sec-tag">New</span>
                 <h3 class="sec-h">Swahili Language Packages</h3>
                 <p style="color:#666;">Fixed-price programs — pay once, learn fully. No per-lesson billing.</p>
-                <div class="urgency-bar"><i class="fa fa-clock-o mr-2"></i><strong>Intake ongoing</strong> — Start date <strong>May 5th</strong> &nbsp;|&nbsp; <strong style="color:#cc2020;">Limited slots available!</strong></div>
+                <div class="urgency-bar"><i class="fa fa-clock-o mr-2"></i><strong>Enroll anytime</strong> — Flexible start dates &nbsp;|&nbsp; <strong style="color:#cc2020;">Contact us to reserve your slot!</strong></div>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -522,7 +522,7 @@
                 <div class="faq-item"><div class="faq-question">How are lessons delivered? <i class="fa fa-angle-down"></i></div><div class="faq-answer">All lessons are delivered online via Zoom, Google Meet, or Skype. You can learn from anywhere in the world at a time that suits you — no travel required.</div></div>
                 <div class="faq-item"><div class="faq-question">What languages do you teach? <i class="fa fa-angle-down"></i></div><div class="faq-answer">We offer lessons in over 100 languages including Swahili, English, French, Spanish, German, Portuguese, Italian, Mandarin, Arabic, Japanese, Korean, Russian and many more. Contact us if you don't see your language listed.</div></div>
                 <div class="faq-item"><div class="faq-question">What is the difference between group and private lessons? <i class="fa fa-angle-down"></i></div><div class="faq-answer">Private lessons (from $40/hr) are one-on-one, fully tailored to your pace. Group lessons (from $8/hr per student) are more affordable and great for social learners. Semi-private (2-4 students) at $10/hr offers a middle ground.</div></div>
-                <div class="faq-item"><div class="faq-question">What are the Swahili language packages? <i class="fa fa-angle-down"></i></div><div class="faq-answer">Fixed-price structured programs: Beginner (4 weeks, KSh 25,000), Intermediate boot camp (6 weeks, KSh 35,000), and Advanced crash program (10 weeks, KSh 55,000). Next intake starts May 5th — limited slots!</div></div>
+                <div class="faq-item"><div class="faq-question">What are the Swahili language packages? <i class="fa fa-angle-down"></i></div><div class="faq-answer">Fixed-price structured programs: Beginner (4 weeks, KSh 25,000), Intermediate boot camp (6 weeks, KSh 35,000), and Advanced crash program (10 weeks, KSh 55,000). Enroll anytime — contact us to get started!</div></div>
                 <div class="faq-item"><div class="faq-question">Do you offer weekend lessons? <i class="fa fa-angle-down"></i></div><div class="faq-answer">Yes — we offer lessons 7 days a week including weekends. Our online format means you can book a lesson at any time that suits your schedule, whether early morning or evening.</div></div>
                 <div class="faq-item"><div class="faq-question">What is the minimum age for lessons? <i class="fa fa-angle-down"></i></div><div class="faq-answer">We offer language lessons for learners of all ages from young children to adults. Our trainers adapt their teaching style to suit the learner's age and level. Contact us to discuss a suitable programme for your child.</div></div>
                 <div class="faq-item"><div class="faq-question">Can I learn a language for a specific purpose? <i class="fa fa-angle-down"></i></div><div class="faq-answer">Absolutely — we specialise in purpose-driven learning: business language, travel preparation, exam preparation (DELF, DALF, Goethe), family connections, and academic purposes. Tell us your goal and we will build a programme around it.</div></div>
@@ -578,16 +578,11 @@ $(document).ready(function() {
 
     // ===== 10 ROTATING TESTIMONIAL POPUPS =====
     var testimonials = [
-        { name: "Kennedy Kaunda", role: "Korean Student", text: "BELTRALACE matched me with a fantastic native Korean trainer. Within 3 months I could hold basic conversations!" },
-        { name: "Beverly Wafula", role: "German Student", text: "The flexible scheduling is amazing — I book lessons around my busy work schedule. My German has improved so much." },
-        { name: "Elliye Yare", role: "Swahili Student", text: "As a foreigner learning Swahili, having a native speaker made all the difference. Lessons are fun and very practical." },
-        { name: "Abdikadir Hussein", role: "Swahili Student", text: "Professional trainers who truly care about your progress. I started from zero and now speak with confidence." },
-        { name: "Sarah Mitchell", role: "French Student", text: "I needed French for a work assignment in Paris. BELTRALACE got me conversational in just 2 months — incredible!" },
-        { name: "James Omondi", role: "Spanish Student", text: "The personalised approach is what sets BELTRALACE apart. My trainer adapted every lesson to my learning style." },
-        { name: "Fatuma Abubakar", role: "English Student", text: "My English has improved dramatically. My trainer is patient, professional and makes every lesson enjoyable." },
-        { name: "David Kimani", role: "Mandarin Student", text: "Learning Mandarin seemed impossible but my BELTRALACE trainer made it approachable step by step." },
-        { name: "Maria Santos", role: "Swahili Student", text: "I learned Swahili to connect with my Kenyan colleagues. Within 6 weeks I was greeting them in their language!" },
-        { name: "Ahmed Hassan", role: "Portuguese Student", text: "Excellent service from start to finish. Easy booking, superb trainer, and results came quickly." }
+        { name: "Ian Cooper", role: "Swahili Student", text: "I'm really enjoying my lessons with Belha. She teaches in a pragmatic way which means we cover all the important things and I feel we are working towards me learning as quickly as we can. Highly recommended." },
+        { name: "Sheena", role: "Swahili Student", text: "I have loved working with Belha! I was attempting to learn Swahili on my own using apps, but with her help, I am learning much more quickly and able to have basic conversations after only a few months." },
+        { name: "Malcolm Macnaughton", role: "Swahili Student", text: "Belha is a brilliant Swahili teacher, understanding the varying needs of students of all ages. Belha adapts her methods and the content of lessons to suit her students — this is not a 'one size fits all' approach." },
+        { name: "Pam", role: "Swahili Student", text: "Learning Swahili with Belha is a treat — she very soon worked out what energy we could give to learning in the midst of demanding work and family commitments. She is unfailingly patient and kind." },
+        { name: "Amileena Hope", role: "French Student", text: "I enjoyed my French tuition lessons with my teacher. It was quite a memorable experience! Beltralace trainers are very professional and dedicated to their service. I loved it!" }
     ];
 
     var currentIndex = 0;
@@ -643,16 +638,11 @@ $(document).ready(function() {
 
 function loadTestimonials() {
     var reviews = [
-        { body: "BELTRALACE matched me with a fantastic native Korean trainer. Within 3 months I could hold basic conversations. Highly recommend!", name: "Kennedy Kaunda", role: "Korean Student" },
-        { body: "The flexible scheduling is amazing — I book lessons around my busy work schedule. My German has improved tremendously.", name: "Beverly Wafula", role: "German Student" },
-        { body: "As a foreigner learning Swahili, having a native speaker made all the difference. The lessons are fun and very practical.", name: "Elliye Yare", role: "Swahili Student" },
-        { body: "Professional trainers who truly care about your progress. I started from zero and can now speak with confidence.", name: "Abdikadir Hussein", role: "Swahili Student" },
-        { body: "I needed French for a work assignment in Paris. BELTRALACE got me conversational in just 2 months — incredible!", name: "Sarah Mitchell", role: "French Student" },
-        { body: "The personalised approach is what sets BELTRALACE apart. My trainer adapted every lesson to my learning style.", name: "James Omondi", role: "Spanish Student" },
-        { body: "My English has improved dramatically since starting with BELTRALACE. Patient, professional and fun trainer.", name: "Fatuma Abubakar", role: "English Student" },
-        { body: "Learning Mandarin seemed impossible but my BELTRALACE trainer made it approachable step by step. Amazing!", name: "David Kimani", role: "Mandarin Student" },
-        { body: "I learned Swahili to connect with my Kenyan colleagues. Within 6 weeks I was greeting them in their language!", name: "Maria Santos", role: "Swahili Student" },
-        { body: "Excellent service from start to finish. Easy booking, superb trainer, and results came quickly.", name: "Ahmed Hassan", role: "Portuguese Student" }
+        { body: "I'm really enjoying my lessons with Belha. She teaches in a pragmatic way which means we cover all the important things and I feel we are working towards me learning as quickly as we can. Highly recommended.", name: "Ian Cooper", role: "Swahili Student" },
+        { body: "I have loved working with Belha! I was attempting to learn Swahili on my own using apps, but with her help, I am learning much more quickly and able to have basic conversations after only a few months.", name: "Sheena", role: "Swahili Student" },
+        { body: "Belha is a brilliant Swahili teacher, understanding the varying needs of students of all ages. Belha adapts her methods and the content of lessons to suit her students — this is not a 'one size fits all' approach.", name: "Malcolm Macnaughton", role: "Swahili Student" },
+        { body: "Learning Swahili with Belha is a treat — she very soon worked out what energy we could give to learning in the midst of demanding work and family commitments. She is unfailingly patient and kind.", name: "Pam", role: "Swahili Student" },
+        { body: "I enjoyed my French tuition lessons with my teacher. It was quite a memorable experience! Beltralace trainers are very professional and dedicated to their service. I loved it!", name: "Amileena Hope", role: "French Student" }
     ];
     var html = "";
     reviews.forEach(function(v) {
