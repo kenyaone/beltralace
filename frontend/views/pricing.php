@@ -154,41 +154,24 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                    $pricingFile = __DIR__ . '/../../admin/pricing-data.json';
+                    $pricing = file_exists($pricingFile)
+                        ? json_decode(file_get_contents($pricingFile), true)
+                        : [];
+                    if (!is_array($pricing)) { $pricing = []; }
+                    foreach ($pricing as $tier):
+                        $hours = (int)($tier['hours'] ?? 0);
+                        $individual = (int)($tier['individual'] ?? 0);
+                        $group = (int)($tier['group'] ?? 0);
+                        if ($hours <= 0) { continue; }
+                    ?>
                     <tr>
-                        <td>12 Hours</td>
-                        <td>$840 <br><small>@ $70/hour</small></td>
-                        <td>$444 <br><small>@ $37/hour</small></td>
+                        <td><?= $hours ?> Hours</td>
+                        <td>$<?= $individual ?> <br><small>@ $<?= number_format($individual / $hours, 2) ?>/hour</small></td>
+                        <td>$<?= $group ?> <br><small>@ $<?= number_format($group / $hours, 2) ?>/hour</small></td>
                     </tr>
-                    <tr>
-                        <td>16 Hours</td>
-                        <td>$960 <br><small>@ $60/hour</small></td>
-                        <td>$576 <br><small>@ $36/hour</small></td>
-                    </tr>
-                    <tr>
-                        <td>26 Hours</td>
-                        <td>$1300 <br><small>@ $50/hour</small></td>
-                        <td>$728 <br><small>@ $28/hour</small></td>
-                    </tr>
-                    <tr>
-                        <td>40 Hours</td>
-                        <td>$1720 <br><small>@ $43/hour</small></td>
-                        <td>$1040 <br><small>@ $26/hour</small></td>
-                    </tr>
-                    <tr>
-                        <td>60 Hours</td>
-                        <td>$2400 <br><small>@ $40/hour</small></td>
-                        <td>$1500 <br><small>@ $25/hour</small></td>
-                    </tr>
-                    <tr>
-                        <td>80 Hours</td>
-                        <td>$3040 <br><small>@ $38/hour</small></td>
-                        <td>$1880 <br><small>@ $23.5/hour</small></td>
-                    </tr>
-                    <tr>
-                        <td>100 Hours</td>
-                        <td>$3700 <br><small>@ $37/hour</small></td>
-                        <td>$2250 <br><small>@ $22.5/hour</small></td>
-                    </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

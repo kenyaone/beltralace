@@ -7,14 +7,13 @@ $pricingFile = __DIR__ . '/../admin/pricing-data.json';
 if (file_exists($pricingFile)) {
     echo file_get_contents($pricingFile);
 } else {
-    // Return default pricing
     echo json_encode([
-        ['hours' => 12, 'individual' => 840, 'group' => 444],
-        ['hours' => 16, 'individual' => 960, 'group' => 576],
-        ['hours' => 26, 'individual' => 1300, 'group' => 728],
-        ['hours' => 40, 'individual' => 1720, 'group' => 1040],
-        ['hours' => 60, 'individual' => 2400, 'group' => 1500],
-        ['hours' => 80, 'individual' => 3040, 'group' => 1880],
-        ['hours' => 100, 'individual' => 3700, 'group' => 2250],
+        ['hours' => 12, 'individual' => 420, 'group' => 396],
+        ['hours' => 16, 'individual' => 528, 'group' => 480],
+        ['hours' => 26, 'individual' => 780, 'group' => 728],
+        ['hours' => 40, 'individual' => 1080, 'group' => 1000],
+        ['hours' => 60, 'individual' => 1500, 'group' => 1380],
+        ['hours' => 80, 'individual' => 1840, 'group' => 1680],
+        ['hours' => 100, 'individual' => 2000, 'group' => 1800],
     ], JSON_PRETTY_PRINT);
 }
