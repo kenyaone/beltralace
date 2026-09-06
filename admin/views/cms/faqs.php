@@ -39,13 +39,22 @@ include_once $dir . '/includes/header.php';
                             <thead>
                                 <tr>
                                     <th>Question</th>
-                                    <th>Author</th>
+                                    <th>Category</th>
+                                    <th>Status</th>
                                     <th>Created</th>
                                     <th>Last Modified</th>
                                     <th class="col-1"></th>
                                 </tr>
                             </thead>
                         </table>
+                        <datalist id="faq-categories-list">
+                            <option value="Getting Started">
+                            <option value="Lessons & Delivery">
+                            <option value="Languages & Trainers">
+                            <option value="Pricing & Packages">
+                            <option value="Translation Services">
+                            <option value="About BELTRALACE">
+                        </datalist>
                         <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <form id="delete-faq-form" method="post" action="<?php echo API; ?>">
@@ -85,6 +94,13 @@ include_once $dir . '/includes/header.php';
                                     </div>
                                     <div class="form-group row mb-3">
                                         <div class="col-md-12">
+                                            <label for="category" class="col-form-label">Category</label>
+                                            <input type="text" name="category" class="form-control" list="faq-categories-list" placeholder="Pick or type a category" value="Getting Started">
+                                            <small class="text-muted">Must match the section heading on the public FAQ page (case-sensitive).</small>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-3">
+                                        <div class="col-md-12">
                                             <label for="answer" class="col-form-label">Answer</label>
                                             <textarea name="answer" class="form-control summernote" rows="5"></textarea>
                                             <small class="characters-indicator float-right"></small>
@@ -118,6 +134,13 @@ include_once $dir . '/includes/header.php';
                                         <div class="col-md-12">
                                             <label for="question" class="col-form-label">Question</label>
                                             <textarea name="question" class="form-control" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-3">
+                                        <div class="col-md-12">
+                                            <label for="category" class="col-form-label">Category</label>
+                                            <input type="text" name="category" class="form-control" list="faq-categories-list" placeholder="Pick or type a category">
+                                            <small class="text-muted">Must match the section heading on the public FAQ page (case-sensitive).</small>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-3">
@@ -204,7 +227,7 @@ include_once $dir . '/includes/header.php';
                 type: "GET"
             },
             "columnDefs": [{
-                    "targets": [4],
+                    "targets": [5],
                     "orderable": false,
                 },
 
@@ -417,11 +440,10 @@ include_once $dir . '/includes/header.php';
             success: function(response) {
                 $('#edit-faq-form').find('[name="id"]').val(response.id).end()
                     .find('[name="question"]').val(response.question).end()
+                    .find('[name="category"]').val(response.category || '').end()
                     .find('[name="answer"]').summernote('code', response.answer);
 
-                if (response.published == 1) {
-                    $('#edit-faq-form').find('input[name="published"]').prop('checked', true);
-                }
+                $('#edit-faq-form').find('input[name="published"]').prop('checked', response.published == 1);
             }
         });
     }

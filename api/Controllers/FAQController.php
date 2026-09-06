@@ -1,16 +1,21 @@
 <?php
+
+namespace App\Controllers;
+
+use \PDO;
+use \PDOException;
+
 class FAQController
 {
     public $id = null;
     public $question = null;
-    public $published = null;
     public $answer = null;
+    public $category = null;
+    public $published = null;
     public $author = null;
-
 
     public $object = null;
     public $action = null;
-    /* Datatable */
 
     public $draw = null;
     public $columns = null;
@@ -21,49 +26,13 @@ class FAQController
 
     public function __construct($data = array())
     {
-        if (isset($data['id']) && !empty($data['id'])) {
-            $this->id = $data['id'];
+        foreach (['id', 'question', 'answer', 'category', 'published', 'author', 'object', 'action', 'draw', 'columns', 'start', 'length', 'search', 'order'] as $field) {
+            if (isset($data[$field]) && $data[$field] !== '') {
+                $this->$field = $data[$field];
+            }
         }
-        if (isset($data['question']) && !empty($data['question'])) {
-            $this->question = $data['question'];
-        }
-        if (isset($data['published']) && !empty($data['published'])) {
-            $this->published = $data['published'];
-        }
-        if (isset($data['answer']) && !empty($data['answer'])) {
-            $this->answer = $data['answer'];
-        }
-        if (isset($data['author']) && !empty($data['author'])) {
-            $this->author = $data['author'];
-        }
-
-
-        if (isset($data['object']) && !empty($data['object'])) {
-            $this->object = $data['object'];
-        }
-        if (isset($data['action']) && !empty($data['action'])) {
-            $this->action = $data['action'];
-        }
-
-        /* Datatable */
-
-        if (isset($data['draw']) && !empty($data['draw'])) {
-            $this->draw = $data['draw'];
-        }
-        if (isset($data['columns']) && !empty($data['columns'])) {
-            $this->columns = $data['columns'];
-        }
-        if (isset($data['start']) && !empty($data['start'])) {
-            $this->start = $data['start'];
-        }
-        if (isset($data['length']) && !empty($data['length'])) {
-            $this->length = $data['length'];
-        }
-        if (isset($data['search']) && !empty($data['search'])) {
-            $this->search = $data['search'];
-        }
-        if (isset($data['order']) && !empty($data['order'])) {
-            $this->order = $data['order'];
+        if ($this->published === null) {
+            $this->published = 0;
         }
     }
 
@@ -74,188 +43,144 @@ class FAQController
 
     public function create()
     {
-        $connection =  DatabaseController::connect();
+        $connection = DatabaseController::connect();
         try {
-            $query = $connection->prepare("INSERT INTO faqs(question, published, answer, author) VALUES(?, ?, ?, ?)");
-            $query->execute(array($this->question, $this->published, $this->answer, $this->author));
+            $query = $connection->prepare("INSERT INTO faqs(question, answer, category, published, author, created_at, updated_at) VALUES(?, ?, ?, ?, ?, NOW(), NOW())");
+            $query->execute(array($this->question, $this->answer, $this->category, $this->published, $this->author));
             $this->id = $connection->lastInsertId();
-             DatabaseController::disconnect();
-            echo json_encode(array(
+            DatabaseController::disconnect();
+            return (object) array(
                 'status' => 1,
-                'message' => 'FAQ created successfully'
-            ));
-
-            if ($this->id) {
-                $data = array(
-                    "user_id" => $this->author,
-                    "question" => "FAQ Created",
-                    "answer" => "Created faq: '" . $this->question . "' - '".$this->answer."'",
-                    "object" => $this->object,
-                    "item_id" => $this->id,
-                );
-                $transaction_log = new UserTransactionLog();
-                $transaction_log->initializeParams($data);
-                $transaction_log->create();
-            }
+                'message' => 'FAQ created successfully',
+                'id' => $this->id
+            );
         } catch (PDOException $e) {
-            echo json_encode(array(
+            return (object) array(
                 'status' => 0,
-                'question' => '<span class="text-danger"><span class="fa fa-warning"></span> Error!</span>',
                 'message' => $e->getMessage()
-            ));
+            );
         }
     }
 
     public function update()
     {
-        $connection =  DatabaseController::connect();
+        $connection = DatabaseController::connect();
         try {
-            $query = $connection->prepare("UPDATE faqs SET question = ?, published = ?,answer = ?, author = ? WHERE id = ?");
-            $query->execute(array($this->question, $this->published, $this->answer, $this->author, $this->id));
-             DatabaseController::disconnect();
-            echo json_encode(array(
+            $query = $connection->prepare("UPDATE faqs SET question = ?, answer = ?, category = ?, published = ?, author = ?, updated_at = NOW() WHERE id = ?");
+            $query->execute(array($this->question, $this->answer, $this->category, $this->published, $this->author, $this->id));
+            DatabaseController::disconnect();
+            return (object) array(
                 'status' => 1,
                 'message' => 'FAQ updated successfully'
-            ));
-
-            if ($this->id) {
-                $data = array(
-                    "user_id" => $this->author,
-                    "question" => "FAQ Updated",
-                    "answer" => "Updated faq: '" . $this->question . "' - '".$this->answer."'",
-                    "object" => $this->object,
-                    "item_id" => $this->id,
-                );
-                $transaction_log = new UserTransactionLog();
-                $transaction_log->initializeParams($data);
-                $transaction_log->create();
-            }
+            );
         } catch (PDOException $e) {
-            echo json_encode(array(
+            return (object) array(
                 'status' => 0,
                 'message' => $e->getMessage()
-            ));
+            );
         }
     }
 
     public function delete()
     {
-        $connection =  DatabaseController::connect();
+        $connection = DatabaseController::connect();
         try {
-            $inventory_category = FAQ::getById($this->id);
             $query = $connection->prepare("DELETE FROM faqs WHERE id = ?");
             $query->execute(array($this->id));
-             DatabaseController::disconnect();
-            echo json_encode(array(
+            DatabaseController::disconnect();
+            return (object) array(
                 'status' => 1,
                 'message' => 'FAQ deleted successfully',
                 'id' => $this->id
-            ));
-
-            if ($this->id) {
-                $data = array(
-                    "user_id" => $this->author,
-                    "question" => "FAQ Deleted",
-                    "answer" => "Deleted faq: '" . $inventory_category->question . "' - '".$inventory_category->answer."'",
-                    "object" => $this->object,
-                    "item_id" => $this->id,
-                );
-                $transaction_log = new UserTransactionLog();
-                $transaction_log->initializeParams($data);
-                $transaction_log->create();
-            }
+            );
         } catch (PDOException $e) {
-            echo json_encode(array(
+            return (object) array(
                 'status' => 0,
                 'message' => $e->getMessage()
-            ));
+            );
         }
     }
 
     public static function getById($id)
     {
-        $connection =  DatabaseController::connect();
+        $connection = DatabaseController::connect();
         $query = $connection->prepare("SELECT * FROM faqs WHERE id = ?");
         $query->execute(array($id));
-         DatabaseController::disconnect();
+        DatabaseController::disconnect();
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
     public static function getList()
     {
-        $connection =  DatabaseController::connect();
-        $query = $connection->prepare("SELECT * FROM faqs");
+        $connection = DatabaseController::connect();
+        $query = $connection->prepare("SELECT * FROM faqs ORDER BY category, id");
         $query->execute();
-         DatabaseController::disconnect();
+        DatabaseController::disconnect();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
     public static function getPublished()
     {
-        $connection =  DatabaseController::connect();
-        $query = $connection->prepare("SELECT * FROM faqs WHERE published = ?");
-        $query->execute(array(1));
-         DatabaseController::disconnect();
+        $connection = DatabaseController::connect();
+        $query = $connection->prepare("SELECT * FROM faqs WHERE published = 1 ORDER BY category, id");
+        $query->execute();
+        DatabaseController::disconnect();
         return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public static function getPublishedGroupedByCategory()
+    {
+        $rows = self::getPublished();
+        $grouped = array();
+        foreach ($rows as $row) {
+            $key = $row->category ?: 'Uncategorised';
+            if (!isset($grouped[$key])) {
+                $grouped[$key] = array();
+            }
+            $grouped[$key][] = $row;
+        }
+        return $grouped;
     }
 
     public function dataTable()
     {
-        $connection =  DatabaseController::connect();
-        $query = "SELECT faqs.*, users.username, DATE_FORMAT(faqs.created_at, '%b %e, %Y %l:%i%p') AS created_at, DATE_FORMAT(faqs.updated_at, '%b %e, %Y %l:%i%p') AS updated_at FROM faqs LEFT JOIN users ON faqs.author = users.id ";
+        $connection = DatabaseController::connect();
+        $query = "SELECT faqs.*, DATE_FORMAT(faqs.created_at, '%b %e, %Y %l:%i%p') AS created_at_fmt, DATE_FORMAT(faqs.updated_at, '%b %e, %Y %l:%i%p') AS updated_at_fmt FROM faqs ";
         $query_params = array();
-        $keyword = (isset($this->search['value'])) ? '%' . $this->search['value'] . '%' : '%%';
-        if (isset($this->search['value'])) {
-            if (strpos($query, "WHERE") !== false) {
-                $query .= "AND ";
-            } else {
-                $query .= "WHERE ";
-            }
-            $query .= "(faqs.question LIKE ? OR faqs.answer LIKE ?) ";
-            for ($i = 0; $i < 2; $i++) {
-                $query_params[] = $keyword;
-            }
+        if (isset($this->search['value']) && $this->search['value'] !== '') {
+            $query .= "WHERE (faqs.question LIKE ? OR faqs.answer LIKE ? OR faqs.category LIKE ?) ";
+            $keyword = '%' . $this->search['value'] . '%';
+            $query_params = array($keyword, $keyword, $keyword);
         }
-        if (isset($params['order'])) {
-            $order_col = $params['order']['0']['column'];
-            $column = '';
-            switch ($order_col) {
-                case 0:
-                    $column = 'faqs.question';
-                    break;
-
-                default:
-                    $column = 'faqs.id';
-                    break;
-            }
-            $query .= "ORDER BY " . $column . " " . $params['order']['0']['dir'] . " ";
-        } else {
-            $query .= "ORDER BY faqs.id DESC ";
-        }
-        if ($this->length != '-1') {
-            $query .= 'LIMIT ' . $this->start . ', ' . $this->length;
+        $query .= "ORDER BY faqs.category, faqs.id DESC ";
+        if ($this->length !== null && $this->length != '-1') {
+            $query .= 'LIMIT ' . intval($this->start) . ', ' . intval($this->length);
         }
         $statement = $connection->prepare($query);
         $statement->execute($query_params);
-         DatabaseController::disconnect();
         $results = $statement->fetchAll(PDO::FETCH_OBJ);
+        DatabaseController::disconnect();
+
         $data = array();
         foreach ($results as $row) {
-            $table_row = array();
-            $table_row[] = $row->question;
-            $table_row[] = $row->username;
-            $table_row[] = $row->created_at;
-            $table_row[] = $row->updated_at;
-            $table_row[] = '<div class="btn-group">
-                                    <button type="button" class="btn btn-outline-primary btn-sm edit-faq-btn" data-id="' . $row->id . '"><i class="fas fa-fw fa-edit"></i></button>
-                                    <button type="button" class="btn btn-outline-danger btn-sm delete-faq-btn" data-id="' . $row->id . '"><i class="fa fa-trash"></i></button>
-                                </div>';
-
-            $data[] = $table_row;
+            $publishedBadge = $row->published
+                ? '<span class="badge bg-success">Published</span>'
+                : '<span class="badge bg-secondary">Draft</span>';
+            $data[] = array(
+                htmlspecialchars($row->question, ENT_QUOTES),
+                htmlspecialchars($row->category ?: '', ENT_QUOTES),
+                $publishedBadge,
+                $row->created_at_fmt,
+                $row->updated_at_fmt,
+                '<div class="btn-group">
+                    <button type="button" class="btn btn-outline-primary btn-sm edit-faq-btn" data-id="' . intval($row->id) . '"><i class="fas fa-fw fa-edit"></i></button>
+                    <button type="button" class="btn btn-outline-danger btn-sm delete-faq-btn" data-id="' . intval($row->id) . '"><i class="fa fa-trash"></i></button>
+                </div>'
+            );
         }
-        echo json_encode(array(
+        return json_encode(array(
             "draw" => intval($this->draw),
-            "recordsTotal" => count($results),
+            "recordsTotal" => $this->totalRecords(),
             "recordsFiltered" => $this->totalRecords(),
             "data" => $data
         ), JSON_PRETTY_PRINT + JSON_UNESCAPED_SLASHES);
@@ -263,24 +188,10 @@ class FAQController
 
     public function totalRecords()
     {
-        $connection =  DatabaseController::connect();
-        $statement = "SELECT COUNT(id) FROM faqs ";
-        $query_params = array();
-        $keyword = (isset($this->search['value'])) ? '%' . $this->search['value'] . '%' : '%%';
-        if (isset($this->search['value'])) {
-            if (strpos($statement, "WHERE") !== false) {
-                $statement .= "AND ";
-            } else {
-                $statement .= "WHERE ";
-            }
-            $statement .= "(faqs.question LIKE ? OR faqs.answer LIKE ?) ";
-            for ($i = 0; $i < 2; $i++) {
-                $query_params[] = $keyword;
-            }
-        }
-        $query = $connection->prepare($statement);
-        $query->execute($query_params);
-         DatabaseController::disconnect();
-        return $query->fetchColumn();
+        $connection = DatabaseController::connect();
+        $query = $connection->prepare("SELECT COUNT(id) FROM faqs");
+        $query->execute();
+        DatabaseController::disconnect();
+        return (int) $query->fetchColumn();
     }
 }

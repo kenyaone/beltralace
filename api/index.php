@@ -49,6 +49,7 @@ use App\Controllers\PageController;
 use App\Controllers\WidgetController;
 use App\Controllers\EnquiryController;
 use App\Controllers\ReviewController;
+use App\Controllers\FAQController;
 use App\Controllers\StatsController;
 use App\Helpers\Dropzone;
 use App\Helpers\HelperFunctions;
@@ -402,6 +403,40 @@ try {
                     break;
                 case 'get_details':
                     echo json_encode(ReviewController::getById($params['id']), JSON_PRETTY_PRINT);
+                    break;
+                case 'data_table':
+                    echo $controller->dataTable();
+                    break;
+                default:
+                    echo json_encode(array('status' => 1, 'message' => "Endpoint not found"));
+                    break;
+            }
+            exit;
+        }
+
+        if ($object == 'FAQ') {
+            $controller = new FAQController($params);
+            switch ($action) {
+                case 'create':
+                    echo json_encode($controller->create(), JSON_PRETTY_PRINT);
+                    break;
+                case 'update':
+                    echo json_encode($controller->update(), JSON_PRETTY_PRINT);
+                    break;
+                case 'delete':
+                    echo json_encode($controller->delete(), JSON_PRETTY_PRINT);
+                    break;
+                case 'get_published':
+                    echo json_encode(FAQController::getPublished(), JSON_PRETTY_PRINT);
+                    break;
+                case 'get_published_grouped':
+                    echo json_encode(FAQController::getPublishedGroupedByCategory(), JSON_PRETTY_PRINT);
+                    break;
+                case 'get_list':
+                    echo json_encode(FAQController::getList(), JSON_PRETTY_PRINT);
+                    break;
+                case 'get_details':
+                    echo json_encode(FAQController::getById($params['id']), JSON_PRETTY_PRINT);
                     break;
                 case 'data_table':
                     echo $controller->dataTable();
