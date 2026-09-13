@@ -26,6 +26,19 @@ include_once __DIR__ . '/includes/auth-header.php';
                                         <label class="form-label">Email</label>
                                         <input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" required/>
                                     </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Which programme are you reviewing? <span class="text-muted">(optional)</span></label>
+                                        <input class="form-control form-control-lg" type="text" name="role" list="role-suggestions" placeholder="e.g. Swahili Student, French Student, Corporate Client"/>
+                                        <datalist id="role-suggestions">
+                                            <option value="Swahili Student">
+                                            <option value="French Student">
+                                            <option value="Spanish Student">
+                                            <option value="German Student">
+                                            <option value="English Student">
+                                            <option value="Corporate Client">
+                                            <option value="Translation Client">
+                                        </datalist>
+                                    </div>
                                     <div class="mb-4">
                                         <label class="form-label">Review</label>
                                         <textarea class="form-control form-control-lg" name="review" placeholder="Enter your review" rows="6" required></textarea>

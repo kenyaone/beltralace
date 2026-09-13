@@ -61,12 +61,13 @@ class ReviewController
                 }
             }
 
-            $query = $connection->prepare("INSERT INTO reviews(name, email, review, rating, image_path, is_published, created_at, updated_at) VALUES(?, ?, ?, ?, ?, ?, NOW(), NOW())");
+            $query = $connection->prepare("INSERT INTO reviews(name, email, review, rating, role, image_path, is_published, created_at, updated_at) VALUES(?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
             $query->execute(array(
-                $this->review->name, 
-                $this->review->email, 
+                $this->review->name,
+                $this->review->email,
                 $this->review->review,
                 $this->review->rating,
+                $this->review->role ?? null,
                 $this->review->image_path,
                 $this->review->is_published
             ));
@@ -97,14 +98,15 @@ class ReviewController
     {
         $connection = DatabaseController::connect();
         try {
-            $query = $connection->prepare("UPDATE reviews SET name = ?, email = ?, review = ?, rating = ?, image_path = ?, is_published = ?, updated_at = NOW() WHERE id = ?");
+            $query = $connection->prepare("UPDATE reviews SET name = ?, email = ?, review = ?, rating = ?, role = ?, image_path = ?, is_published = ?, updated_at = NOW() WHERE id = ?");
             $query->execute(array(
-                $this->review->name, 
-                $this->review->email, 
+                $this->review->name,
+                $this->review->email,
                 $this->review->review,
                 $this->review->rating,
+                $this->review->role ?? null,
                 $this->review->image_path,
-                $this->review->is_published, 
+                $this->review->is_published,
                 $this->review->id
             ));
             DatabaseController::disconnect();

@@ -639,14 +639,18 @@ try {
 <script>
 $(document).ready(function() {
 
-    // ===== 10 ROTATING TESTIMONIAL POPUPS =====
-    var testimonials = [
-        { name: "Ian Cooper", role: "Swahili Student", text: "I'm really enjoying my lessons with Belha. She teaches in a pragmatic way which means we cover all the important things and I feel we are working towards me learning as quickly as we can. Highly recommended." },
-        { name: "Sheena", role: "Swahili Student", text: "I have loved working with Belha! I was attempting to learn Swahili on my own using apps, but with her help, I am learning much more quickly and able to have basic conversations after only a few months." },
-        { name: "Malcolm Macnaughton", role: "Swahili Student", text: "Belha is a brilliant Swahili teacher, understanding the varying needs of students of all ages. Belha adapts her methods and the content of lessons to suit her students — this is not a 'one size fits all' approach." },
-        { name: "Pam", role: "Swahili Student", text: "Learning Swahili with Belha is a treat — she very soon worked out what energy we could give to learning in the midst of demanding work and family commitments. She is unfailingly patient and kind." },
-        { name: "Amileena Hope", role: "French Student", text: "I enjoyed my French tuition lessons with my teacher. It was quite a memorable experience! Beltralace trainers are very professional and dedicated to their service. I loved it!" }
-    ];
+    // ===== ROTATING TESTIMONIAL POPUPS =====
+    var testimonials = <?php
+        $popup_reviews = array();
+        foreach ($published_reviews as $r) {
+            $popup_reviews[] = array(
+                'name' => isset($r['name']) ? $r['name'] : '',
+                'role' => !empty($r['role']) ? $r['role'] : 'Verified Student',
+                'text' => isset($r['review']) ? $r['review'] : '',
+            );
+        }
+        echo json_encode($popup_reviews, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+    ?>;
 
     var currentIndex = 0;
 
@@ -669,16 +673,18 @@ $(document).ready(function() {
         });
     }
 
-    setTimeout(function() {
-        showPopup(currentIndex);
-        setInterval(function() {
-            $('#testimonialPopup').removeClass('show');
-            setTimeout(function() {
-                currentIndex = (currentIndex + 1) % testimonials.length;
-                showPopup(currentIndex);
-            }, 700);
-        }, 20000);
-    }, 1500);
+    if (testimonials.length > 0) {
+        setTimeout(function() {
+            showPopup(currentIndex);
+            setInterval(function() {
+                $('#testimonialPopup').removeClass('show');
+                setTimeout(function() {
+                    currentIndex = (currentIndex + 1) % testimonials.length;
+                    showPopup(currentIndex);
+                }, 700);
+            }, 20000);
+        }, 1500);
+    }
 
     // ===== FAQ =====
     $('.faq-question').on('click', function() {

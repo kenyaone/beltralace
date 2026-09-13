@@ -87,6 +87,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 $stmt->execute([$reviewId]);
                 $message = "Review deleted!";
                 break;
+            case 'set_role':
+                $role = trim($_POST['role'] ?? '');
+                $stmt = $pdo->prepare("UPDATE reviews SET role = ?, updated_at = NOW() WHERE id = ?");
+                $stmt->execute([$role !== '' ? $role : null, $reviewId]);
+                $message = "Role updated!";
+                break;
         }
     }
 }
@@ -129,6 +135,10 @@ $published = array_filter($allReviews, fn($r) => $r['is_published'] == 1);
         .btn-approve { background: #28a745; color: white; }
         .btn-reject { background: #dc3545; color: white; }
         .btn-unpublish { background: #ffc107; color: #333; }
+        .btn-save-role { background: #667eea; color: white; padding: 8px 14px; font-size: 13px; }
+        .role-row { display: flex; gap: 8px; align-items: center; margin: 10px 0 5px; }
+        .role-row label { font-size: 13px; color: #666; font-weight: 600; min-width: 40px; }
+        .role-row input { flex: 1; padding: 8px 12px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; }
         .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-left: 10px; }
         .badge-pending { background: #f5576c; color: white; }
         .badge-published { background: #28a745; color: white; }
@@ -178,6 +188,23 @@ $published = array_filter($allReviews, fn($r) => $r['is_published'] == 1);
                             <?= str_repeat('☆', 5 - ($review['rating'] ?? 5)) ?>
                         </div>
                         <div class="review-text"><?= nl2br(htmlspecialchars($review['review'])) ?></div>
+                        <form method="POST" class="role-row">
+                            <label>Role:</label>
+                            <input type="hidden" name="review_id" value="<?= $review['id'] ?>">
+                            <input type="hidden" name="action" value="set_role">
+                            <input type="text" name="role" list="role-suggestions-<?= $review['id'] ?>" value="<?= htmlspecialchars($review['role'] ?? '') ?>" placeholder="e.g. Swahili Student">
+                            <datalist id="role-suggestions-<?= $review['id'] ?>">
+                                <option value="Swahili Student">
+                                <option value="French Student">
+                                <option value="Spanish Student">
+                                <option value="German Student">
+                                <option value="English Student">
+                                <option value="Corporate Client">
+                                <option value="Translation Client">
+                                <option value="Verified Student">
+                            </datalist>
+                            <button type="submit" class="btn btn-save-role">Save Role</button>
+                        </form>
                         <div class="actions">
                             <form method="POST" style="display: inline;">
                                 <input type="hidden" name="review_id" value="<?= $review['id'] ?>">
@@ -194,7 +221,7 @@ $published = array_filter($allReviews, fn($r) => $r['is_published'] == 1);
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
-        
+
         <div class="section">
             <h2>✅ Published Reviews (<?= count($published) ?>)</h2>
             <?php if (empty($published)): ?>
@@ -214,6 +241,23 @@ $published = array_filter($allReviews, fn($r) => $r['is_published'] == 1);
                             <?= str_repeat('☆', 5 - ($review['rating'] ?? 5)) ?>
                         </div>
                         <div class="review-text"><?= nl2br(htmlspecialchars($review['review'])) ?></div>
+                        <form method="POST" class="role-row">
+                            <label>Role:</label>
+                            <input type="hidden" name="review_id" value="<?= $review['id'] ?>">
+                            <input type="hidden" name="action" value="set_role">
+                            <input type="text" name="role" list="role-suggestions-p-<?= $review['id'] ?>" value="<?= htmlspecialchars($review['role'] ?? '') ?>" placeholder="e.g. Swahili Student">
+                            <datalist id="role-suggestions-p-<?= $review['id'] ?>">
+                                <option value="Swahili Student">
+                                <option value="French Student">
+                                <option value="Spanish Student">
+                                <option value="German Student">
+                                <option value="English Student">
+                                <option value="Corporate Client">
+                                <option value="Translation Client">
+                                <option value="Verified Student">
+                            </datalist>
+                            <button type="submit" class="btn btn-save-role">Save Role</button>
+                        </form>
                         <div class="actions">
                             <form method="POST" style="display: inline;">
                                 <input type="hidden" name="review_id" value="<?= $review['id'] ?>">
