@@ -52,14 +52,23 @@ if (isset($_GET['logout'])) {
     exit;
 }
 
-// Database connection
-$host = 'localhost';
-$dbname = 'asqwyaug_db';
-$username = 'asqwyaug_root';
-$password = 'alabaster34!';
+// Database connection — credentials loaded from the same
+// .database.json that the API uses (gitignored, prod-only).
+$db_config_path = dirname(__DIR__) . '/api/config/env/.database.json';
+if (!is_readable($db_config_path)) {
+    die("Database configuration not found. Expected at: api/config/env/.database.json");
+}
+$db_settings = json_decode(file_get_contents($db_config_path));
+if (!$db_settings || empty($db_settings->host) || empty($db_settings->database) || empty($db_settings->user)) {
+    die("Database configuration is invalid.");
+}
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
+    $pdo = new PDO(
+        "mysql:host={$db_settings->host};dbname={$db_settings->database};charset=utf8mb4",
+        $db_settings->user,
+        $db_settings->password ?? ''
+    );
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Database connection failed: " . $e->getMessage());
