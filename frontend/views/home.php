@@ -1,3 +1,28 @@
+<?php
+$published_reviews = array();
+try {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, API);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(array(
+        'object' => 'Review',
+        'action' => 'get_published',
+    )));
+    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+    $response = curl_exec($ch);
+    curl_close($ch);
+    if ($response) {
+        $decoded = json_decode($response, true);
+        if (is_array($decoded)) {
+            $published_reviews = $decoded;
+        }
+    }
+} catch (Throwable $th) {
+    error_log('Reviews fetch failed: ' . $th->getMessage());
+}
+?>
 <style>
 /* ===== FORCE LIGHTER HERO OVERLAY ===== */
 .banner::before,
@@ -503,7 +528,45 @@
             <div class="col-lg-6 text-center"><span class="sec-tag">Student Reviews</span><h3 class="sec-h">What our clients say</h3></div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-lg-12"><div class="testimonials-slides owl-carousel owl-theme" id="testimonials-slides"></div></div>
+            <div class="col-lg-12">
+                <?php if (!empty($published_reviews)): ?>
+                <div class="testimonials-slides owl-carousel owl-theme" id="testimonials-slides">
+<?php foreach ($published_reviews as $r):
+    $name = isset($r['name']) ? $r['name'] : '';
+    $body = isset($r['review']) ? $r['review'] : '';
+    $role = !empty($r['role']) ? $r['role'] : 'Verified Student';
+    $rating = isset($r['rating']) ? max(1, min(5, intval($r['rating']))) : 5;
+    $initials = '';
+    foreach (preg_split('/\s+/', trim($name)) as $part) {
+        if ($part !== '') { $initials .= strtoupper($part[0]); }
+    }
+    if ($initials === '') { $initials = '?'; }
+?>
+                    <div class="review-item">
+                        <div class="client-info">
+                            <i class="fa fa-quote-left"></i>
+                            <p><?php echo htmlspecialchars($body, ENT_QUOTES, 'UTF-8'); ?></p>
+                            <div class="rating">
+<?php for ($s = 0; $s < $rating; $s++): ?>                                <i class="fa fa-star"></i>
+<?php endfor; ?>
+                            </div>
+                        </div>
+                        <div class="client-desc">
+                            <div class="client-img">
+                                <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#1a1a6e,#4db8e8);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:800;border:3px solid #f5c518;"><?php echo htmlspecialchars($initials, ENT_QUOTES, 'UTF-8'); ?></div>
+                            </div>
+                            <div class="client-text">
+                                <h4><?php echo htmlspecialchars($name, ENT_QUOTES, 'UTF-8'); ?></h4>
+                                <span class="designation"><?php echo htmlspecialchars($role, ENT_QUOTES, 'UTF-8'); ?></span>
+                            </div>
+                        </div>
+                    </div>
+<?php endforeach; ?>
+                </div>
+                <?php else: ?>
+                <p class="text-center" style="color:#777;font-style:italic;padding:40px 20px;">Student reviews will appear here shortly.</p>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
 </section>
@@ -633,29 +696,11 @@ $(document).ready(function() {
     });
 
     // ===== TESTIMONIALS CAROUSEL =====
-    loadTestimonials();
+    if ($('#testimonials-slides .review-item').length) {
+        $('#testimonials-slides').owlCarousel({
+            loop: true, margin: 20, nav: true, dots: true, autoplay: true, autoplayTimeout: 5000,
+            responsive: { 0: { items: 1 }, 600: { items: 2 }, 1000: { items: 3 } }
+        });
+    }
 });
-
-function loadTestimonials() {
-    var reviews = [
-        { body: "I'm really enjoying my lessons with Belha. She teaches in a pragmatic way which means we cover all the important things and I feel we are working towards me learning as quickly as we can. Highly recommended.", name: "Ian Cooper", role: "Swahili Student" },
-        { body: "I have loved working with Belha! I was attempting to learn Swahili on my own using apps, but with her help, I am learning much more quickly and able to have basic conversations after only a few months.", name: "Sheena", role: "Swahili Student" },
-        { body: "Belha is a brilliant Swahili teacher, understanding the varying needs of students of all ages. Belha adapts her methods and the content of lessons to suit her students — this is not a 'one size fits all' approach.", name: "Malcolm Macnaughton", role: "Swahili Student" },
-        { body: "Learning Swahili with Belha is a treat — she very soon worked out what energy we could give to learning in the midst of demanding work and family commitments. She is unfailingly patient and kind.", name: "Pam", role: "Swahili Student" },
-        { body: "I enjoyed my French tuition lessons with my teacher. It was quite a memorable experience! Beltralace trainers are very professional and dedicated to their service. I loved it!", name: "Amileena Hope", role: "French Student" }
-    ];
-    var html = "";
-    reviews.forEach(function(v) {
-        var initials = v.name.split(' ').map(function(n) { return n[0]; }).join('');
-        html += '<div class="review-item"><div class="client-info"><i class="fa fa-quote-left"></i><p>' + v.body + '</p>' +
-            '<div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div></div>' +
-            '<div class="client-desc"><div class="client-img"><div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#1a1a6e,#4db8e8);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:800;border:3px solid #f5c518;">' + initials + '</div></div>' +
-            '<div class="client-text"><h4>' + v.name + '</h4><span class="designation">' + v.role + '</span></div></div></div>';
-    });
-    $("#testimonials-slides").html(html);
-    $('#testimonials-slides').owlCarousel({
-        loop: true, margin: 20, nav: true, dots: true, autoplay: true, autoplayTimeout: 5000,
-        responsive: { 0: { items: 1 }, 600: { items: 2 }, 1000: { items: 3 } }
-    });
-}
 </script>

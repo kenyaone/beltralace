@@ -197,7 +197,7 @@ class ReviewController
     public static function getPublished()
     {
         $connection = DatabaseController::connect();
-        $query = $connection->prepare("SELECT id, name, review, rating, image_path, created_at FROM reviews WHERE is_published = 1 ORDER BY created_at DESC");
+        $query = $connection->prepare("SELECT id, name, review, rating, role, image_path, created_at FROM reviews WHERE is_published = 1 ORDER BY created_at DESC");
         $query->execute();
         DatabaseController::disconnect();
         return $query->fetchAll(PDO::FETCH_OBJ);
